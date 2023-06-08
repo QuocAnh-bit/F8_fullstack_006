@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* đặt fonts cho trang */
+      body {
+        font-family: system-ui;
+        font-size: 16px;
+      }
+      /* Các thẻ kế thừa lại từ body */
+      input,
+      textarea {
+        font-family: inherit;
+        font-size: inherit;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Get in touch with us by filling contact from below</h1>
+      <table with="100%" cellspacing="0">
+        <!-- FullName, Address -->
+        <tr>
+          <td><input type="text" placeholder="*Enter your full name" /></td>
+          <td><input type="text" placeholder="*Enter your address" /></td>
+        </tr>
+        <!-- Subject -->
+        <tr>
+          <td colspan="2">
+            <input type="text" placeholder="*Enter your subject" />
+          </td>
+        </tr>
+      </table>
+      <!-- Message -->
+      <textarea cols="50" rows="10" placeholder="*Your message here"></textarea>
+      <div>
+        <!-- Send message -->
+        <input type="submit" value="Send message" />*Please fill all require
+        from field, thanks!
+      </div>
+    </div>
+  </body>
+</html>
