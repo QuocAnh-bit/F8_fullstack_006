@@ -1,0 +1,60 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+}
+button, input, textarea, select{
+    font-family: inherit;
+    font-size: inherit;
+}
+.acition{
+    width: 100%;
+    height: 250px;
+    
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+.box span{
+    display: block;
+    width: 190px;
+    height: 50px;
+    background-color: rgba(15, 15, 239, 0.77);
+    color: white;
+    line-height: 50px;
+    text-align: center;
+    
+    
+}
+.content-action{
+    text-align: center;
+    margin: 20px;
+}
+.content-action h1 {
+    margin: 15px;
+}
+.title-action span{
+    color: rgba(0, 0, 255, 0.64);
+}
+.btn{
+    text-align: center;
+}
+.btn button{
+    margin-right: 15px;
+    width: 150px;
+    padding: 15px 0 15px 0;
+    background-color: black;
+    color: white;
+    border-radius: 5%;
+}
+button:hover{
+    background-color: rgba(255, 255, 255, 0.447);
+    color: black;
+}

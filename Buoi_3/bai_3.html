@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form-Access</title>
+    <link rel="stylesheet" href="/Buoi_3/assets/style_3.css" />
+  </head>
+  <body>
+    <div class="access">
+      <!-- Form Access -->
+      <form class="form-access">
+        <!-- User Name -->
+        <div class="user-name">
+          <label for="user-name">Username: </label>
+          <input type="text" name="user-name" id="user-name" required />
+        </div>
+        <!-- Password -->
+        <div class="password">
+          <label for="password">Password: </label>
+          <input type="password" name="password" id="password" required />
+        </div>
+        <div class="city-emplopment">
+          <label for="city-emplopment">City of Emplopment: </label>
+          <input
+            type="password"
+            name="city-emplopment"
+            id="city-emplopment"
+            required
+          />
+        </div>
+        <!-- Web Server -->
+        <div class="choose-server">
+          <label>Wed Server:</label>
+          <select>
+            <option value="0" hidden>--Choose a server--</option>
+            <option value="1">Nginx</option>
+            <option value="2">IIS</option>
+            <option value="3">Apache</option>
+            <option value="4">Lighttpd</option>
+          </select>
+        </div>
+        <!-- User role -->
+        <div class="check-role">
+          <div class="title-role">
+            <label>Please specify your role:</label>
+          </div>
+          <div class="role">
+            <label>
+              <input type="radio" name="role" value="1" />
+              Admin
+            </label>
+            <label>
+              <input type="radio" name="role" value="2" />
+              Engineeer
+            </label>
+            <label>
+              <input type="radio" name="role" value="3" />
+              Manager
+            </label>
+            <label>
+              <input type="radio" name="role" value="4" checked />
+              Guest
+            </label>
+          </div>
+        </div>
+        <!-- Single Sign-on to the following  -->
+        <div class="sign-on-following">
+          <label>Single Sign-on to the following:</label>
+          <div class="sign-on">
+            <label>
+              <input type="checkbox" name="sign-on-following" value="1" />
+              Mail
+            </label>
+            <label>
+              <input type="checkbox" name="sign-on-following" value="2" />
+              Payroll
+            </label>
+            <label>
+              <input type="checkbox" name="sign-on-following" value="3" />
+              Self-service
+            </label>
+          </div>
+        </div>
+        <!-- Btn Submit-Reset -->
+        <div class="btn">
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
