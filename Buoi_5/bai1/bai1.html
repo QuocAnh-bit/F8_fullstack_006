@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form-contact</title>
+    <link rel="stylesheet" href="./css/bai1.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="title-form">
+        <h1>Hey there</h1>
+      </div>
+      <div class="content">
+        <p>
+          We'd like to hear from you.
+          <a href="#"
+            >Send us message or just say hy with our contact form or directly
+            via phone, we love to chat</a
+          >
+        </p>
+      </div>
+
+      <div class="contact-form">
+        <form>
+          <div class="user-name">
+            <input
+              type="text"
+              name="user-name"
+              placeholder="Your name"
+              id="user-name"
+              required
+            />
+            <label for="user-name"><i class="fa-regular fa-user"></i></label>
+            <div class="suggest-name">
+              <img src="./imgs/chatbox-top.png" alt="" />
+              <span>Enter your name</span>
+            </div>
+            <div class="star-name">
+              <i class="fa-sharp fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <div class="user-mail">
+            <input
+              type="email"
+              name="user-mail"
+              placeholder="Email"
+              id="user-mail"
+              required
+            />
+            <label for="user-mail"
+              ><i class="fa-regular fa-envelope"></i
+            ></label>
+            <div class="suggest-mail">
+              <img src="./imgs/chatbox-top.png" alt="" />
+              <span>Enter your email</span>
+            </div>
+            <div class="star-mail">
+              <i class="fa-sharp fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <div class="user-phone">
+            <input
+              type="number"
+              name="user-phone"
+              placeholder="+44 000 123"
+              id="user-phone"
+              required
+            />
+            <label for="user-phone"
+              ><i class="fa-solid fa-mobile-screen-button"></i
+            ></label>
+            <div class="suggest-phone">
+              <img src="./imgs/chatbox-top.png" alt="" />
+              <span>Enter your number</span>
+            </div>
+          </div>
+
+          <div class="user-subject">
+            <select name="subject" id="subject">
+              <option value="1">Subject</option>
+              <option value="2">Option 1</option>
+              <option value="3">Option 2</option>
+              <option value="4">Option 3</option>
+            </select>
+            <label for="user-subject"><i class="fa-solid fa-book"></i></label>
+          </div>
+
+          <div class="user-message">
+            <textarea
+              name="message"
+              cols="30"
+              rows="10"
+              id="user-message"
+              placeholder="Message"
+            ></textarea>
+            <label for="user-message"
+              ><i class="fa-regular fa-message"></i
+            ></label>
+            <div class="suggest-message">
+              <img src="./imgs/chatbox-top.png" alt="" />
+              <span>Enter your message</span>
+            </div>
+            <div class="star-message">
+              <i class="fa-sharp fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <div class="checkbox-btn">
+            <span><input type="checkbox" />Send me a copy of this message</span>
+            <button class="btn-submit" type="submit">SEND</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

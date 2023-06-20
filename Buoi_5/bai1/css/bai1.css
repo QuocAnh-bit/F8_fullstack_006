@@ -1,0 +1,206 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.body {
+  font-size: 16px;
+}
+/* Link Font */
+@font-face {
+  font-family: "lobster";
+  src: url(../fonts/Lobster-Regular.ttf);
+}
+@font-face {
+  font-family: "lato";
+  src: url(../fonts/Lato-Regular.ttf);
+}
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+.container {
+  margin: 20px;
+}
+.title-form {
+  font-family: "lobster", sans-serif;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+.content {
+  font-family: "lato";
+  max-width: 500px;
+}
+.content p {
+  color: red;
+}
+.content a {
+  text-decoration: none;
+}
+.contact-form div {
+  margin-top: 25px;
+  width: 500px;
+}
+.contact-form div[class^="user-"] {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.contact-form div[class^="user-"] input,
+.user-subject select,
+.user-message textarea {
+  flex: 1;
+  padding: 12px;
+  position: relative;
+}
+.star-name {
+  position: absolute;
+  left: 490px;
+  top: 128px;
+  opacity: 0.7;
+  font-size: 0.8em;
+}
+.star-mail {
+  position: absolute;
+  left: 490px;
+  top: 200px;
+  opacity: 0.7;
+  font-size: 0.8em;
+}
+.star-message {
+  position: absolute;
+  left: 490px;
+  top: 405px;
+  opacity: 0.7;
+  font-size: 0.8em;
+}
+.suggest-name {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.suggest-mail {
+  position: absolute;
+  top: 100px;
+  left: 30px;
+}
+.suggest-phone {
+  position: absolute;
+  top: 160px;
+  left: 25px;
+}
+.suggest-message {
+  position: absolute;
+  top: 293px;
+  left: 25px;
+}
+.suggest-phone img {
+  width: 40%;
+  opacity: 0.8;
+}
+.suggest-message img {
+  width: 43%;
+  opacity: 0.8;
+}
+.suggest-name img,
+.suggest-mail img {
+  width: 35%;
+  opacity: 0.8;
+}
+.suggest-name span,
+.suggest-mail span {
+  position: absolute;
+  top: 45px;
+  left: 38px;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 0.8em;
+}
+.suggest-phone span {
+  position: absolute;
+  top: 50px;
+  left: 45px;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 0.8em;
+}
+.suggest-message span {
+  position: absolute;
+  top: 55px;
+  left: 45px;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 0.8em;
+}
+.user-subject select {
+  opacity: 0.7;
+}
+.contact-form div[class^="suggest-"] {
+  display: none;
+}
+
+.contact-form div[class^="user-"] label {
+  min-width: 40px;
+  background-color: #ddd;
+  color: #fff;
+  padding: 12px;
+}
+
+.user-name:hover label[for="user-name"],
+.user-mail:hover label[for="user-mail"],
+.user-phone:hover label[for="user-phone"],
+.user-subject:hover label[for="user-subject"],
+.user-message:hover label[for="user-message"] {
+  background-color: black;
+}
+
+.user-name:hover input[name="user-name"],
+.user-mail:hover input[name="user-mail"],
+.user-phone:hover input[name="user-phone"],
+.user-subject:hover select,
+.user-message:hover textarea {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+input:focus + label[for="user-name"],
+input:focus + label[for="user-mail"],
+input:focus + label[for="user-phone"],
+select:focus + label[for="user-subject"],
+textarea:focus + label[for="user-message"] {
+  background-color: black;
+}
+
+input:focus ~ div[class^="suggest-"],
+textarea:focus ~ .suggest-message {
+  display: block;
+}
+input:focus ~ div[class^="star-"],
+textarea:focus ~ .star-message {
+  display: none;
+}
+
+.checkbox-btn {
+  display: flex;
+  justify-content: space-between;
+  font-family: sans-serif;
+}
+
+.checkbox-btn span {
+  opacity: 0.7;
+}
+.checkbox-btn button {
+  width: 100px;
+  padding: 10px 0;
+  background-color: rgb(205, 55, 55);
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+}
+.checkbox-btn button:hover {
+  color: black;
+  opacity: 0.7;
+}

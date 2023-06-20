@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.body {
+  font-size: 16px;
+}
+
+input {
+  display: none;
+}
+.container {
+  margin: 12px;
+}
+[class^="item-"] {
+  display: none;
+  margin-left: 20px;
+  font-size: 1.2em;
+}
+[class^="item-"] ol {
+  margin-left: 20px;
+}
+[class^="content-"] > label {
+  display: block;
+  background-color: rgb(199, 107, 21);
+  color: #fff;
+  margin: 12px 0;
+  line-height: 50px;
+  font-size: 1.3em;
+}
+label::before {
+  content: "+";
+  padding: 15px;
+  font-size: 1.5em;
+  line-height: 50px;
+  font-weight: 900;
+  color: aliceblue;
+}
+.check-item:nth-of-type(1):checked ~ .content-random .item-random,
+.check-item:nth-of-type(2):checked ~ .content-theme .item-theme,
+.check-item:nth-of-type(3):checked ~ .content-change .item-change {
+  display: block;
+}
+.check-item:nth-of-type(1):checked ~ .content-random label::before,
+.check-item:nth-of-type(2):checked ~ .content-theme label::before,
+.check-item:nth-of-type(3):checked ~ .content-change label::before {
+  content: "-";
+  padding: 15px;
+  font-size: 1.5em;
+  line-height: 50px;
+  font-weight: 900;
+}
