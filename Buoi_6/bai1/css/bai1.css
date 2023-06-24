@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url(../font/OpenSans-VariableFont_wdth\wght.ttf);
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+.container {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.menu {
+  display: flex;
+  width: 80%;
+  min-height: 50px;
+  border: 1px solid black;
+  justify-content: space-between;
+}
+.new-menu {
+  position: relative;
+}
+.new-menu::after {
+  content: "";
+  display: none;
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: 42px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent #fffefe transparent;
+}
+
+.new-menu:hover::after,
+.new-menu:hover .sub-menu {
+  display: block;
+}
+.menu-left {
+  display: flex;
+}
+.item {
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+.item i {
+  margin: 0 5px;
+}
+.menu-left .item {
+  border-right: 1px solid black;
+}
+.menu-right {
+  border-left: 1px solid black;
+}
+
+.item:hover,
+.sub-menu a:hover {
+  background-color: #2da5da;
+  color: #666;
+}
+.sub-menu {
+  display: none;
+  position: absolute;
+  list-style-type: none;
+  width: 180%;
+  top: 55px;
+  left: -5px;
+  box-shadow: 0 0 25px 1px rgb(233, 218, 218);
+}
+.sub-menu a {
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.sub-menu a i {
+  padding: 0px 12px;
+}
