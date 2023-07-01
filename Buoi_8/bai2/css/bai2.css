@@ -1,0 +1,215 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "nunito";
+  src: url(../fonts/Nunito-Regular.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family: "nunito";
+  src: url(../fonts/Nunito-Medium.ttf);
+  font-weight: 500;
+}
+body {
+  font-size: 16px;
+  font-family: "nunito", sans-serif;
+  font-weight: 300;
+
+  counter-reset: item;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+.overlay-container {
+  width: 70%;
+  background-color: rgba(75, 37, 37, 0.271);
+}
+.menu-shop {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+.title-menu {
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  line-height: 65px;
+  background-color: #f4f4f4;
+}
+.title-menu .title-shop {
+  margin-left: 30px;
+  align-self: center;
+  width: 55%;
+  position: relative;
+}
+
+.title-menu .title-shop h2::after {
+  content: "4";
+  color: #fff;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+  font-size: 0.5em;
+  top: 5px;
+  right: 80px;
+}
+.title-shop h2 {
+  font-weight: 400;
+}
+.tab {
+  margin-right: 20px;
+  align-self: center;
+}
+.list-item {
+  height: 235px;
+  max-height: 235px;
+  overflow: auto;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(231, 188, 188, 0.81);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #856868;
+}
+.item {
+  width: 100%;
+  max-height: 130px;
+  display: flex;
+  justify-content: space-evenly;
+  box-shadow: 0 0 1px 2px #f4f4f4;
+  padding: 25px 0;
+}
+
+.img-item {
+  background-color: #f3f3f361;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img-item img {
+  width: 60px;
+  height: 60px;
+}
+.content-item {
+  align-self: center;
+  margin-right: 40px;
+}
+.content-item .quantity {
+  border: 1px solid black;
+  text-align: center;
+  padding: 5px 0;
+  width: 82px;
+  border-radius: 15px;
+  margin-top: 15px;
+  display: inline-block;
+}
+.content-item .quantity span::before {
+  content: "-";
+  margin-right: 15px;
+}
+.content-item .quantity span::after {
+  content: "+";
+  margin-left: 15px;
+}
+.price {
+  float: right;
+  margin-top: 23px;
+  font-size: 1.3em;
+}
+.product {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+.content-pay {
+  width: 100%;
+  max-height: 50%;
+}
+.total {
+  display: flex;
+  margin: 35px 30px 0px 30px;
+  justify-content: space-between;
+  font-size: 1.5em;
+}
+.price-total {
+  color: rgb(209, 22, 22);
+  font-weight: 600;
+}
+.note,
+[class^="btn-"] {
+  margin: 20px 30px;
+}
+.note {
+  font-size: 0.85em;
+  color: #b9a5a5;
+}
+[class^="btn-"] button {
+  width: 100%;
+  padding: 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+}
+[class^="btn-"] button:hover {
+  color: black;
+  background-color: rgba(182, 173, 163, 0.432);
+}
+.btn-view button {
+  background-color: #fff;
+  color: #ac8686;
+  border: 1px solid #b9a5a5;
+}
+.btn-add button {
+  background-color: blue;
+  border: none;
+  color: #fff;
+}
+.price-ship {
+  margin: 60px 30px 0 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.price-ship .icon-ship {
+  height: 80px;
+  width: 80px;
+  border: 1px solid blue;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 80px;
+}
+.price-ship .icon-ship i {
+  color: blue;
+  font-size: 1.9em;
+}
+.price-ship .content-ship {
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 500;
+  line-height: 80px;
+}
+.close {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+}
+.close:hover {
+  background-color: red;
+  border-radius: 50%;
+  color: #ece9e9;
+}
