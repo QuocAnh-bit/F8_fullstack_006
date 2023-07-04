@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "space grotes";
+  src: url(../fonts/SpaceGrotesk-Medium.otf);
+}
+body {
+  font-size: 16px;
+  font-family: "space grotes";
+}
+.container {
+  margin: 50px 300px;
+}
+.list-item {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  column-gap: 15px;
+}
+.item {
+  max-width: 295px;
+  height: 230px;
+  flex-basis: calc(100% / 3);
+  box-shadow: 0 0 1px 0px #060507a1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.item::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-image: url(../imgs/ielts-speaking-part-1-2-3-chu-de-work-va-mau-tra-loi.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 1s linear;
+}
+.item::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(175, 49, 49, 0.526);
+  transition: all 0.7s linear;
+}
+.item:hover::after {
+  top: 0;
+}
+.item:hover::before {
+  opacity: 1;
+}
+.border-item {
+  width: 90%;
+  height: 85%;
+  padding: 15px;
+}
+.content-item h3 {
+  margin-bottom: 10px;
+  max-width: 230px;
+}
+.item:hover .border-item {
+  outline: 2px solid rgba(236, 236, 236, 0.492);
+  z-index: 1;
+}
+.icon i {
+  font-size: 2.5em;
+  padding-bottom: 20px;
+  transition: font-size 0.5s ease;
+  color: #769b73;
+}
+.item:hover .icon i {
+  font-size: 0em;
+}
+.content-item {
+  padding-top: 10px;
+  transition: bottom 0.7s linear;
+  position: relative;
+  bottom: 0;
+}
+.item:hover .content-item {
+  position: absolute;
+  bottom: 100px;
+  color: #fff;
+  z-index: 1;
+}
+.more {
+  position: absolute;
+  top: 150px;
+  display: flex;
+}
+.more a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #fff;
+  line-height: 30px;
+}
+.more .arrow a {
+  display: block;
+  border: 1px solid #fff;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+.more:hover .arrow a {
+  color: black;
+  background-color: #fff;
+}

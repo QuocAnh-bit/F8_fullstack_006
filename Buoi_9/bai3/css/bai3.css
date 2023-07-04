@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: 16px;
+  font-family: sans-serif;
+}
+.container {
+  margin: 0 20%;
+}
+.container .content {
+  text-align: center;
+  margin: 30px;
+}
+.container .content h2 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+form {
+  margin-top: 12px;
+
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-around;
+}
+.top-form {
+  display: flex;
+  flex-wrap: wrap;
+  height: 150px;
+}
+.top-form div {
+  flex-basis: 50%;
+  position: relative;
+  gap: 15px;
+}
+.top-form div input,
+.top-form div select {
+  width: 95%;
+  padding: 10px;
+  height: 55px;
+  box-shadow: 0 0 2px 0px #705858;
+  border: none;
+  opacity: 0.7;
+  font-size: 1em;
+  border-radius: 5px;
+}
+
+.top-form div label {
+  left: 10px;
+  top: 25%;
+  position: absolute;
+  opacity: 0.7;
+  transition: 0.2s linear;
+}
+
+.top-form div input:focus + label,
+.message textarea:focus + label {
+  top: 2%;
+  font-size: 0.9em;
+}
+.message {
+  position: relative;
+}
+.message label {
+  left: 10px;
+  top: 10%;
+  position: absolute;
+  opacity: 0.7;
+}
+.message textarea {
+  width: 97.5%;
+  height: 150px;
+  padding: 20px 5px;
+  box-shadow: 0 0 2px 0px #705858;
+  border: none;
+  border-radius: 5px;
+}
+.btn-send {
+  text-align: center;
+  margin-top: 30px;
+}
+.btn-send button {
+  padding: 10px 20px;
+  background-color: blueviolet;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: bold;
+}
+.btn-send button:hover {
+  opacity: 0.7;
+}

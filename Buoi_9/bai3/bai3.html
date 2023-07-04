@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link rel="stylesheet" href="./css/bai3.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h2>Drop Us a Line</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum,
+          officiis.
+        </p>
+      </div>
+      <form>
+        <div class="top-form">
+          <div class="first-name">
+            <input type="text" name="first-name" id="first-name" required />
+            <label for="first-name">First Name *</label>
+          </div>
+          <div class="last-name">
+            <input type="text" name="last-name" id="last-name" required />
+            <label for="last-name">Last Name *</label>
+          </div>
+          <div class="email">
+            <input type="email" name="email" id="email" />
+            <label for="email">Email *</label>
+          </div>
+          <div class="list-job">
+            <select name="list-job" id="list-job">
+              <option value="1">Sales</option>
+              <option value="2">Marketing</option>
+            </select>
+          </div>
+        </div>
+        <div class="message-btn">
+          <div class="message">
+            <textarea name="message" id="message" required> </textarea>
+            <label for="message">Message *</label>
+          </div>
+          <div class="btn-send">
+            <button type="submit">Send Message</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

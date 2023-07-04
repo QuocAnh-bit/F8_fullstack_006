@@ -1,0 +1,151 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "space grotes";
+  src: url(../fonts/SpaceGrotesk-Medium.otf);
+}
+@font-face {
+  font-family: "inter";
+  src: url(../fonts/Inter-Light-BETA.otf);
+  font-weight: 100;
+}
+@font-face {
+  font-family: "inter";
+  src: url(../fonts/Inter-Medium.otf);
+  font-weight: 300;
+}
+body {
+  font-size: 16px;
+  font-family: "inter", sans-serif;
+  font-weight: 100;
+}
+.container {
+  margin: 50px 200px;
+  display: flex;
+  justify-content: space-between;
+}
+.list-item {
+  flex-grow: 1;
+}
+.item {
+  display: flex;
+  position: relative;
+  width: 460px;
+  margin-top: 20px;
+}
+.content-item h3 {
+  font-family: "space grotes", sans-serif;
+  font-size: 1.2em;
+}
+.content-item {
+  width: 300px;
+  text-align: right;
+  order: 1;
+}
+.content-item p {
+  margin: 15px 0;
+  opacity: 0.8;
+}
+.dot-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  order: 2;
+}
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #d6aaaa6f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 12px 10px 12px;
+}
+.sub-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3b1919c7;
+}
+.line,
+.line-last {
+  height: 100px;
+  width: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+}
+.line-last {
+  opacity: 0;
+}
+.year-item {
+  order: 3;
+  width: 300px;
+  font-family: "inter", sans-serif;
+  font-weight: 300;
+}
+.item:hover .content-item {
+  order: 3;
+  text-align: left;
+}
+.item:hover .year-item {
+  order: 1;
+  text-align: right;
+}
+.btn-item button {
+  padding: 7px 15px;
+  font-family: "inter", sans-serif;
+  font-weight: 300;
+  border-radius: 15px;
+  border: none;
+  transition: background 0.3s ease-in-out;
+  color: #151514bd;
+}
+.item:hover button {
+  background-color: #a26f5a;
+  color: #fff;
+}
+.img-container {
+  position: relative;
+  flex-grow: 2;
+  display: flex;
+  justify-content: right;
+}
+.img-item img {
+  width: 300px;
+  height: 320px;
+}
+.img-sub img {
+  width: 180px;
+  height: 320px;
+  position: absolute;
+  top: 83px;
+  left: 140px;
+}
+
+.sub-background {
+  position: absolute;
+  background-color: #485fb2;
+  top: 90px;
+  left: 148px;
+  height: 305px;
+  width: 165px;
+  text-align: center;
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+}
+.sub-background span {
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #f1cacadd;
+}
+.sub-background p {
+  margin-bottom: 12px;
+  margin-right: 12px;
+  font-weight: bold;
+  color: #fff;
+}
