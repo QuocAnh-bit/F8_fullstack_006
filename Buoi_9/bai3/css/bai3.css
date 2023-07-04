@@ -53,9 +53,11 @@ form {
   position: absolute;
   opacity: 0.7;
   transition: 0.2s linear;
+  font-size: 1em;
 }
-
+.top-form div input:valid + label,
 .top-form div input:focus + label,
+.message textarea:valid + label,
 .message textarea:focus + label {
   top: 2%;
   font-size: 0.9em;
