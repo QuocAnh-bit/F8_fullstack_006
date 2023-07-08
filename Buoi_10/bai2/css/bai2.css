@@ -1,0 +1,76 @@
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+@keyframes move {
+  from {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(60deg);
+  }
+  to {
+    transform: rotateX(0deg);
+  }
+}
+body {
+  background-color: rgba(0, 0, 0, 0.381);
+  display: flex;
+  justify-content: center;
+}
+.container {
+  background-color: #fff;
+  width: 680px;
+  margin-top: 100px;
+  position: relative;
+}
+
+.container input {
+  display: none;
+}
+.nav {
+  position: relative;
+}
+.nav ul li {
+  list-style: none;
+  display: inline-block;
+  border: 5px double #644e4e4e;
+  margin-left: 12pxs;
+}
+.nav ul {
+  display: flex;
+}
+.nav label {
+  display: block;
+  padding: 15px;
+}
+
+[class^="item-"] {
+  position: absolute;
+  background-color: #fff;
+  overflow: scroll;
+  overflow-y: hidden;
+  transform-origin: top;
+  animation: move 0.5s ease;
+
+  display: none;
+}
+[class^="item-"] h2,
+[class^="item-"] p {
+  margin: 15px;
+}
+
+.convert:nth-of-type(1):checked ~ .item-1,
+.convert:nth-of-type(2):checked ~ .item-2,
+.convert:nth-of-type(3):checked ~ .item-3,
+.convert:nth-of-type(4):checked ~ .item-4 {
+  display: block;
+}
+.convert:nth-of-type(1):checked ~ .nav label[for="item-1"],
+.convert:nth-of-type(2):checked ~ .nav label[for="item-2"],
+.convert:nth-of-type(3):checked ~ .nav label[for="item-3"],
+.convert:nth-of-type(4):checked ~ .nav label[for="item-4"] {
+  background-color: blue;
+}

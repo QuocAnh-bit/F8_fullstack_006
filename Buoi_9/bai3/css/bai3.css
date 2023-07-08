@@ -57,8 +57,8 @@ form {
 }
 .top-form div input:valid + label,
 .top-form div input:focus + label,
-.message textarea:valid + label,
-.message textarea:focus + label {
+.message textarea:focus + label,
+.message textarea:valid + label {
   top: 2%;
   font-size: 0.9em;
 }
@@ -67,9 +67,10 @@ form {
 }
 .message label {
   left: 10px;
-  top: 10%;
+  top: 20%;
   position: absolute;
   opacity: 0.7;
+  font-size: 1em;
 }
 .message textarea {
   width: 97.5%;
