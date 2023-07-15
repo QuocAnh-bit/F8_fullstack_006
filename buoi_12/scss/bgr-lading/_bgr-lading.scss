@@ -1,0 +1,28 @@
+.lading {
+  padding: 80px 0 100px 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background: url(../imgs/landing-background.jpg) no-repeat 0;
+  background-size: cover;
+  position: relative;
+  overflow-x: hidden;
+  .lading-decor {
+    width: 64%;
+    height: 140%;
+    background: url(../imgs/dot-texture.png) repeat #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: -20%;
+    right: -32%;
+    display: none;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .lading {
+    .lading-decor {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.lading-wrap {
+  color: $text-color-content;
+  text-align: center;
+  .lading-info {
+    .lading-info-img {
+      height: 62px;
+    }
+    .lading-title {
+      span {
+        display: block;
+        margin-top: 25px;
+        font-size: 1.5em;
+        font-family: "Titillium", sans-serif;
+        font-weight: 300;
+      }
+      h1 {
+        font-family: "Titillium", sans-serif;
+        font-weight: 600;
+        line-height: 104px;
+        font-size: 6.5em;
+        text-transform: uppercase;
+      }
+      p {
+        display: none;
+      }
+    }
+  }
+  .tab-switch-wrap {
+    display: flex;
+    margin: 40px auto 0 auto;
+    justify-content: center;
+    label {
+      width: 180px;
+      display: block;
+      line-height: 54px;
+      font-size: 1.2em;
+      border: 1px solid #fff;
+      &[for="register-tab"] {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+      &[for="login-tab"] {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+      }
+    }
+  }
+  .convert {
+    display: none;
+    &:nth-of-type(1):checked ~ .input-tab label[for="login-tab"],
+    &:nth-of-type(2):checked ~ .input-tab label[for="register-tab"] {
+      background-color: #fff;
+      color: $text-color-login;
+    }
+    &:nth-of-type(2):checked ~ .lading-form .login-form,
+    &:nth-of-type(1):checked ~ .lading-form .register-form {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .lading-wrap {
+    .lading-info {
+      .lading-title {
+        p {
+          text-align: center;
+          margin: 30px auto 0 auto;
+          width: 384px;
+          display: block;
+        }
+      }
+    }
+    .tab-switch-wrap {
+      margin-top: 90px;
+    }
+  }
+}
