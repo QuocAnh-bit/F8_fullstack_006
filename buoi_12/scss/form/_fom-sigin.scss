@@ -5,7 +5,7 @@
     margin-top: 24px;
   }
   .form-box {
-    width: 484px;
+    width: 100%;
     padding: 64px;
     border-radius: 12px;
     color: $text-color-login;
@@ -221,6 +221,13 @@
     a {
       text-decoration: none;
       color: $text-color-forgot;
+    }
+  }
+}
+@media screen and (min-width: 576px) {
+  .lading-form {
+    .form-box {
+      width: 484px;
     }
   }
 }

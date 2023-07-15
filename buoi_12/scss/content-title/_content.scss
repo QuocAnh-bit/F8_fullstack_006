@@ -2,6 +2,7 @@
   color: $text-color-content;
   text-align: center;
   .lading-info {
+    width: 100%;
     .lading-info-img {
       height: 62px;
     }
@@ -17,7 +18,7 @@
         font-family: "Titillium", sans-serif;
         font-weight: 600;
         line-height: 104px;
-        font-size: 6.5em;
+        font-size: 3.75em;
         text-transform: uppercase;
       }
       p {
@@ -58,7 +59,17 @@
     }
   }
 }
-
+@media screen and (min-width: 576px) {
+  .lading-wrap {
+    .lading-info {
+      .lading-title {
+        h1 {
+          font-size: 6.75em;
+        }
+      }
+    }
+  }
+}
 @media screen and (min-width: 1400px) {
   .lading-wrap {
     .lading-info {

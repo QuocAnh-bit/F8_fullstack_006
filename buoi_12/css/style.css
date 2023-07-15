@@ -70,6 +70,9 @@ body {
   color: #fff;
   text-align: center;
 }
+.lading-wrap .lading-info {
+  width: 100%;
+}
 .lading-wrap .lading-info .lading-info-img {
   height: 62px;
 }
@@ -84,7 +87,7 @@ body {
   font-family: "Titillium", sans-serif;
   font-weight: 600;
   line-height: 104px;
-  font-size: 6.5em;
+  font-size: 3.75em;
   text-transform: uppercase;
 }
 .lading-wrap .lading-info .lading-title p {
@@ -121,6 +124,11 @@ body {
   display: none;
 }
 
+@media screen and (min-width: 576px) {
+  .lading-wrap .lading-info .lading-title h1 {
+    font-size: 6.75em;
+  }
+}
 @media screen and (min-width: 1400px) {
   .lading-wrap .lading-info .lading-title p {
     text-align: center;
@@ -140,7 +148,7 @@ body {
   margin-top: 24px;
 }
 .lading-form .form-box {
-  width: 484px;
+  width: 100%;
   padding: 64px;
   border-radius: 12px;
   color: #3e3f5e;
@@ -327,6 +335,11 @@ body {
   color: #adafca;
 }
 
+@media screen and (min-width: 576px) {
+  .lading-form .form-box {
+    width: 484px;
+  }
+}
 @media screen and (min-width: 1400px) {
   .lading {
     overflow: hidden;
