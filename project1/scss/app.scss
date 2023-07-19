@@ -72,8 +72,6 @@ a {
         align-self: center;
       }
     }
-    .help-text {
-    }
   }
   .title-sidebar {
     font-size: 3.1rem;
@@ -164,6 +162,7 @@ a {
     width: 100%;
 
     .menu-mobile {
+      display: block;
       label {
         display: block;
         i {
