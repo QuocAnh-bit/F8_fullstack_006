@@ -1,0 +1,27 @@
+@mixin gridContainer($column: 3, $spacing: 16) {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: #{$spacing}px;
+  margin-left: #{$spacing * (-1)}px;
+  > * {
+    width: 100% / $column - $spacing;
+    margin-left: #{$spacing}px;
+  }
+}
+@mixin screen($break-point) {
+  @if $break-point == mobile {
+    @media (max-width: 575px) {
+      @content;
+    }
+  }
+  @if $break-point == tablet {
+    @media (min-width: 576px) and (max-width: 991px) {
+      @content;
+    }
+  }
+  @if $break-point == pc {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@mixin screen($break-point) {
+  @if $break-point == mobile {
+    @media (max-width: 575px) {
+      @content;
+    }
+  }
+  @if $break-point == tablet {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $break-point == pc {
+    @media (max-width: 992px) {
+      @content;
+    }
+  }
+  @if $break-point == pc-xl {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+  @if $break-point == pc-xxl {
+    @media (max-width: 1400px) {
+      @content;
+    }
+  }
+}
