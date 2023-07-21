@@ -1,0 +1,8 @@
+.header {
+  padding: 20px 0;
+  .inner {
+    @media screen and (max-width: 767px) {
+      position: static;
+    }
+  }
+}

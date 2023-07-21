@@ -1,0 +1,22 @@
+// $columnNumber: 12;
+// @for $i from 1 through $columnNumber {
+//   .col-#{$i} {
+//     --colum-number: #{$i};
+//     padding: 0 $i * 2;
+//   }
+// }
+
+// .justify-content-center{
+//     ju
+// }
+$sizes: (
+  small: 40,
+  medium: 60,
+  large: 50,
+);
+
+@each $name, $size in $sizes {
+  .col-#{$name} {
+    width: #{$size}px;
+  }
+}

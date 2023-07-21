@@ -1,0 +1,10 @@
+.header {
+  padding: 20px 0;
+}
+@media screen and (max-width: 767px) {
+  .header .inner {
+    position: static;
+  }
+}
+
+/*# sourceMappingURL=ex02.css.map */
