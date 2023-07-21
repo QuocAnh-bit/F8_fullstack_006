@@ -1,0 +1,160 @@
+.product-section {
+  text-align: center;
+  .title-product {
+    margin: 20px 0;
+    font-weight: 800;
+    .title-span {
+      line-height: 57.87px;
+      font-size: 2rem;
+    }
+    .title-main {
+      font-size: 3.2rem;
+      margin: 0 0 20px 0;
+    }
+  }
+
+  .box-text {
+    width: 100%;
+    height: 300px;
+    z-index: -1;
+    margin: 0 0 40px 0;
+    background-color: #dcffca;
+    border-radius: 20px;
+    position: relative;
+    .text-decor {
+      display: block;
+      text-align: left;
+      color: #216000;
+      opacity: 0.15000000596046448;
+      position: absolute;
+      right: -5%;
+      top: 30%;
+      transform: rotate(90deg);
+      font-size: 6.54rem;
+      font-weight: 800;
+      line-height: 100%;
+    }
+    .product-logo {
+      position: absolute;
+      left: -10%;
+      img {
+        height: 300px;
+      }
+    }
+  }
+  .quality-wrap {
+    margin: 20px 0;
+  }
+  .content-quality {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    position: relative;
+    z-index: -1;
+
+    .item-quality {
+      padding: 40px 0;
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: -7px 10px 87px 0px rgba(54, 54, 54, 0.12);
+
+      &:nth-child(2) {
+      }
+    }
+    > .circle-green {
+      @include circle-decor(142, o-green);
+      top: 0;
+      left: -10%;
+    }
+    > .circle-pink {
+      @include circle-decor(142);
+      bottom: 0;
+      right: -10%;
+    }
+  }
+  .product-wrap {
+    .item-product {
+      font-weight: 400;
+      font-size: 1.2rem;
+      position: relative;
+      margin: 50px 0;
+
+      .info-product {
+        margin-bottom: 38px;
+        .name-product,
+        .quantity-product {
+          display: block;
+        }
+        .name-product {
+          font-size: 1.8rem;
+          font-weight: 700;
+          position: relative;
+          padding: 15px;
+          height: 80px;
+          &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            height: 4px;
+            background-color: #a3a3a3;
+            bottom: 0;
+            margin: 0 auto;
+            width: 50px;
+            left: 30%;
+            right: 30%;
+          }
+        }
+        .quantity-product {
+          margin-top: 20px;
+          line-height: 26px;
+        }
+        .para-3 {
+          .para-1a {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #000;
+            line-height: 32px;
+          }
+        }
+      }
+      .btn-product {
+        button {
+          padding: 16px 14px;
+          border-radius: 8px;
+          background-color: #46b20f;
+          color: #fff;
+          font-weight: 700;
+        }
+      }
+      > .circle-pink {
+        @include circle-decor(200);
+        left: 50%;
+        top: -30px;
+        transform: translate(-50%, 0);
+      }
+      > .circle-green {
+        @include circle-decor(200, o-green);
+        left: 50%;
+        top: -30px;
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+
+  /* Các class text dùng chung */
+  .para-4 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 24.5px;
+    text-align: left;
+    width: 100%;
+  }
+  .title-sub {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 24.979px;
+    margin-bottom: 30px;
+  }
+}

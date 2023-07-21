@@ -1,0 +1,39 @@
+@mixin screen($break-point) {
+  @if ($break-point == sm) {
+    @media screen and (min-width: 576px) {
+      @content;
+    }
+  }
+  @if ($break-point == md) {
+    @media screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  @if ($break-point == lg) {
+    @media screen and (min-width: 992px) {
+      @content;
+    }
+  }
+  @if ($break-point == xl) {
+    @media screen and (min-width: 1200px) {
+      @content;
+    }
+  }
+  @if ($break-point == xxl) {
+    @media screen and (min-width: 1400px) {
+      @content;
+    }
+  }
+}
+@mixin circle-decor($size, $color: #ffd5bd) {
+  width: #{$size}px;
+  height: #{$size}px;
+  position: absolute;
+  z-index: -2;
+  border-radius: 50%;
+  @if $color == o-green {
+    background-color: #dcffca;
+  } @else {
+    background-color: #ffd5bd;
+  }
+}
