@@ -188,9 +188,6 @@
     }
   }
   @include screen(xl) {
-    .header-logo {
-      text-align: center;
-    }
     .header-menu {
       ul {
         gap: 20px;
