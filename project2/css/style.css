@@ -501,7 +501,12 @@ ul li {
   font-weight: 700;
   position: relative;
   padding: 15px;
-  height: 85px;
+  height: 110px;
+}
+@media screen and (min-width: 576px) {
+  .product-section .product-wrap .item-product .info-product .name-product {
+    height: fit-content;
+  }
 }
 .product-section .product-wrap .item-product .info-product .name-product::before {
   content: "";
