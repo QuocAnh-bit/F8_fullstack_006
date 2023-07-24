@@ -1,22 +1,8 @@
 .product-section {
   text-align: center;
   overflow: hidden;
+  padding-top: 90px;
 
-  /* Các class text dùng chung */
-  .para-4 {
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 24.5px;
-    text-align: left;
-    width: 100%;
-  }
-  .title-sub {
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: 800;
-    line-height: 24.979px;
-    padding-bottom: 30px;
-  }
   .title-product {
     margin: 20px 0;
     font-weight: 800;
@@ -68,90 +54,84 @@
     background-color: #dcffca;
     border-radius: 20px;
     position: relative;
-    .text-decor {
-      display: block;
-      text-align: left;
-      color: #216000;
-      opacity: 0.15000000596046448;
-      position: absolute;
-      right: -5%;
-      top: 30%;
-      transform: rotate(90deg);
-      font-size: 6.54rem;
-      font-weight: 800;
-      line-height: 100%;
-    }
     .product-logo {
       position: absolute;
-      left: -10%;
+      left: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .text-decor {
+        padding-top: 150px;
+        display: block;
+        text-align: left;
+        color: #216000;
+        opacity: 0.15000000596046448;
+        transform: rotate(90deg);
+        font-size: 6.54rem;
+        font-weight: 800;
+        line-height: 100%;
+      }
+
       img {
-        height: 300px;
+        width: 300px;
       }
     }
     @include screen(sm) {
       height: 500px;
-      .text-decor {
-        font-size: 10rem;
-      }
       .product-logo {
-        left: -15%;
+        left: 20%;
+        .text-decor {
+          font-size: 10rem;
+          padding-top: 200px;
+        }
         img {
-          height: 500px;
+          width: 500px;
         }
       }
     }
     @include screen(md) {
       height: 700px;
-      .text-decor {
-        font-size: 15rem;
-        right: -10%;
-      }
+
       .product-logo {
-        left: -20%;
+        left: 25%;
+        top: 10%;
+        .text-decor {
+          padding-top: 300px;
+          font-size: 15rem;
+        }
         img {
-          height: 700px;
+          width: 700px;
         }
       }
     }
     @include screen(lg) {
-      width: 600px;
       height: 550px;
-      margin: 0;
+      margin-left: auto;
+      border-radius: 20px 0px 0px 20px;
 
-      .text-decor {
-        font-size: 12rem;
-        right: 5%;
-        top: 30%;
-      }
       .product-logo {
-        left: -10%;
-        bottom: 10%;
+        top: 0;
+        .text-decor {
+          font-size: 12rem;
+        }
         img {
-          height: 400px;
+          width: 400px;
         }
       }
     }
     @include screen(xxl) {
-      margin-left: auto;
-      border-radius: 20px 0 0 20px;
-      width: 931px;
+      width: 50vw;
       height: 850px;
       padding: 0;
-      .text-decor {
-        font-size: 18rem;
-        height: 400px;
-        width: 881px;
-        top: 302px;
-        right: -10%;
-      }
       .product-logo {
-        left: 48.92px;
-        top: 35.95px;
-        bottom: 148px;
-        transform: translateX(-29%);
-
+        transform: translate(-26%, -10%);
+        .text-decor {
+          font-size: 18rem;
+          padding-top: 551px;
+        }
         img {
-          height: 705px;
+          max-width: 738px;
+          width: 738px;
         }
       }
     }
@@ -272,6 +252,7 @@
   }
   .product-wrap {
     text-align: center;
+    z-index: -1;
     .item-product {
       font-weight: 400;
       font-size: 1.2rem;
@@ -391,6 +372,10 @@
     }
   }
   @include screen(lg) {
+    .padding-xxl {
+      padding: 0;
+    }
+
     .margin-xxl {
       margin-bottom: 120px;
     }

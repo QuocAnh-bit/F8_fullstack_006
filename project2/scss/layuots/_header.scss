@@ -47,6 +47,12 @@
 // }
 .header {
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 1;
 
   .mobile-menu {
     label {
@@ -180,7 +186,7 @@
                 display: block;
                 width: 70%;
                 height: 2px;
-                bottom: -20%;
+                bottom: -25%;
               }
             }
           }
@@ -195,11 +201,13 @@
         li {
           a {
             font-size: 2rem;
+            padding: 20px 0;
           }
         }
       }
     }
     .header-icon {
+      padding-left: 28px;
       display: flex;
       justify-content: space-between;
     }

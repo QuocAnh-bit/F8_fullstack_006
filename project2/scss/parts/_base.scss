@@ -1,3 +1,35 @@
 .container {
   --container-width: 1440px;
 }
+/* Các class text dùng chung */
+.para-4 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 24.5px;
+  text-align: left;
+  width: 100%;
+  padding-bottom: 30px;
+}
+.title-sub {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 24.979px;
+  padding-bottom: 30px;
+}
+.para-a2 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 32px;
+}
+.caption-1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+@include screen(md) {
+  .title-sub {
+    font-size: 3.8rem;
+    text-align: center;
+    line-height: 49.9px;
+  }
+}

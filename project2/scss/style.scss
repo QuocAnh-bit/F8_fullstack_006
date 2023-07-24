@@ -1,8 +1,11 @@
 @import "./parts/variables";
 @import "./parts/reset";
-@import "./parts/base";
 @import "./parts/mixin";
+@import "./parts/base";
+
 // Import layouts
 @import "./layuots/header";
-@import "./layuots/section";
+@import "./layuots/section-products";
+@import "./layuots/section-posts";
+@import "./layuots/section-benefit";
 @import "./layuots/footer";
