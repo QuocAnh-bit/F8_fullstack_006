@@ -1,0 +1,76 @@
+.form-infor-section {
+  .img-form {
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .form-infor-wrap {
+    > .para-a2 {
+      margin-bottom: 32px;
+    }
+  }
+
+  .form-infor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    input,
+    textarea {
+      resize: none;
+      border-radius: 8px;
+      width: 100%;
+      border: 1px solid #a3a3a3;
+      padding: 16px 0 16px 16px;
+      font-size: 1.8rem;
+      font-family: $fontFamily;
+      font-weight: 400;
+      &::placeholder {
+        color: #a3a3a3;
+      }
+    }
+    .mail-phone-wrap {
+      display: flex;
+      column-gap: 10px;
+      .input-mail,
+      .input-phone {
+        flex-basis: 50%;
+      }
+    }
+    .btn-wrap {
+      .btn-2 {
+        padding: 16px 14px;
+        border-radius: 8px;
+        background-color: $primaryColor;
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 700;
+        width: 100%;
+      }
+    }
+  }
+}
+@include screen(lg) {
+  .form-infor-section {
+    > .container {
+      > .row {
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .img-form {
+      img {
+        width: 583px;
+      }
+    }
+    .form-infor {
+      .btn-wrap {
+        margin-left: auto;
+        .btn-2 {
+          width: 154px;
+        }
+      }
+    }
+  }
+}

@@ -372,12 +372,8 @@
     }
   }
   @include screen(lg) {
-    .padding-xxl {
+    .hide-padding-col {
       padding: 0;
-    }
-
-    .margin-xxl {
-      margin-bottom: 120px;
     }
   }
 }

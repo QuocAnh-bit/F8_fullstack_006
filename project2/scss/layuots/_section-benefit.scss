@@ -1,22 +1,22 @@
 .benefit-section {
-  position: relative;
-  width: 100%;
+  overflow: hidden;
+
   .benefit-wrap {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: absolute;
+    position: relative;
     background-color: #fff0e7;
     padding: 50px 0;
-    right: 0;
-    counter-reset: list-benefit;
-    left: 0;
     gap: 20px;
+
+    counter-reset: list-benefit;
+
     .item-benefit {
       counter-increment: list-benefit;
       padding: 0 20px;
       display: flex;
-
       .img-benefit {
         width: 100%;
         img {
@@ -47,20 +47,82 @@
 }
 @include screen(md) {
   .benefit-section {
+    > .container {
+      padding: 0;
+    }
     .title-benefit {
       > .para-4 {
         text-align: center;
         margin: 0 auto;
-        width: 80%;
+        width: 70%;
       }
     }
     .benefit-wrap {
+      display: flex;
       .item-benefit {
         .img-benefit {
           display: flex;
           flex-direction: row;
           .content-benefit {
             border-radius: 0 10px 10px 0;
+          }
+        }
+      }
+    }
+  }
+}
+@include screen(lg) {
+  .benefit-section {
+    .benefit-wrap {
+      flex-direction: row;
+      gap: 5px;
+      background-color: #ffff;
+      > .col-xl-4 {
+        z-index: 1;
+      }
+
+      &::after {
+        content: "";
+        background-color: #fff0e7;
+        position: absolute;
+        display: block;
+        height: 433px;
+        top: 30%;
+        right: 0;
+        left: 0;
+      }
+      .item-benefit,
+      &.benefit-wrap {
+        padding: 0;
+      }
+      .item-benefit {
+        z-index: -1;
+        .img-benefit {
+          display: flex;
+          flex-direction: column;
+          .content-benefit {
+            height: 220px;
+            border-radius: 0 0 10px 10px;
+          }
+        }
+      }
+    }
+  }
+}
+@include screen(xxl) {
+  .benefit-section {
+    .benefit-wrap {
+      width: 1305px;
+      margin: 0 auto;
+      &::after {
+        right: -30%;
+        left: -30%;
+      }
+      .item-benefit {
+        width: 415px;
+        .img-benefit {
+          .content-benefit {
+            height: 197px;
           }
         }
       }

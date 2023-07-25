@@ -26,10 +26,23 @@
   font-size: 1.8rem;
   font-weight: 500;
 }
+.para-a3 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 26px;
+}
+.para-a4 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 24px;
+}
 @include screen(md) {
   .title-sub {
     font-size: 3.8rem;
     text-align: center;
     line-height: 49.9px;
+  }
+  .space-section {
+    margin-bottom: 120px;
   }
 }
