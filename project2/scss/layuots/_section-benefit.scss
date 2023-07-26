@@ -92,7 +92,7 @@
         left: 0;
       }
       .item-benefit,
-      &.benefit-wrap {
+      .benefit-wrap {
         padding: 0;
       }
       .item-benefit {
@@ -113,7 +113,8 @@
   .benefit-section {
     .benefit-wrap {
       width: 1305px;
-      margin: 0 auto;
+      padding: 30px 0 0 0;
+      margin: 0 auto 45px auto;
       &::after {
         right: -30%;
         left: -30%;

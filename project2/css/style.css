@@ -85,6 +85,9 @@ ul li {
   .space-section {
     margin-bottom: 120px;
   }
+  .padding-section {
+    padding: 30px 0;
+  }
 }
 .header {
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
@@ -842,7 +845,8 @@ ul li {
     right: 0;
     left: 0;
   }
-  .benefit-section .benefit-wrap .item-benefit, .benefit-section .benefit-wrap.benefit-wrap {
+  .benefit-section .benefit-wrap .item-benefit,
+  .benefit-section .benefit-wrap .benefit-wrap {
     padding: 0;
   }
   .benefit-section .benefit-wrap .item-benefit {
@@ -860,7 +864,8 @@ ul li {
 @media screen and (min-width: 1400px) {
   .benefit-section .benefit-wrap {
     width: 1305px;
-    margin: 0 auto;
+    padding: 30px 0 0 0;
+    margin: 0 auto 45px auto;
   }
   .benefit-section .benefit-wrap::after {
     right: -30%;
@@ -1011,6 +1016,9 @@ ul li {
 .footer [class$=-footer] li a {
   padding: 0;
 }
+.footer .footer-logo {
+  text-align: center;
+}
 .footer .footer-logo > .para-4 {
   text-align: left;
   padding: 0;
@@ -1018,15 +1026,18 @@ ul li {
 .footer .line-footer {
   width: 100%;
   height: 2px;
-  background-color: #2c2c2c;
+  background-color: #a3a3a3;
   margin: 30px 0;
 }
 .footer .footer-end {
-  margin: 0 auto;
+  align-items: center;
+  flex-direction: column;
 }
 .footer .social-links {
   display: flex;
   justify-content: center;
+  width: fit-content;
+  margin-left: auto;
   gap: 20px;
 }
 .footer .social-links .link-social {
@@ -1061,7 +1072,10 @@ ul li {
 
 @media screen and (min-width: 576px) {
   .footer .footer-end {
-    align-items: center;
+    flex-direction: row;
+  }
+  .footer .footer-logo {
+    text-align: left;
   }
 }
 @media screen and (min-width: 768px) {
@@ -1073,8 +1087,24 @@ ul li {
   }
 }
 @media screen and (min-width: 1400px) {
+  .footer .footer-top {
+    padding: 80px 0 86px 0;
+  }
   .footer > .container > .row {
     justify-content: space-evenly;
+  }
+  .footer .footer-logo {
+    height: 191px;
+  }
+  .footer .footer-logo img {
+    display: block;
+    transform: translate(-12%, -16%);
+  }
+  .footer .footer-logo p {
+    width: 230px;
+  }
+  .footer .line-footer {
+    margin: 0 0 30px 0;
   }
 }
 
