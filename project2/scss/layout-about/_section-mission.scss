@@ -1,0 +1,59 @@
+.mission-section {
+  margin: 40px 0;
+
+  .img-mission {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .circle-green {
+      @include circle-decor(172, o-green);
+      bottom: 50px;
+      left: -30px;
+    }
+    .circle-pink {
+      @include circle-decor(142);
+      bottom: 0;
+      left: 30px;
+    }
+    @include screen(sm) {
+      .circle-green {
+        @include circle-decor(240, o-green);
+        bottom: 110px;
+        left: 10px;
+      }
+      .circle-pink {
+        @include circle-decor(210);
+        left: 110px;
+      }
+    }
+  }
+  @include screen(xl) {
+    margin: 120px 0 160px 0;
+    > .container {
+      > .row {
+        justify-content: space-evenly;
+        align-items: center;
+      }
+    }
+    .img-mission {
+      .circle-green {
+        @include circle-decor(480, o-green);
+        bottom: -20px;
+        left: -25px;
+      }
+      .circle-pink {
+        @include circle-decor(264);
+        left: 249px;
+        bottom: -41px;
+      }
+    }
+
+    .content-mission {
+      width: 492px;
+      > .title-sub {
+        text-align: left;
+      }
+    }
+  }
+}

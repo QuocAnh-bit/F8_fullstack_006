@@ -2,6 +2,11 @@
   --container-width: 1440px;
 }
 /* Các class text dùng chung */
+.para-3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 26px;
+}
 .para-4 {
   font-size: 1.6rem;
   font-weight: 400;
@@ -9,6 +14,10 @@
   text-align: left;
   width: 100%;
   padding-bottom: 30px;
+}
+.title-main {
+  font-size: 3.5rem;
+  font-weight: 700;
 }
 .title-sub {
   text-align: center;
@@ -36,6 +45,14 @@
   font-weight: 600;
   line-height: 24px;
 }
+.title-about {
+  margin-top: 15%;
+  text-align: center;
+  padding: 30px;
+  width: 100%;
+  background-color: #f2ffec;
+}
+
 @include screen(md) {
   .title-sub {
     font-size: 3.8rem;

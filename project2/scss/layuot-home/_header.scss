@@ -1,0 +1,239 @@
+// .header {
+//   padding: 20px 0;
+//   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+
+//   .header-menu {
+//     ul {
+//       display: flex;
+//       justify-content: flex-end;
+//       li {
+//         a {
+//           font-weight: 600;
+//           font-size: 2rem;
+//           padding: 0 30px;
+//           &.active {
+//             color: $primaryColor;
+//           }
+//           &:hover {
+//             @extend .active;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   .header-icon {
+//     display: flex;
+//     justify-content: space-between;
+//     .cart-icon {
+//       position: relative;
+//       span {
+//         position: absolute;
+//         right: -7px;
+//         top: -7px;
+//         background: $secondaryColor;
+//         color: #fff;
+//         padding: 0 4px;
+//         border-radius: 50%;
+//       }
+//     }
+//   }
+
+//   .row {
+//     > [class^="col-"] {
+//       margin: 0;
+//     }
+//   }
+// }
+.header {
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 2;
+
+  .mobile-menu {
+    label {
+      display: block;
+      &::before {
+        content: "\f0c9";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 2.5rem;
+        color: black;
+      }
+    }
+  }
+  .header-icon {
+    display: flex;
+    justify-content: right;
+    column-gap: 2.5rem;
+    .cart-icon {
+      position: relative;
+      span {
+        position: absolute;
+        right: -7px;
+        top: -7px;
+        background: $secondaryColor;
+        color: #fff;
+        padding: 0 4px;
+        border-radius: 50%;
+      }
+    }
+    .search-icon {
+      display: none;
+    }
+  }
+  .header-menu {
+    position: fixed;
+    bottom: 0;
+    left: -100%;
+    z-index: 2;
+    top: 0;
+    background-color: #edf1d6;
+    padding: 30px 10px 30px 10px;
+    transition: all 0.5s ease-in-out;
+    .search-mobile {
+      position: relative;
+      margin: 25px 0;
+      input {
+        width: 80%;
+        border-radius: 12px;
+        margin-left: 30px;
+        padding: 10px 0 10px 40px;
+      }
+      label {
+        position: absolute;
+        left: 40px;
+        top: 8px;
+        img {
+          width: 20px;
+        }
+      }
+    }
+    ul {
+      li {
+        a {
+          font-weight: 600;
+          font-size: 1.7rem;
+          color: #c1aefc;
+          display: block;
+          padding: 15px 30px;
+          &.active {
+            color: $primaryColor;
+          }
+          &:focus {
+            @extend .active;
+          }
+        }
+      }
+    }
+  }
+  .row {
+    > [class^="col-"] {
+      margin: 0;
+    }
+  }
+  @include screen(lg) {
+    .mobile-menu-wrap {
+      display: none;
+    }
+    .header-logo-wrap {
+      order: 1;
+    }
+    .header-icon-wrap {
+      order: 3;
+      .header-icon {
+        .search-icon {
+          display: block;
+        }
+      }
+    }
+    .header-menu-wrap {
+      order: 2;
+      gap: 10px;
+      .header-menu {
+        position: relative;
+        left: 0;
+        padding: 0;
+        background-color: #fff;
+
+        .logo-mobile,
+        .search-mobile {
+          display: none;
+        }
+        ul {
+          display: flex;
+          justify-content: flex-end;
+          li {
+            a {
+              height: 100%;
+              padding: 20px;
+              color: $textColor;
+              display: block;
+              position: relative;
+              &.active,
+              &:hover {
+                color: $primaryColor;
+              }
+              &:hover::before,
+              &.active::before {
+                content: "";
+                position: absolute;
+                background-color: $primaryColor;
+                display: block;
+                width: 70%;
+                height: 2px;
+                bottom: -25%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @include screen(xl) {
+    .header-menu {
+      ul {
+        gap: 20px;
+        li {
+          a {
+            font-size: 2rem;
+            padding: 20px 0;
+          }
+        }
+      }
+    }
+    .header-icon {
+      padding-left: 28px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+.overlay {
+  position: fixed;
+  background-color: rgba(184, 162, 162, 0.522);
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+}
+.input-open-menu {
+  display: none;
+}
+.input-open-menu:checked ~ {
+  .overlay {
+    width: 100%;
+  }
+  .header-menu-wrap {
+    .header-menu {
+      left: 0;
+    }
+  }
+}
