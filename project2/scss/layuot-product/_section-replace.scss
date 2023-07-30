@@ -1,0 +1,36 @@
+.replace-section {
+  .replace-content {
+    position: relative;
+    .decor-replace-white {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+  .img-replace {
+    position: relative;
+    > img {
+      width: 100%;
+    }
+    .decor-replace-orange {
+      position: absolute;
+      top: -35px;
+      width: 80%;
+      right: 0;
+      z-index: -1;
+    }
+  }
+  @include screen(md) {
+    > .container {
+      .row {
+        align-items: center;
+      }
+    }
+    .replace-content {
+      > .title-sub {
+        width: 658px;
+      }
+    }
+  }
+}

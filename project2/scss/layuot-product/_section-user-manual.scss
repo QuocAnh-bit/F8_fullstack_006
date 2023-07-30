@@ -1,0 +1,23 @@
+.user-manual-section {
+  .list-steps {
+    counter-reset: step;
+  }
+  .step {
+    counter-increment: step;
+    .content-step {
+      .para-4 {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        &::before {
+          content: "0" counter(step);
+          padding: 20px;
+          font-size: 8rem;
+          color: #fff;
+          font-weight: bold;
+          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
+      }
+    }
+  }
+}

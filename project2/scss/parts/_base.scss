@@ -45,12 +45,23 @@
   font-weight: 600;
   line-height: 24px;
 }
-.title-about {
+.title-menu {
   margin-top: 15%;
   text-align: center;
   padding: 30px;
   width: 100%;
   background-color: #f2ffec;
+  @include screen(sm) {
+    margin: 94px 0 0 0;
+  }
+  @include screen(lg) {
+    text-align: left;
+    margin: 80px 0 120px 0;
+  }
+  @include screen(xl) {
+    margin: 94px 0 120px 0;
+    padding: 68px 68px 68px 68px;
+  }
 }
 
 @include screen(md) {

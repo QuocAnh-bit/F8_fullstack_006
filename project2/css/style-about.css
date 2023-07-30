@@ -15,6 +15,7 @@ body {
   color: #2c2c2c;
   line-height: 1.2;
   font-family: Inter, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -87,12 +88,29 @@ ul li {
   line-height: 24px;
 }
 
-.title-about {
+.title-menu {
   margin-top: 15%;
   text-align: center;
   padding: 30px;
   width: 100%;
   background-color: #f2ffec;
+}
+@media screen and (min-width: 576px) {
+  .title-menu {
+    margin: 94px 0 0 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  .title-menu {
+    text-align: left;
+    margin: 80px 0 120px 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .title-menu {
+    margin: 94px 0 120px 0;
+    padding: 68px 68px 68px 68px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -544,11 +562,6 @@ ul li {
   margin: 0 auto;
 }
 
-@media screen and (min-width: 576px) {
-  .title-about {
-    margin: 94px 0 0 0;
-  }
-}
 @media screen and (min-width: 768px) {
   .about-section .about-wrap > .row {
     align-items: center;
@@ -561,19 +574,11 @@ ul li {
   .about-section {
     margin: 0 auto;
   }
-  .title-about {
-    text-align: left;
-    margin: 80px 0 120px 0;
-  }
   .about-section .about-wrap > .row {
     justify-content: space-between;
   }
 }
 @media screen and (min-width: 1200px) {
-  .title-about {
-    margin: 94px 0 120px 0;
-    padding: 68px 68px 68px 68px;
-  }
   .title-about > .title-sub {
     font-size: 5.2rem;
   }

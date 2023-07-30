@@ -12,6 +12,7 @@ body {
   color: $textColor;
   line-height: 1.2;
   font-family: $fontFamily;
+  overflow-x: hidden;
 }
 a {
   text-decoration: none;
