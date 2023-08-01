@@ -1,0 +1,39 @@
+.chessboard {
+    line-height: 0;
+}
+
+.white,
+.black {
+    display: inline-block;
+    padding: 20px;
+    border: 1px solid black;
+
+}
+
+.black {
+    background-color: rgb(139, 156, 147);
+}
+
+.white {
+    background-color: rgb(255, 255, 255);
+}
+
+.multiplication {
+    display: flex;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+.multiplication .multiplication-item {
+    flex-basis: calc(100% / 10 - 10px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    row-gap: 10px;
+    border: 1px solid #000;
+}
+
+.multiplication span {
+    display: block;
+}
