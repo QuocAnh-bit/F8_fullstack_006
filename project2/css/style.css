@@ -505,7 +505,6 @@ ul li {
   position: absolute;
   z-index: -2;
   border-radius: 50%;
-  background-color: #ffd5bd;
   bottom: 0;
   right: -10%;
 }
@@ -622,7 +621,6 @@ ul li {
   position: absolute;
   z-index: -2;
   border-radius: 50%;
-  background-color: #ffd5bd;
   left: 50%;
   top: -30px;
   transform: translate(-50%, 0);

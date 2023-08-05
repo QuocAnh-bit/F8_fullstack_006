@@ -33,7 +33,7 @@
   border-radius: 50%;
   @if $color == o-green {
     background-color: #dcffca;
-  } @else {
-    background-color: #ffd5bd;
+  } @else if $color == o-grey {
+    background-color: #fff0e7;
   }
 }

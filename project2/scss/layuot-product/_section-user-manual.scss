@@ -3,21 +3,55 @@
     counter-reset: step;
   }
   .step {
+    position: relative;
     counter-increment: step;
     .content-step {
       .para-4 {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-around;
+        gap: 10px;
         &::before {
           content: "0" counter(step);
           padding: 20px;
-          font-size: 8rem;
-          color: #fff;
+          font-size: 7.5rem;
+          letter-spacing: 2px;
+          mix-blend-mode: multiply;
+          color: #ffffff;
           font-weight: bold;
           text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         }
       }
     }
+  }
+  @include screen(md) {
+    .text-center-para4 {
+      text-align: center;
+      margin: 0 auto;
+      width: 70%;
+    }
+    .list-steps {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      .step {
+        position: relative;
+        .circle-grey {
+          @include circle-decor(140, o-grey);
+          left: 25%;
+          transform: translate(0, -10%);
+        }
+        .content-step {
+          .para-4 {
+            width: 400px;
+            &::before {
+              font-size: 10rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  @include screen(lg) {
   }
 }

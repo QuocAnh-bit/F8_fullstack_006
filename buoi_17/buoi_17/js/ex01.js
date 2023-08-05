@@ -38,9 +38,9 @@ var totalBill = 0;
 if (n > 0 && n <= 50) {
   totalBill = n * numberKwh_1;
 } else if (n > 50 && n <= 100) {
-  totalBill = 50 * numberKwh_1 + (n - 50) * numberKm_2;
+  totalBill = 50 * numberKwh_1 + (n - 50) * numberKwh_2;
 } else if (n > 100 && n <= 200) {
-  totalBill = 50 * numberKwh_1 + 100 * numberKwh_2 + (n - 150) * numberKwh_3;
+  totalBill = 50 * numberKwh_1 + 50 * numberKwh_2 + (n - 100) * numberKwh_3;
 } else if (n > 200 && n <= 300) {
   totalBill =
     50 * numberKwh_1 +
