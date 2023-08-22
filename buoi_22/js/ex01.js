@@ -17,8 +17,11 @@ console.log(total);
 console.log(total2);
 // Bai 2
 Object.prototype.getCurrency = function (currency) {
-  var changeString = JSON.stringify(this); // Chuyển sang string
-  var number = Number(changeString.replaceAll(`"`, ``)); // ép kiểu số bỏ đi 2 dấu ""
+  // console.log(Number(this));
+
+  // var changeString = JSON.stringify(this); // Chuyển sang string
+  // var number = Number(changeString.replaceAll(`"`, ``)); // ép kiểu số bỏ đi 2 dấu ""
+  var number = Number(this);
   var result = number.toLocaleString().replaceAll(".", ",") + " " + currency;
   return result;
 };

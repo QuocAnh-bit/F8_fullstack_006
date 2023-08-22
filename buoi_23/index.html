@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-wrap">
+        <div class="header-logo">
+          <a href="#" class="logo"
+            ><img
+              src="./imgs/static-logo.1-0-1.742f36bc45f3443d0e59.svg"
+              alt=""
+          /></a>
+        </div>
+        <div class="header-area">
+          <a class="international" href="#"> Fica </a>
+          <a class="international" href="#"> DTiNews </a>
+          <div class="weather-wrap">
+            <span class="weather-location">Hà Nội</span>
+            <span class="weather-date">Thứ 3, 22/08/2023</span>
+          </div>
+          <svg
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            width="35"
+            height="35"
+          >
+            <path
+              d="M60.156 68.75c18.985 0 34.375-15.39 34.375-34.375S79.141 0 60.156 0C41.172 0 25.781 15.39 25.781 34.375S41.171 68.75 60.156 68.75Z"
+              fill="#5A6164"
+            ></path>
+            <path
+              d="M34.375 25.781C15.391 25.781 0 41.171 0 60.156a8.569 8.569 0 0 0 8.594 8.594h51.562a8.569 8.569 0 0 0 8.594-8.594c0-18.984-15.39-34.375-34.375-34.375Z"
+              fill="#374043"
+            ></path>
+            <path
+              d="M75 100c13.807 0 25-11.193 25-25S88.807 50 75 50 50 61.193 50 75s11.193 25 25 25Z"
+              fill="#CFFFFF"
+              fill-opacity="0.8"
+            ></path>
+            <path
+              d="M56.25 68.75c-13.828 0-25 11.172-25 25 0 3.438 2.813 6.25 6.25 6.25H75c3.438 0 6.25-2.813 6.25-6.25 0-13.828-11.172-25-25-25Z"
+              fill="#CDFAFA"
+            ></path>
+          </svg>
+          <span class="weather-temperature"> 36 °C </span>
+          <div class="open-login">
+            <button class="open-modal" type="button">
+              Đăng nhập
+              <i class="fa-regular fa-user"></i>
+            </button>
+          </div>
+          <a href="#" class="search-link">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </a>
+        </div>
+      </div>
+      <div class="modal-box">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+          <div class="modal-nav">
+            <button class="btn login active-btn" type="submit">
+              Đăng Nhập
+            </button>
+            <button class="btn register" type="submit">Đăng Kí</button>
+          </div>
+          <!-- End nav -->
+          <div class="modal-body">
+            <div class="modal-content form-login active">
+              <div class="modal-desc">với các tài khoản mạng xã hội</div>
+              <div class="modal-social">
+                <button class="btn-google">
+                  <img src="./imgs/google.png" alt="" />
+                  Google
+                </button>
+                <button class="btn-facebook">
+                  <img src="./imgs/facebook.png" alt="" />
+                  Facebook
+                </button>
+              </div>
+              <div class="modal-desc line">
+                <span>hoặc</span>
+              </div>
+              <form class="modal-form">
+                <div class="item-form">
+                  <label class="item-label" for="email">Email</label>
+                  <div class="item-row">
+                    <input
+                      class="item-input"
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
+                  <div class="form-message err-email"></div>
+                </div>
+                <div class="item-form password">
+                  <label class="item-label" for="password">Mật Khẩu</label>
+                  <div class="item-row">
+                    <input
+                      class="item-input"
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="Mật Khẩu"
+                      required
+                    />
+                    <button class="view-password" type="button">
+                      <i class="fa-regular fa-eye fa-eye-slash"></i>
+                    </button>
+                  </div>
+                  <div class="form-message err-password"></div>
+                </div>
+                <div class="item-form forgot-password">
+                  <a href="#">Quên mật khẩu?</a>
+                </div>
+                <div class="item-form">
+                  <button class="btn-login" type="submit">Đăng Nhập</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-content form-register">
+              <div class="modal-desc">
+                Hoàn thành đăng ký, và bắt đầu trải nghiệm ngay!
+              </div>
+              <form class="modal-form">
+                <div class="item-form">
+                  <label class="item-label" for="fullname">Họ và tên</label>
+                  <div class="item-row">
+                    <input
+                      class="item-input"
+                      type="text"
+                      name="full-name"
+                      id="full-name"
+                      placeholder="Họ và tên"
+                      required
+                    />
+                  </div>
+                  <div class="form-message err-name-register"></div>
+                </div>
+                <div class="item-form">
+                  <label class="item-label" for="email-register">Email</label>
+                  <div class="item-row">
+                    <input
+                      class="item-input"
+                      type="email"
+                      name="email"
+                      id="email-register"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
+                  <div class="form-message err-email-register"></div>
+                </div>
+                <div class="item-form password">
+                  <label class="item-label" for="password">Mật Khẩu</label>
+                  <div class="item-row">
+                    <input
+                      class="item-input"
+                      type="password"
+                      name="password"
+                      placeholder="Mật Khẩu"
+                      id="password-register"
+                      required
+                    />
+                    <button class="view-password-register" type="button">
+                      <i class="fa-regular fa-eye fa-eye-slash"></i>
+                    </button>
+                  </div>
+                  <div class="form-message err-password-register"></div>
+                </div>
+                <div class="item-form">
+                  Bằng cách đăng ký tài khoản, bạn cũng đồng thời chấp nhận mọi
+                  <a href="#"
+                    >điều kiện về qui định và chính sách của Dân trí</a
+                  >
+                </div>
+                <div class="item-form">
+                  <button class="btn-login" type="submit">Đăng ký</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <script src="./js/ex01.js"></script>
+  </body>
+</html>
