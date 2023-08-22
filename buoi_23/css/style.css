@@ -68,14 +68,10 @@ body {
     padding: 10px;
 }
 
-
-
 .weather-wrap span {
     display: block;
     text-align: right;
 }
-
-
 
 .modal-box {
     display: flex;
@@ -85,10 +81,8 @@ body {
     visibility: hidden;
 }
 
-
-
 .modal-box .modal-overlay {
-    background-color: #cccccc5f;
+    background-color: rgba(0, 0, 0, .6);
     position: fixed;
     inset: 0;
 
