@@ -1,0 +1,84 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    align-items: center;
+    background: #8758ff;
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.wrapper {
+    background: #1a1a40;
+    border-radius: 5px;
+    margin-top: 10rem;
+    padding: 4rem;
+}
+
+.wrapper h1 {
+    color: #fff;
+    font-size: 2.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.todo-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+.todo-input,
+.todo-input-item {
+    background: none;
+    border: 1px solid #8758ff;
+    color: #fff;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    outline: none;
+    padding: 1rem 2rem;
+    width: 300px;
+}
+
+.todo-btn,
+.todo-btn-item {
+    background: #8758ff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    padding: 1.1rem 2rem;
+    align-self: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.todo-item {
+    align-items: center;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1.25rem 2rem;
+    background: #8758ff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.checked {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
