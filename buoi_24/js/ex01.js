@@ -36,6 +36,7 @@ todoWrapper.addEventListener("click", function (e) {
 todoWrapper.addEventListener("click", function (e) {
   var valueInput = document.querySelector(".todo-item p");
   var inputEdit = document.querySelector(".todo-input-item");
+
   // Form Edit
   if (e.target.className === "fa-solid fa-pen-to-square") {
     e.target.parentElement.parentElement.remove();
@@ -48,13 +49,12 @@ todoWrapper.addEventListener("click", function (e) {
     />
     <button type="button" class="todo-btn-item">Add Task</button>
   </form>`;
-    todoWrapper.insertAdjacentHTML("beforebegin", html);
+    todoWrapper.insertAdjacentHTML("beforeend", html);
   }
-  // After Edit
   if (e.target.className === "todo-btn-item") {
     e.target.parentElement.remove();
     var valueEdit = addTodoList(inputEdit.value);
-    todoWrapper.insertAdjacentHTML("beforeend", html);
+    todoWrapper.insertAdjacentHTML("beforeend", valueEdit);
   }
 });
 
