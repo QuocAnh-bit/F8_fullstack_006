@@ -70,39 +70,55 @@ if (carouselItems.length) {
   });
 
   // // // Xử lý trượt
-  // var isDown = false; //Cắm cờ
-  // var starClient;
-  // var move;
-  // var saveMove;
+  var isDown = false; //Cắm cờ
+  var threshold = (10 * itemWidth) / 100;
+  console.log(threshold);
+  var starOffSet;
+  var move;
 
-  // carouselInner.addEventListener("mousedown", function (e) {
-  //   e.preventDefault();
-  //   isDown = true;
-  //   starClient = e.clientX;
-  // });
+  carouselInner.addEventListener("mousedown", function (e) {
+    e.preventDefault();
+    isDown = true;
+    starOffSet = e.offsetX;
+  });
 
-  // carouselInner.addEventListener("mousemove", function (e) {
-  //   e.preventDefault();
-  //   if (isDown) {
-  //     move = e.clientX - starClient;
-  //     carouselInner.style.cursor = "move";
-  //     if (move < 0) {
-  //       if (move < -150) {
-  //         carouselInner.style.translate = `${move + position}px`;
-  //         carouselInner.style.transition = "none";
-  //       }
-  //     } else if (Math.abs(position) < totalWidth - itemWidth) {
-  //       position -= itemWidth;
-  //       carouselInner.style.translate = `${position}px`;
-  //     }
-  //   }
-  // });
+  carouselInner.addEventListener("mousemove", function (e) {
+    e.preventDefault();
+    if (isDown) {
+      move = e.offsetX - starOffSet;
+      carouselInner.style.cursor = "move";
+      if (move < 0) {
+        if (
+          Math.abs(move) > threshold &&
+          Math.abs(position) < totalWidth - itemWidth
+        ) {
+          position -= itemWidth;
+          carouselInner.style.translate = `${position + move}px`;
+          isDown = false;
+          index++;
+          activeDots();
+        } else {
+          carouselInner.style.translate = `${position + move}px`;
+        }
+      } else if (move > 0) {
+        if (position < 0 && move > threshold) {
+          position += itemWidth;
+          carouselInner.style.translate = `${position + move}px`;
+          isDown = false;
+          index--;
+          activeDots();
+        } else {
+          carouselInner.style.translate = `${position + move}px`;
+        }
+      }
+    }
+  });
 
-  // carouselInner.addEventListener("mouseup", function (e) {
-  //   e.preventDefault();
-  //   isDown = false;
-  //   carouselInner.style.cursor = "default";
-  //   carouselInner.style.transition = "none";
-  //   carouselInner.style.translate = `${position}px`;
-  // });
+  carouselInner.addEventListener("mouseup", function (e) {
+    e.preventDefault();
+    isDown = false;
+    carouselInner.style.cursor = "default";
+    carouselInner.style.translate = `${position}px`;
+    console.log(position);
+  });
 }
