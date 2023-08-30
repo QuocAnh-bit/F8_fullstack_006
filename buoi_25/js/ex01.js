@@ -53,16 +53,16 @@ if (carouselItems.length) {
   // Xử lý chuyển slide khi ấn vào nút next
 
   navNext.addEventListener("click", function () {
-    if (Math.abs(positive) < totalWidth - itemWidth) {
-      positive -= itemWidth;
+    if (Math.abs(position) < totalWidth - itemWidth) {
+      position -= itemWidth;
       carouselInner.style.translate = `${position}px`;
       index++;
       activeDots();
     }
   });
   navPrev.addEventListener("click", function () {
-    if (positive < 0) {
-      positive += itemWidth;
+    if (position < 0) {
+      position += itemWidth;
       carouselInner.style.translate = `${position}px`;
       index--;
       activeDots();
@@ -88,12 +88,12 @@ if (carouselItems.length) {
   //     carouselInner.style.cursor = "move";
   //     if (move < 0) {
   //       if (move < -150) {
-  //         carouselInner.style.translate = `${move + positive}px`;
+  //         carouselInner.style.translate = `${move + position}px`;
   //         carouselInner.style.transition = "none";
   //       }
-  //     } else if (Math.abs(positive) < totalWidth - itemWidth) {
-  //       positive -= itemWidth;
-  //       carouselInner.style.translate = `${positive}px`;
+  //     } else if (Math.abs(position) < totalWidth - itemWidth) {
+  //       position -= itemWidth;
+  //       carouselInner.style.translate = `${position}px`;
   //     }
   //   }
   // });
@@ -103,6 +103,6 @@ if (carouselItems.length) {
   //   isDown = false;
   //   carouselInner.style.cursor = "default";
   //   carouselInner.style.transition = "none";
-  //   carouselInner.style.translate = `${positive}px`;
+  //   carouselInner.style.translate = `${position}px`;
   // });
 }
