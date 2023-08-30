@@ -36,7 +36,6 @@ todoWrapper.addEventListener("click", function (e) {
 todoWrapper.addEventListener("click", function (e) {
   var valueInput = document.querySelector(".todo-item p");
   var inputEdit = document.querySelector(".todo-input-item");
-
   // Form Edit
   if (e.target.className === "fa-solid fa-pen-to-square") {
     e.target.parentElement.parentElement.remove();
