@@ -1,0 +1,141 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(219, 227, 234);
+    font-family: sans-serif;
+
+}
+
+
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.player-box {
+    padding: 30px;
+    width: 70%;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+
+.player-top h1 {
+    margin-bottom: 25px;
+}
+
+.player-top .volume-wrapper {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-bar {
+    width: 20%;
+    height: 5px;
+    background-color: gray;
+    border-radius: 9px;
+    position: relative;
+}
+
+.volume-bar .volume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background-color: rgb(252, 50, 84);
+    border-radius: 9px;
+}
+
+.volume span {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(240, 19, 19);
+    position: absolute;
+    right: 0;
+    top: -5px;
+    border-radius: 50%;
+    translate: 50%;
+    cursor: pointer;
+}
+
+.player-btn {
+    text-align: center;
+    margin: 30px auto;
+    font-size: 2.3rem;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.player {
+    max-width: 100%;
+    display: flex;
+    margin: 30px auto;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+
+.progress-bar {
+    width: 50%;
+    height: 10px;
+    background-color: gray;
+    position: relative;
+    cursor: pointer;
+    border-radius: 9px;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    /* width: 10%; */
+    background-color: rgb(252, 50, 84);
+    border-radius: 9px;
+    /* transition: width 0.1s ease; */
+}
+
+.progress span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(240, 19, 19);
+    position: absolute;
+    right: 0;
+    top: -5px;
+    border-radius: 50%;
+    translate: 50%;
+    cursor: pointer;
+
+}
+
+.timer {
+    position: absolute;
+    display: none;
+    border-radius: 5px;
+    background-color: rgb(241, 169, 169);
+    width: 40px;
+    height: 20px;
+    left: 0px;
+    translate: -50%;
+    bottom: -30px;
+    font-size: 0.6rem;
+    text-align: center;
+    line-height: 20px;
+}
