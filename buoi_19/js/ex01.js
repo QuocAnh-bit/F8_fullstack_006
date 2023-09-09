@@ -1,78 +1,92 @@
 // Bài 1 : Tìm số Lớn nhất , nhỏ nhất in ra vị trí
 var numberInteger = [-1, 6, 0, 2, 5, 1, 3];
-function numberMax(numberArray) {
-  var max = numberArray[0]; // gán giả sử vị trí 0 là lớn nhất
-  var indexMax = 0;
-  for (var i = 1; i < numberArray.length; i++) {
-    if (max < numberArray[i]) {
-      // nếu max nhỏ hơn phần tử trong mảng thì gán lại max
-      max = numberArray[i];
-      indexMax = i;
-    }
-  }
-  console.log(`Số lớn nhất trong mảng là: ${max} Index = ${indexMax}`);
-}
+var maxArr = numberInteger[0];
+var minArr = numberInteger[0];
+var maxIndex = 0;
+var minIndex = 0;
 
-function numberMin(numberArray) {
-  var min = numberArray[0]; // gán giả sử vị trí 0 là nhỏ nhất
-  var indexMin = 0;
-  for (var i = 1; i < numberArray.length; i++) {
-    if (min > numberArray[i]) {
-      // nếu min lớn hơn phần tử trong mảng thì gán lại min
-      min = numberArray[i];
-      indexMin = i;
-    }
+for (var i in numberInteger) {
+  if (maxArr < numberInteger[i]) {
+    maxArr = numberInteger[i];
+    maxIndex = i;
   }
-  console.log(`Số nhỏ nhất trong mảng là: ${min} Index = ${indexMin}`);
+  if (minArr > numberInteger[i]) {
+    minArr = numberInteger[i];
+    minIndex = i;
+  }
 }
-numberMax(numberInteger);
-numberMin(numberInteger);
+console.log(`Max : ${maxArr}, Index : ${maxIndex}`);
+console.log(`Min : ${minArr}, Index : ${minIndex}`);
+
 // Bài 2 : Tính tbc các số nguyên tố có trong mảng , nếu không có trả về 'Không có số nguyên tố '
 var numberArray = [-3, 2, 0, 9, 13, 34, 17, 7, 5, 8];
-function isPrime(number) {
-  if (number < 2) {
+var isPrime = function (n) {
+  if (n <= 1 || n % 1 !== 0) {
     return false;
-  } else {
-    for (var i = 2; i < number; i++) {
-      if (number % i == 0) {
-        // nếu number chia hết cho 1 số khác nữa thì loại
-        return false;
-      }
+  }
+  for (var i = 2; i < n - 1; i++) {
+    if (n % i === 0) {
+      return false;
     }
   }
   return true;
-}
-function averagePrime(numberArray) {
-  var total = 0; // Tính tổng
-  var dem = 0; // đếm số lần cộng
-  var tbc = 0; // tính tb
-  for (var i = 0; i < numberArray.length; i++) {
-    if (isPrime(numberArray[i])) {
-      // gọi hàm kiểm tra số nguyên tố
-      total += numberArray[i]; // cộng tổng các số nguyên tố
-      dem++;
-    }
-  }
-  if (total === 0) {
-    console.log("không có số nguyên  tố nào");
-  } else {
-    console.log(
-      `Trung bình cộng của các số nguyên tố trong mảng là ${(tbc =
-        total / dem)}`
-    );
+};
+var total = 0;
+var count = 0;
+var agv;
+for (var i = 0; i < numberArray.length; i++) {
+  if (isPrime(numberArray[i])) {
+    total += numberArray[i];
+    count++;
   }
 }
-averagePrime(numberArray);
+
+if (total > 0) {
+  agv = total / count;
+  console.log(`Trung bình công của các số nguyên tố  : ${agv}`);
+} else {
+  console.log(`Không có số nguyên tố nào trong mảng  `);
+}
+
 // Bài 3: Lọc trùng
 var array = [1, 2, 3, 43, 2, 2, 2, 3, 4, 5, 6, 7, 43];
-console.log(Array.from(new Set(array)));
+var newArr = [];
+
+for (var i = 0; i < array.length; i++) {
+  if (newArr.includes(array[i])) {
+    continue;
+  }
+  newArr[newArr.length] = array[i];
+}
+console.log(newArr);
+
 // Bài 4 :
 var numbers = [5, 1, 9, 8, 10];
-var element = 4;
-numbers.push(element);
+
 numbers.sort(function (a, b) {
-  if (b > a) {
-    return -1;
-  }
+  // a là số sau b là số trước
+  return a - b; // nếu ra âm  thi a đứng trước b
 });
+console.log(numbers);
+// Thêm element
+var element = 4;
+if (element < numbers[0]) {
+  numbers.unshift(element);
+} else if (element > numbers[numbers.length - 1]) {
+  numbers.push(element);
+} else {
+  var indexInsert;
+  for (var i = 0; i < numbers.length; i++) {
+    if (element >= numbers[i] && element < numbers[i + 1]) {
+      indexInsert = i; // xác định vị trí của element cần thêm
+      console.log(i);
+      break;
+    }
+  }
+  numbers = [].concat(
+    numbers.slice(0, indexInsert + 1), // slice không lấy phần tử end
+    element,
+    numbers.slice(indexInsert + 1)
+  );
+}
 console.log(numbers);

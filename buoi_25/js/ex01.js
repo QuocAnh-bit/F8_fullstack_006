@@ -33,6 +33,7 @@ if (carouselItems.length) {
   carouselDots.firstChild.classList.add("active-dot");
 
   var itemDots = document.querySelectorAll(".item-dot");
+
   var index = 0;
   var activeDots = function () {
     itemDots.forEach(function (item) {
