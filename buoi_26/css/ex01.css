@@ -16,11 +16,64 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+.karaoke {
+    width: 80%;
+    transform: translateY(100%);
+    z-index: -1;
+    transition: transform 0.5s ease-in;
+    max-height: 200px;
+}
 
+.karaoke-header h2 {
+    font-size: 50px;
+}
+
+.up {
+    transform: translateY(0%);
+    transition: transform 0.5s ease-in;
+}
+
+.karaoke-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+    font-weight: bold;
+    min-height: 100px;
+    margin-top: 50px;
+}
+
+.karaoke-inner p {
+    margin: 20px 0px;
+    font-size: 40px;
+    color: #3b28bac5;
+
+
+}
+
+.karaoke-inner p .singer-name {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    display: block;
+}
+
+.karaoke-inner p span {
+    display: inline;
+    font-size: 40px;
+    margin: 0 5px;
+}
+
+.karaoke-header {
+    display: flex;
+    justify-content: space-around;
+}
 
 .player-box {
     padding: 30px;
@@ -28,6 +81,38 @@ body {
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     background-color: #ffffff;
     border-radius: 20px;
+    transform: translateY(-25%);
+    transition: transform 0.5s ease-in;
+}
+
+.down {
+    transform: translateY(35%);
+    transition: transform 0.5s ease-in;
+}
+
+
+
+.top-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-karaoke {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 30px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 0 80px;
 }
 
 .player-top h1 {
