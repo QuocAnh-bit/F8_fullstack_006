@@ -35,8 +35,8 @@ var getDragAfterEl = function (listItem, clientY) {
       var offset = clientY - box.top - box.height / 2;
       console.log(offset);
 
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: current };
+      if (offset < 0 && offset > prev.offset) {
+        return { offset: prev, element: current };
       } else {
         return prev;
       }
