@@ -33,13 +33,15 @@ countChar.append(spanChar);
 content.addEventListener("input", function () {
   var checkWord = this.innerText.trim().replace(/\s+/g, " ").split(" ");
   spanWord.textContent = checkWord.length;
-
+  console.log(checkWord);
   var checkChar = checkWord.join("");
   spanChar.textContent = checkChar.length;
-  if (this.innerText.length === 0) {
+  console.log(checkWord.join(""));
+  if (this.innerText.length === 0 || checkWord[0] === "") {
     spanWord.textContent = 0;
   }
 });
+
 var btnFile = document.querySelector(".btn-file");
 var dropDownMenu = document.querySelector(".dropdown-menu");
 
