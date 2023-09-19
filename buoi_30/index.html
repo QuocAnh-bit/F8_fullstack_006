@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"
+      integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <h3>Doc Editor</h3>
+      </div>
+
+      <div class="controls">
+        <div class="control-top">
+          <button id="bold-btn" class="btn btn-dark control-btn">
+            <b><i class="fa-solid fa-bold"></i></b>
+          </button>
+          <button id="underline-btn" class="btn btn-dark control-btn">
+            <u><i class="fa-solid fa-underline"></i></u>
+          </button>
+          <button id="italic-btn" class="btn btn-dark control-btn">
+            <i><i class="fa-solid fa-italic"></i></i>
+          </button>
+
+          <input id="color-btn" type="color" class="control-btn" />
+        </div>
+        <div
+          class="content"
+          contenteditable="true"
+          spellcheck="false"
+          autofocus="autofocus"
+        ></div>
+        <div class="control-bottom">
+          <div class="dropdown">
+            <button class="btn-file">
+              File <i class="fa-solid fa-caret-down"></i>
+            </button>
+            <div class="dropdown-menu" style="">
+              <button id="new-btn" class="dropdown-item">New</button
+              ><button id="txt-btn" class="dropdown-item">Save as TXT</button
+              ><button id="pdf-btn" class="dropdown-item">Save as PDF</button>
+            </div>
+            <input id="filename-input" type="text" value="untitled" />
+          </div>
+          <div class="countContent">
+            <span class="count-word">Số từ: </span>
+            <br />
+            <span class="count-char">Số ký tự: </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/ex01.js"></script>
+  </body>
+</html>

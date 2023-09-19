@@ -1,0 +1,131 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFA1F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+
+}
+
+.container {
+    margin: 50px 0;
+    width: 500px;
+}
+
+.title {
+    text-align: center;
+    color: #F8FF95;
+    font-size: 50px;
+}
+
+.control-top {
+    background-color: #fff;
+    margin: 30px 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+
+}
+
+.control-btn {
+    width: 30%;
+    border: none;
+    height: 100%;
+    background-color: #D67BFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.control-btn:hover {
+    background-color: rgba(227, 205, 205, 0.648);
+
+}
+
+
+
+#color-btn {
+    border: none;
+    background-color: #D67BFF;
+}
+
+.active {
+    background-color: rgba(227, 205, 205, 0.648);
+}
+
+.content {
+    background: #fff;
+    height: 200px;
+    padding: 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+    ;
+    margin: 30px 0;
+}
+
+.control-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    gap: 5px;
+}
+
+.dropdown .btn-file {
+    background-color: #ab03f8;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.dropdown .btn-file i {
+    margin: 0 5px;
+}
+
+.dropdown-menu {
+
+    flex-direction: column;
+    width: 50%;
+    position: absolute;
+    border-radius: 5px;
+    overflow: hidden;
+    transform: translateY(38%);
+    display: none;
+
+}
+
+.show {
+    display: flex;
+}
+
+.dropdown-menu button {
+    border: none;
+    background-color: #fff;
+    padding: 10px 0;
+
+}
+
+.dropdown-menu button:hover {
+    background-color: #9387873a;
+}
+
+#filename-input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 0;
+}
