@@ -12,6 +12,6 @@ F8.component("counter-app", {
             <h2>Counted: <span class="count-span">{{ count }}</span> times</h2>
             <button v-on:click="count--">-</button>
             <button v-on:click="count++">+</button>
-            <button v-on:dblclick="title=Update">Change</button>
+            <button v-on:dblclick="title=Update Title">Change</button>
           `,
 });
