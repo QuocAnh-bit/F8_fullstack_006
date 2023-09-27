@@ -5,6 +5,7 @@ const INTERVAL = 1000; // 1000ms
 const countEl = document.querySelector(".count span");
 const btnLink = document.querySelector(".btn-link");
 const handleCounter = function (currentTimer) {
+  console.log(currentTimer);
   if (timer <= currentTimer) {
     count--;
     countEl.innerText = count;

@@ -60,6 +60,7 @@ button {
 }
 
 .side-bar-right {
+    width: 25%;
     padding: 30px;
     background-color: #231E23;
     display: flex;
@@ -163,7 +164,7 @@ hr {
     bottom: 0;
     right: 0;
     background-color: #231e23b1;
-    width: 76.5%;
+    width: 0;
     padding: 25px;
 
 }
@@ -225,8 +226,12 @@ hr {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    min-width: 52.5px;
+
 
 }
+
+
 
 .play-btn button:before {
     content: "";
@@ -330,15 +335,21 @@ hr {
     display: flex;
     margin-top: 15px;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 15px;
 }
 
 .progress-bar {
-    width: 100%;
+    width: 90%;
     height: 5px;
     background-color: #e6eceba0;
     border-radius: 5px;
     position: relative;
+}
+
+.star-time,
+.end-time {
+    font-size: 1.5rem;
 }
 
 .progress {
@@ -349,18 +360,98 @@ hr {
     /* width: 50%; */
     background-color: rgb(245, 245, 245);
     border-radius: 9px;
+    cursor: pointer;
+
 }
 
 .progress span {
-    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    display: block;
 
-    width: 15px;
-    height: 15px;
     background-color: rgb(241, 220, 220);
     position: absolute;
     right: 0;
-    top: -5px;
+    top: -6px;
     border-radius: 50%;
     translate: 50%;
     cursor: pointer;
+}
+
+.progress-bar:hover .progress .dot {
+    opacity: 1;
+    visibility: visible;
+    width: 20px;
+    height: 20px;
+}
+
+.progress-bar:hover {
+    height: 8px;
+}
+
+.timer {
+    position: absolute;
+    display: none;
+    border-radius: 9px;
+    background-color: rgba(241, 169, 169, 0.475);
+    width: 40px;
+    height: 20px;
+    left: 0px;
+    translate: -55%;
+    bottom: -25px;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 20px;
+    color: #a3d4e8;
+}
+
+.karaoke {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+
+.karaoke-heading {
+    position: absolute;
+    top: 70px;
+    font-size: 3.5rem;
+}
+
+.karaoke-content {
+    width: 100%;
+    font-size: 4rem;
+    text-align: center;
+    font-weight: bold;
+
+
+}
+
+.karaoke-content p {
+    margin: 25px 0;
+}
+
+.karaoke-content p .word {
+    position: relative;
+
+
+}
+
+.karaoke-content p .word span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    overflow: hidden;
+    width: 0%;
+    color: rgba(24, 229, 79, 0.688);
+
+}
+
+.karaoke-content .name-singer {
+    font-size: 3rem;
 }
