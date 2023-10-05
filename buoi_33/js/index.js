@@ -15,6 +15,8 @@ recognition.continuous = false;
 const handleVoice = (text) => {
   const handleText = text
     .toLowerCase()
+    .replaceAll(".", "")
+    .replaceAll(",", "")
     .replace("tôi", "")
     .replace("muốn", "")
     .replace("mở", "")

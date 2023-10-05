@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.overlay-add {
+    position: absolute;
+    background-color: rgba(69, 29, 29, 0.453);
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-add .form-add {
+    padding: 25px 10px;
+    width: 20%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+
+}
+
+.overlay-add .add-todo-wrap .add-todo-input {
+    padding: 5px 5px;
+}
+
+.todo-app-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+.todo-app {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo-control {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.todo-control .search {
+    position: relative;
+
+    width: 100%;
+}
+
+.todo-control .search .input-search {
+    width: 100%;
+    padding: 10px 0;
+
+}
+
+.todo-control .search .btn-search {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+}
+
+.todo-list,
+.todo-completed {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.todo-list .item-todo,
+.todo-completed .item-todo {
+    display: flex;
+    padding: 10px 5px;
+    justify-content: space-between;
+    border: 1px solid;
+    margin-bottom: 10px;
+}
+
+/* .todo-list .completed {
+    display: none;
+} */
