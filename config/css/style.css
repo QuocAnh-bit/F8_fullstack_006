@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin: 30px;
+}
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.posts .post-item {
+    flex-basis: calc(100% / 3 - 10px);
+    max-width: calc(100% / 3 - 10px);
+    border: 1px solid #ccc;
+    padding: 10px;
+
+}
+
+.posts .post-itemt a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #333;
+
+}
+
+.search {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}

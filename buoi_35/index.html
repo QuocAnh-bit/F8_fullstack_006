@@ -7,19 +7,13 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Danh sách bài viết</h1>
-      <form class="search">
-        <input type="search" placeholder="Search..." />
-        <button>Tìm kiếm</button>
-        <select class="sort-by">
-          <option value="latest">Mới nhất</option>
-          <option value="oldest">Cũ nhất</option>
-        </select>
-      </form>
-
-      <div class="posts"></div>
+    <div class="loader-wrap">
+      <span class="loader"></span>
+      <span class="loader-text">Loading</span>
     </div>
-    <script type="module" src="./js/index.js"></script>
+    <main class="main">
+      <div class="container"></div>
+    </main>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
