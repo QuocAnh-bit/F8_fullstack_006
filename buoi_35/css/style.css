@@ -11,6 +11,9 @@ html {
 body {
     font-size: 1.6rem;
     position: relative;
+
+
+
 }
 
 img {
@@ -35,6 +38,8 @@ figcaption {
     margin: 0 auto;
 
 }
+
+.section {}
 
 .section-item {
     padding: 30px;
@@ -107,113 +112,40 @@ figcaption {
 .loader-wrap {
     position: fixed;
     inset: 0;
-    background: #d42e2e;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 25px;
-    display: none;
+    display: flex;
 
-}
-
-.text-loader {
-    font-weight: bold;
-    font-family: sans-serif;
-    font-size: 2rem;
-    color: #fff;
 }
 
 .loader {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 6rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
-
-.loader:before,
-.loader:after {
-    content: "";
-    position: absolute;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    animation: pulsOut 1.8s ease-in-out infinite;
-    filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.75));
-}
-
-.loader:before {
-    width: 100%;
-    padding-bottom: 100%;
-    box-shadow: inset 0 0 0 1rem #fff;
-    animation-name: pulsIn;
-}
-
-.loader:after {
-    width: calc(100% - 2rem);
-    padding-bottom: calc(100% - 2rem);
-    box-shadow: 0 0 0 0 #fff;
-}
-
-@keyframes pulsIn {
-    0% {
-        box-shadow: inset 0 0 0 1rem #fff;
-        opacity: 1;
-    }
-
-    50%,
-    100% {
-        box-shadow: inset 0 0 0 0 #fff;
-        opacity: 0;
-    }
-}
-
-@keyframes pulsOut {
-
-    0%,
-    50% {
-        box-shadow: 0 0 0 0 #fff;
-        opacity: 0;
-    }
-
-    100% {
-        box-shadow: 0 0 0 1rem #fff;
-        opacity: 1;
-    }
-}
-
-.loader-text {
-    font-size: 2rem;
-    display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    color: #263238;
-    box-sizing: border-box;
-    text-shadow: 0 0 2px #FFF, 0 0 1px #FFF, 0 0 1px #FFF;
-    letter-spacing: 5px;
+    display: block;
+    margin: 15px auto;
     position: relative;
-}
-
-.loader-text::after {
-    content: 'Loading';
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #FFF;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    background: #FFF;
+    box-shadow: -24px 0 #FFF, 24px 0 #FFF;
     box-sizing: border-box;
-    animation: animloader-text 6s linear infinite;
+    animation: shadowPulse 2s linear infinite;
 }
 
-@keyframes animloader-text {
-    0% {
-        width: 0%;
+@keyframes shadowPulse {
+    33% {
+        background: #FFF;
+        box-shadow: -24px 0 #FF3D00, 24px 0 #FFF;
+    }
+
+    66% {
+        background: #FF3D00;
+        box-shadow: -24px 0 #FFF, 24px 0 #FFF;
     }
 
     100% {
-        width: 100%;
+        background: #FFF;
+        box-shadow: -24px 0 #FFF, 24px 0 #FF3D00;
     }
 }

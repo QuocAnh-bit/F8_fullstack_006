@@ -5,6 +5,8 @@ let limitEl = 5;
 
 const getPost = async (query = {}) => {
   const queryString = new URLSearchParams(query).toString();
+  await renderLoading();
+
   const { data } = await client.get(`/posts?${queryString}}`);
   return data;
 };
@@ -78,12 +80,12 @@ const renderPost = async () => {
   });
   main.append(container);
 };
-const renderLoading = () => {
+const renderLoading = async () => {
   const loader = document.querySelector(".loader-wrap");
   loader.style.display = "flex";
   setTimeout(() => {
     loader.style.display = "none";
-  }, 1000);
+  }, 2000);
 };
 
 window.addEventListener("scroll", () => {
@@ -97,5 +99,4 @@ window.addEventListener("scroll", () => {
     renderPost();
   }
 });
-renderLoading();
 renderPost();
