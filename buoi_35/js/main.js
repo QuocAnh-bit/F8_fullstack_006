@@ -7,7 +7,7 @@ const getPost = async (query = {}) => {
   const queryString = new URLSearchParams(query).toString();
   await renderLoading();
 
-  const { data } = await client.get(`/posts?${queryString}}`);
+  const { data } = await client.get(`/posts?${queryString}`);
   return data;
 };
 const main = document.querySelector("main");

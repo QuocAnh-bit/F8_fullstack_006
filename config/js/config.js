@@ -1,5 +1,3 @@
-// const severApi = ` http://localhost:3000`;
-
 // const postUser = async (data) => {
 //   // chuyển cú pháp cho phù hợp với application/x-www-form-urlencoded
 //   const dataUrlEndcoded = new URLSearchParams(data).toString();
@@ -29,4 +27,5 @@
 // // });
 export const config = {
   SERVER_API: "http://localhost:3000",
+  PAGE_LIMIT: 3,
 };
