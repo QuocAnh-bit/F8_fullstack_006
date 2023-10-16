@@ -1,0 +1,296 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    width: 100%;
+    font-family: sans-serif;
+    color: #fff;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+
+
+    background-image: url(../img/forest-landscape.jpg);
+    background-size: cover;
+
+
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    margin-top: 50px;
+    width: 80%;
+    padding: 30px;
+    background-color: #ffffff53;
+    border-radius: 15px 15px 0px 0px;
+    box-shadow: rgba(30, 29, 29, 0.897) 0px 2px 8px 0px;
+}
+
+.wrapper .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 5rem;
+}
+
+.header .open-sign-in button {
+    background-color: #c82e2e91;
+    padding: 15px 20px;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    border: #fff 2px solid;
+    border-radius: 15px;
+
+}
+
+.header .open-sign-in button:hover {
+    background-color: #ccc;
+
+}
+
+.wrapper .blog-list {
+    margin-top: 20px;
+}
+
+.blog-list .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.blog-list .content .blog-item {
+    background-color: #10a0d4aa;
+    padding: 30px 50px 30px 60px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.blog-item .date {
+    position: absolute;
+    color: #4a171799;
+    right: 50px;
+    font-size: 4.5rem;
+    font-weight: bold;
+}
+
+.link .wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.link .wrap .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #2fd7d7;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    position: relative;
+
+}
+
+.link .wrap .name-user {
+    font-weight: bold;
+    font-size: 3rem;
+
+
+}
+
+.link .wrap .avatar::after {
+    content: attr(data-name);
+    position: absolute;
+    font-size: 3rem;
+
+
+
+}
+
+.blog-item .title-blog {
+    font-size: 2rem;
+    color: #040d1cb4;
+}
+
+.blog-item p {
+    width: 80%;
+}
+
+.blog-item .name {
+    position: absolute;
+    rotate: -90deg;
+    left: -48%;
+    top: 80px;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #20dbdbe1;
+}
+
+.blog-item .name::before {
+    content: "@";
+
+}
+
+.blog-item .hashtag-wrap {
+    border: 3px solid #fff;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+
+}
+
+.hashtag-wrap .hashtag::before {
+    content: "#";
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+/* LOGIN */
+
+.wrapper-login {
+    position: fixed;
+    inset: 0;
+    background-color: #ffffff95;
+    display: none;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    color: black;
+
+
+}
+
+.close-form {
+    position: absolute;
+    right: 30px;
+    top: 5%;
+    width: 55px;
+    height: 55px;
+    font-size: 3rem;
+    color: #322121;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.wrapper-login .box-login {
+    background-color: #fff;
+    width: 50%;
+    padding: 50px;
+    border-radius: 15px;
+
+}
+
+.box-login .login-form,
+.box-login .register-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-form .form-control,
+.form-add-blog .form-control,
+.register-form .form-control {
+    width: 100%;
+
+}
+
+.login-form .form-control input,
+.form-add-blog .form-control textarea,
+.register-form .form-control input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    resize: none;
+}
+
+.form-add-blog .form-control label {
+    display: block;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.form-add-blog .form-control input {
+    width: 50%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
+
+}
+
+.login-form .btn-form,
+.register-form .btn-form {
+    margin: 20px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+
+}
+
+.login-form .btn-form button,
+.register-form .btn-form button {
+    width: 50%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+
+}
+
+.login-form .btn-form button:hover,
+.register-form .btn-form button:hover {
+    background-color: #2fd7d7;
+}
+
+.form-add-blog .btn-form button {
+    width: 30%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    align-self: flex-start;
+    margin: 25px 0;
+}
+
+.toast-wrap {
+    position: fixed;
+    right: 0;
+    top: 100px;
+    background-color: #77fe00;
+    padding: 15px;
+    display: flex;
+    z-index: 2;
+
+}

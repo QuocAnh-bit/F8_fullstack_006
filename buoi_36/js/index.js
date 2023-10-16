@@ -5,7 +5,9 @@ const { PAGE_LIMIT } = config;
 const btnStart = document.querySelector(".btn-start");
 const quizStart = document.querySelector(".quiz-start");
 let pagination = 1;
+let countDown;
 let totalPage;
+const answerArr = [];
 let durationTimeQuiz = 2000;
 let currentTimeQuiz = 2000;
 console.log(btnStart);
@@ -95,7 +97,10 @@ const render = async () => {
       ${
         question.options.length > 0
           ? question.options
-              .map((item) => `<div class="item-answer">${item}</div>`)
+              .map(
+                (item, index) =>
+                  `<div class="item-answer" data-index="${index}">${item}</div>`
+              )
               .join("")
           : ""
       }
@@ -104,9 +109,13 @@ const render = async () => {
     <div class="quiz-footer"></div>
   </div>`;
     quizGame.innerHTML = html;
+    answerArr.push(question.answer);
   });
-  console.log(pagination);
-  countDownQuiz();
+  if (pagination <= totalPage) {
+    countDownQuiz();
+  }
+  handleOptions();
+  console.log(answerArr);
 };
 console.log(pagination);
 
@@ -114,21 +123,39 @@ console.log(pagination);
 const countDownQuiz = () => {
   const progressBar = document.querySelector(".progress-bar-inner");
 
-  let countDown = setInterval(() => {
+  countDown = setInterval(() => {
     currentTimeQuiz--;
     // Tính tỷ lệ currentTime so với tổng thời gian
     let rateWidth = (currentTimeQuiz / durationTimeQuiz) * 100;
-    console.log(rateWidth);
+
     if (currentTimeQuiz >= 0) {
       progressBar.style.width = `${rateWidth}%`;
     }
     if (currentTimeQuiz < 0) {
-      pagination++;
       clearInterval(countDown);
+      pagination++;
       render();
       if (pagination <= totalPage) {
         currentTimeQuiz = 2000;
       }
+      // } else {
+      //   clearInterval(countDown);
+      // }
     }
   }, 1);
+};
+
+const handleOptions = async () => {
+  const data = await getPost();
+  const contentQuiz = document.querySelectorAll(".item-answer");
+  contentQuiz.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      console.log(e.target);
+      clearInterval(countDown);
+      console.log(data[0].answer);
+      // pagination++;
+      // currentTimeQuiz = 2000;
+      render();
+    });
+  });
 };

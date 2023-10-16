@@ -206,6 +206,10 @@ body {
 
 }
 
+.answer-quiz .item-answer:hover {
+    background-color: #ccc;
+}
+
 .question-wrap .quiz-footer {
     margin-top: 20px;
     width: 100%;
