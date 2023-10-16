@@ -3,11 +3,11 @@ import { client } from "./client.js";
 
 const { SERVER_AUTH_API, PAGE_LIMIT } = config;
 
-// Xử lý đóng mở login
+const container = document.querySelector(".container");
+const loading = document.querySelector(".loading-wrap");
+
 const wrapBtn = document.querySelector(".open-sign-in");
 const openSignIn = document.querySelector(".btn-sign-in");
-console.log(openSignIn);
-const container = document.querySelector(".container");
 
 openSignIn.addEventListener("click", () => {
   renderBoxLogin();
@@ -93,6 +93,23 @@ const renderBoxLogin = () => {
 
   boxLogin.innerHTML = htmlLogin;
   wrapperLogin.append(boxLogin);
+  const loginForm = document.querySelector(".login-form");
+
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    const emailEl = e.target.querySelector(".email");
+    const passwordEl = e.target.querySelector(".password");
+
+    const email = emailEl.value;
+    const password = passwordEl.value;
+
+    handleLogin({ email, password });
+
+    emailEl.value = "";
+    passwordEl.value = "";
+    loading.classList.add("active");
+  });
 
   wrapperLogin.addEventListener("click", (e) => {
     if (e.target.parentElement.className === "close-form") {
@@ -115,29 +132,30 @@ const renderBoxLogin = () => {
         const password = passwordEl.value;
         console.log(name, email, password);
         handleRegister({ name, email, password });
-        boxLogin.innerHTML = htmlLogin;
       });
     }
 
     if (e.target.className === "btn-login-back") {
       boxLogin.innerHTML = htmlLogin;
+      const loginForm = document.querySelector(".login-form");
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log(e.target);
+        const emailEl = e.target.querySelector(".email");
+        const passwordEl = e.target.querySelector(".password");
+
+        const email = emailEl.value;
+        const password = passwordEl.value;
+
+        handleLogin({ email, password });
+
+        emailEl.value = "";
+        passwordEl.value = "";
+        loading.classList.add("active");
+      });
     }
-  });
-
-  const loginForm = document.querySelector(".login-form");
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const emailEl = e.target.querySelector(".email");
-    const passwordEl = e.target.querySelector(".password");
-
-    const email = emailEl.value;
-    const password = passwordEl.value;
-
-    handleLogin({ email, password });
-
-    emailEl.value = "";
-    passwordEl.value = "";
+    console.log(e.target);
   });
 };
 
@@ -246,6 +264,7 @@ getBlogs({
 
 const handleLogin = async (data) => {
   const { data: tokens } = await client.post(`/auth/login`, data);
+  loading.classList.remove("active");
   showResponse(tokens);
   if (tokens.status_code === "SUCCESS") {
     const { accessToken, refreshToken } = tokens.data;
@@ -272,7 +291,7 @@ const handleLogin = async (data) => {
 
 const handleRegister = async (data) => {
   const { data: response } = await client.post("/auth/register", data);
-
+  console.log(data);
   showResponse(response);
 };
 
