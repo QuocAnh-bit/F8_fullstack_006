@@ -5,9 +5,19 @@ const { SERVER_AUTH_API, PAGE_LIMIT } = config;
 
 const container = document.querySelector(".container");
 const loading = document.querySelector(".loading-wrap");
-
+const blogList = document.querySelector(".blog-list");
 const wrapBtn = document.querySelector(".open-sign-in");
 const openSignIn = document.querySelector(".btn-sign-in");
+const toastWrap = document.createElement("div");
+toastWrap.className = "toast-wrap";
+const htmlToast = `
+  <div class="toast-icon">A</div>
+  <div class="toast-content">
+    <h3 class="title-toast">Thành công</h3>
+    <p class="message-toast">message</p>
+  </div>
+  `;
+toastWrap.innerHTML = htmlToast;
 
 openSignIn.addEventListener("click", () => {
   renderBoxLogin();
@@ -93,23 +103,6 @@ const renderBoxLogin = () => {
 
   boxLogin.innerHTML = htmlLogin;
   wrapperLogin.append(boxLogin);
-  const loginForm = document.querySelector(".login-form");
-
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    console.log(e.target);
-    const emailEl = e.target.querySelector(".email");
-    const passwordEl = e.target.querySelector(".password");
-
-    const email = emailEl.value;
-    const password = passwordEl.value;
-
-    handleLogin({ email, password });
-
-    emailEl.value = "";
-    passwordEl.value = "";
-    loading.classList.add("active");
-  });
 
   wrapperLogin.addEventListener("click", (e) => {
     if (e.target.parentElement.className === "close-form") {
@@ -132,6 +125,7 @@ const renderBoxLogin = () => {
         const password = passwordEl.value;
         console.log(name, email, password);
         handleRegister({ name, email, password });
+        loading.classList.add("active");
       });
     }
 
@@ -153,20 +147,55 @@ const renderBoxLogin = () => {
         emailEl.value = "";
         passwordEl.value = "";
         loading.classList.add("active");
+        getBlogs({
+          limit: PAGE_LIMIT,
+          page: 1,
+        });
       });
     }
-    console.log(e.target);
   });
+
+  const loginForm = document.querySelector(".login-form");
+
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    const emailEl = e.target.querySelector(".email");
+    const passwordEl = e.target.querySelector(".password");
+
+    const email = emailEl.value;
+    const password = passwordEl.value;
+
+    handleLogin({ email, password });
+
+    emailEl.value = "";
+    passwordEl.value = "";
+    loading.classList.add("active");
+    getBlogs({
+      limit: PAGE_LIMIT,
+      page: 1,
+    });
+  });
+};
+const handCreateBlogs = async () => {
+  // client.setUrl(SERVER_AUTH_API);
+  const token = localStorage.getItem("access_token");
+  const { data } = await client.get("/users/profile", token);
+  const nameEl = document.querySelector(".name-user");
+  const avtEl = document.querySelector(".avatar");
+
+  nameEl.innerText = data.data.name;
+  avtEl.dataset.name = handleAvt(data.data.name);
 };
 
 const renderCreateBlog = () => {
-  const blogList = document.querySelector(".blog-list");
+  blogList.innerHTML = "";
   const createBlog = document.createElement("div");
   createBlog.className = "create-blog";
   const htmlCreate = `
   <span class="link">
   <a href="" class="wrap">
-    <span class="avatar"></span>
+    <span class="avatar" data-name=""></span>
     <span class="name-user">QUốc Anh</span>
   </a>
 </span>
@@ -197,11 +226,16 @@ const renderCreateBlog = () => {
 </form>
   `;
   createBlog.innerHTML = htmlCreate;
-  blogList.insertAdjacentElement("afterbegin", createBlog);
-};
-const renderBlogs = (blogs) => {
-  const contentWrap = document.querySelector(".content");
 
+  blogList.insertAdjacentElement("afterbegin", createBlog);
+  handCreateBlogs();
+};
+
+const renderBlogs = (blogs) => {
+  blogList.innerHTML = "";
+  const contentWrap = document.createElement("div");
+  contentWrap.className = "content";
+  contentWrap.innerHTML = "";
   blogs.forEach((item) => {
     const html = `
     <section class="blog-item">
@@ -229,20 +263,30 @@ const renderBlogs = (blogs) => {
   if (localStorage.getItem("access_token")) {
     renderCreateBlog();
     openSignIn.remove();
+
+    const formAddBlog = document.querySelector(".form-add-blog");
+    formAddBlog.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const titleEl = e.target.querySelector(".title-create");
+      const contentEl = e.target.querySelector(".create-content");
+
+      const title = titleEl.value;
+      const content = contentEl.value;
+      handlePostBlog({ title, content });
+      loading.classList.add("active");
+    });
+    wrapBtn.innerHTML = "";
     const btnLogout = document.createElement("button");
     btnLogout.className = "btn-logout";
+    btnLogout.innerText = "Sign Out";
     wrapBtn.append(btnLogout);
-    btnLogout.addEventListener("click", (e) => {
-      e.preventDefault();
+    btnLogout.addEventListener("click", () => {
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
-      document.querySelector(".create-blog").remove();
-      btnLogout.remove();
-      const btnLogout = document.createElement("div");
-      btnLogout.className = "btn-sign-in";
-      wrapBtn.append(btnLogout);
+      location.reload();
     });
   }
+  blogList.append(contentWrap);
 };
 
 const handleAvt = (name) => {
@@ -273,59 +317,84 @@ const handleLogin = async (data) => {
     document.querySelector(".wrapper-login").remove();
     openSignIn.remove();
     renderCreateBlog();
-    const btnLogout = document.createElement("button");
-    btnLogout.className = "btn-logout";
-    wrapBtn.append(btnLogout);
-    btnLogout.addEventListener("click", (e) => {
+    getBlogs({
+      limit: PAGE_LIMIT,
+      page: 1,
+    });
+    // const btnLogout = document.createElement("button");
+    // btnLogout.className = "btn-logout";
+    // btnLogout.innerText = "Sign Out";
+    // wrapBtn.append(btnLogout);
+    // btnLogout.addEventListener("click", () => {
+    //   localStorage.removeItem("access_token");
+    //   localStorage.removeItem("refresh_token");
+    //   location.reload();
+    // });
+    const formAddBlog = document.querySelector(".form-add-blog");
+    formAddBlog.addEventListener("submit", (e) => {
       e.preventDefault();
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      document.querySelector(".create-blog").remove();
-      btnLogout.remove();
-      const btnLogout = document.createElement("div");
-      btnLogout.className = "btn-sign-in";
-      wrapBtn.append(btnLogout);
+      const titleEl = e.target.querySelector(".title-create");
+      const contentEl = e.target.querySelector(".create-content");
+      const title = titleEl.value;
+      const content = contentEl.value;
+      loading.classList.add("active");
+
+      handlePostBlog({ title, content });
     });
   }
 };
 
 const handleRegister = async (data) => {
-  const { data: response } = await client.post("/auth/register", data);
-  console.log(data);
-  showResponse(response);
+  try {
+    const { data: response } = await client.post("/auth/register", data);
+    console.log(data);
+    showResponse(response);
+    loading.classList.remove("active");
+  } catch (error) {
+    loading.classList.remove("active");
+    container.append(toastWrap);
+    toastWrap.style.background = "red";
+    const titleToast = document.querySelector(".title-toast");
+    const messageToast = document.querySelector(".message-toast");
+    titleToast.innerText = "ERROR 504";
+    messageToast.innerText = "Đã có lỗi xảy ra xin vui lòng thử lại";
+    setTimeout(() => {
+      toastWrap.remove();
+    }, 2000);
+  }
 };
 
-const showResponse = async (response) => {
-  const toastWrap = document.createElement("div");
-  toastWrap.className = "toast-wrap";
-  const htmlToast = `
-  <div class="toast-icon">A</div>
-  <div class="toast-content">
-    <h3 class="title-toast">Thành công</h3>
-    <p class="message-toast">message</p>
-  </div>
-  `;
-  toastWrap.innerHTML = htmlToast;
-  console.log(response);
+const handlePostBlog = async (data) => {
+  const token = localStorage.getItem("access_token");
+  const { data: response } = await client.post("/blogs", data, token);
+  loading.classList.remove("active");
+
+  showResponse(response);
+  await getBlogs({
+    limit: PAGE_LIMIT,
+    page: 1,
+  });
+};
+const showResponse = (response) => {
   if (response.code === 400) {
     container.append(toastWrap);
-    getStatus(toastWrap, response);
+    getStatus(response);
     toastWrap.style.background = "red";
   } else {
     container.append(toastWrap);
     toastWrap.style.background = "#77fe00";
-    getStatus(toastWrap, response);
+    getStatus(response);
   }
 };
 
-const getStatus = (element, response) => {
-  const titleToast = element.querySelector(".title-toast");
-  const messageToast = element.querySelector(".message-toast");
+const getStatus = (response) => {
+  const titleToast = toastWrap.querySelector(".title-toast");
+  const messageToast = toastWrap.querySelector(".message-toast");
 
   titleToast.innerText = response.status_code;
   messageToast.innerText = response.message;
   setTimeout(() => {
-    element.remove();
+    toastWrap.remove();
   }, 2000);
 };
 
