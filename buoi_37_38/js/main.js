@@ -1,6 +1,5 @@
 import { config } from "./config.js";
 import { client } from "./client.js";
-
 const { SERVER_AUTH_API, PAGE_LIMIT } = config;
 
 const container = document.querySelector(".container");
@@ -224,6 +223,7 @@ const renderCreateBlog = () => {
       placeholder="Text here..."
     ></textarea>
   </div>
+  <input id="date-picker" />
   <div class="btn-form">
     <button class="btn-add-create">Post</button>
   </div>
@@ -232,9 +232,19 @@ const renderCreateBlog = () => {
   createBlog.innerHTML = htmlCreate;
 
   blogList.insertAdjacentElement("afterbegin", createBlog);
+  datePicker();
   handCreateBlogs();
 };
 
+const datePicker = () => {
+  const datePicker = document.querySelector("#date-picker");
+
+  flatpickr(datePicker, {
+    enableTime: true,
+    minDate: "today",
+    dateFormat: "d-m-Y H:i",
+  });
+};
 const renderBlogs = (blogs) => {
   blogList.innerHTML = "";
   const contentWrap = document.createElement("div");
@@ -269,13 +279,16 @@ const renderBlogs = (blogs) => {
   if (localStorage.getItem("access_token")) {
     renderCreateBlog();
     openSignIn.remove();
+    const datePicker = document.querySelector("#date-picker");
 
     const formAddBlog = document.querySelector(".form-add-blog");
     formAddBlog.addEventListener("submit", (e) => {
       e.preventDefault();
       const titleEl = e.target.querySelector(".title-create");
       const contentEl = e.target.querySelector(".create-content");
-
+      if (datePicker) {
+        console.log("ok");
+      }
       const title = titleEl.value;
       const content = contentEl.value;
       handlePostBlog({ title, content });
@@ -338,8 +351,12 @@ const handleLogin = async (data) => {
     //   location.reload();
     // });
     const formAddBlog = document.querySelector(".form-add-blog");
+    const datePicker = document.querySelector("#date-picker");
     formAddBlog.addEventListener("submit", (e) => {
       e.preventDefault();
+      if (datePicker) {
+        console.log("ok");
+      }
       const titleEl = e.target.querySelector(".title-create");
       const contentEl = e.target.querySelector(".create-content");
       const title = titleEl.value;
@@ -442,11 +459,10 @@ const refreshToken = async () => {
   const { response, data: refresh } = await client.post("auth/refresh-token", {
     refreshToken: localStorage.getItem("refresh_token"),
   });
-  if (response.ok) {
-    if (refresh.code === 200) {
-      localStorage.setItem("access_token", refresh.data.token.accessToken);
-      localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
-    }
+
+  if (refresh.code === 200) {
+    localStorage.setItem("access_token", refresh.data.token.accessToken);
+    localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
   } else {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
@@ -456,6 +472,8 @@ const refreshToken = async () => {
     });
   }
 };
+
+console.log(new Date("2023-10-15T17:32:19.167Z"));
 // const getProfile = async () => {
 //   const token = localStorage.getItem("access_token");
 //   const { data } = await client.get("/auth/profile", token);
