@@ -178,9 +178,13 @@ const renderBoxLogin = () => {
   });
 };
 const handCreateBlogs = async () => {
-  // client.setUrl(SERVER_AUTH_API);
+  client.setUrl(SERVER_AUTH_API);
   const token = localStorage.getItem("access_token");
   const { data } = await client.get("/users/profile", token);
+  if (data.code !== 200) {
+    refreshToken();
+  }
+
   const nameEl = document.querySelector(".name-user");
   const avtEl = document.querySelector(".avatar");
 
@@ -237,12 +241,14 @@ const renderBlogs = (blogs) => {
   contentWrap.className = "content";
   contentWrap.innerHTML = "";
   blogs.forEach((item) => {
+    console.log(new Date().getHours(), new Date().getMinutes());
+
     const html = `
     <section class="blog-item">
     <span class="date">
-      14
-      <br />
-      10
+    ${handlePostTime(item.createdAt)}
+    </br>
+    ${handleHouse(item.createdAt)}
     </span>
     <span class="link">
       <a href="" class="wrap">
@@ -310,6 +316,7 @@ const handleLogin = async (data) => {
   const { data: tokens } = await client.post(`/auth/login`, data);
   loading.classList.remove("active");
   showResponse(tokens);
+  console.log(data);
   if (tokens.status_code === "SUCCESS") {
     const { accessToken, refreshToken } = tokens.data;
     localStorage.setItem("access_token", accessToken);
@@ -397,7 +404,58 @@ const getStatus = (response) => {
     toastWrap.remove();
   }, 2000);
 };
+const handlePostTime = (timeCreate) => {
+  const formatter = new Intl.RelativeTimeFormat("vn");
+  const timeNow = new Date().getTime();
+  const timeOld = new Date(timeCreate).getTime();
+  const timeLeft = timeNow - timeOld; /// ms
 
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  if (timeLeft < 6000) {
+    return `Vài giây trước`;
+  } else if (timeLeft < 3600000) {
+    return formatter.format(-minutes, "minutes");
+  } else if (timeLeft < 86400000) {
+    return formatter.format(-hours, "hours");
+  } else if (timeLeft < 2419200000) {
+    return formatter.format(-days, "days");
+  }
+};
+
+const handleHouse = (timeCreate) => {
+  const house = new Date(timeCreate).getHours();
+  const minutes = new Date(timeCreate).getMinutes();
+
+  return `
+    <span class="house">${
+      house > 12 ? `${house - 12}:${minutes} PM` : `${house}:${minutes} AM`
+    }</span>
+    
+    `;
+};
+
+const refreshToken = async () => {
+  const { response, data: refresh } = await client.post("auth/refresh-token", {
+    refreshToken: localStorage.getItem("refresh_token"),
+  });
+  if (response.ok) {
+    if (refresh.code === 200) {
+      localStorage.setItem("access_token", refresh.data.token.accessToken);
+      localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
+    }
+  } else {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    getBlogs({
+      limit: PAGE_LIMIT,
+      page: 1,
+    });
+  }
+};
 // const getProfile = async () => {
 //   const token = localStorage.getItem("access_token");
 //   const { data } = await client.get("/auth/profile", token);
