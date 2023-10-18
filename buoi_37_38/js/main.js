@@ -199,7 +199,7 @@ const renderCreateBlog = () => {
   <span class="link">
   <a href="" class="wrap">
     <span class="avatar" data-name=""></span>
-    <span class="name-user">QUốc Anh</span>
+    <span class="name-user"></span>
   </a>
 </span>
 <form action="" class="form-add-blog">
@@ -223,7 +223,10 @@ const renderCreateBlog = () => {
       placeholder="Text here..."
     ></textarea>
   </div>
+  <div class="wrap-date">
+  <label for="date-picker" class="label-date">Chọn Ngày</label>
   <input id="date-picker" />
+  </div>
   <div class="btn-form">
     <button class="btn-add-create">Post</button>
   </div>
@@ -242,7 +245,7 @@ const datePicker = () => {
   flatpickr(datePicker, {
     enableTime: true,
     minDate: "today",
-    dateFormat: "d-m-Y H:i",
+    dateFormat: "m/d/Y H:i",
   });
 };
 const renderBlogs = (blogs) => {
@@ -251,7 +254,7 @@ const renderBlogs = (blogs) => {
   contentWrap.className = "content";
   contentWrap.innerHTML = "";
   blogs.forEach((item) => {
-    console.log(new Date().getHours(), new Date().getMinutes());
+    console.log(item.createdAt);
 
     const html = `
     <section class="blog-item">
@@ -286,13 +289,20 @@ const renderBlogs = (blogs) => {
       e.preventDefault();
       const titleEl = e.target.querySelector(".title-create");
       const contentEl = e.target.querySelector(".create-content");
-      if (datePicker) {
-        console.log("ok");
-      }
+
       const title = titleEl.value;
       const content = contentEl.value;
-      handlePostBlog({ title, content });
-      loading.classList.add("active");
+      if (datePicker.value === "") {
+        handlePostBlog({ title, content });
+        loading.classList.add("active");
+      } else {
+        handleDatePiker(datePicker.value);
+        const labelDate = document.querySelector(".label-date");
+        setTimeout(() => {
+          labelDate.innerText = "chọn ngày";
+        }, 3000);
+        datePicker.value = "";
+      }
     });
     wrapBtn.innerHTML = "";
     const btnLogout = document.createElement("button");
@@ -354,8 +364,8 @@ const handleLogin = async (data) => {
     const datePicker = document.querySelector("#date-picker");
     formAddBlog.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (datePicker) {
-        console.log("ok");
+      if (datePicker.value === "") {
+        console.log(datePicker.value);
       }
       const titleEl = e.target.querySelector(".title-create");
       const contentEl = e.target.querySelector(".create-content");
@@ -473,7 +483,30 @@ const refreshToken = async () => {
   }
 };
 
-console.log(new Date("2023-10-15T17:32:19.167Z"));
+const handleDatePiker = (dateValue) => {
+  const labelDate = document.querySelector(".label-date");
+  console.log(labelDate);
+  const timeNow = new Date().getTime();
+  const timeCreate = new Date(dateValue).getTime();
+  const timeLeft = timeCreate - timeNow;
+
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  if (timeLeft < 6000) {
+    return (labelDate.innerText = `${seconds} seconds `);
+  } else if (timeLeft < 3600000) {
+    return (labelDate.innerText = `${minutes} minutes ${seconds} seconds left`);
+  } else if (timeLeft < 86400000) {
+    return (labelDate.innerText = `${hours} hours ${minutes} minutes ${seconds} seconds left`);
+  } else if (timeLeft < 2419200000) {
+    return (labelDate.innerText = `${days} day ${hours} hours ${minutes} minutes ${seconds} seconds left`);
+  }
+};
 // const getProfile = async () => {
 //   const token = localStorage.getItem("access_token");
 //   const { data } = await client.get("/auth/profile", token);
