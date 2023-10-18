@@ -281,7 +281,7 @@ a {
     border: none;
     border-radius: 10px;
     align-self: flex-start;
-    margin: 25px 0;
+    margin: 10px 0;
 }
 
 .toast-wrap {
@@ -343,4 +343,23 @@ a {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.wrap-date {
+    margin-top: 10px;
+}
+
+.wrap-date #date-picker {
+    padding: 15px 5px;
+    border-radius: 15px;
+    border: none;
+    margin: 10px 0;
+    text-align: center;
+
+}
+
+.wrap-date .label-date {
+    display: block;
+    padding: 5px 5px;
+
 }

@@ -183,7 +183,11 @@ const handCreateBlogs = async () => {
   if (data.code !== 200) {
     refreshToken();
   }
-
+  // if (data.code !== 200) {
+  //   localStorage.removeItem("access_token");
+  //   localStorage.removeItem("refresh_token");
+  //   location.reload();
+  // }
   const nameEl = document.querySelector(".name-user");
   const avtEl = document.querySelector(".avatar");
 
@@ -224,8 +228,9 @@ const renderCreateBlog = () => {
     ></textarea>
   </div>
   <div class="wrap-date">
-  <label for="date-picker" class="label-date">Chọn Ngày</label>
   <input id="date-picker" />
+  <label for="date-picker" class="label-date"></label>
+
   </div>
   <div class="btn-form">
     <button class="btn-add-create">Post</button>
@@ -299,9 +304,9 @@ const renderBlogs = (blogs) => {
         handleDatePiker(datePicker.value);
         const labelDate = document.querySelector(".label-date");
         setTimeout(() => {
-          labelDate.innerText = "chọn ngày";
+          labelDate.innerText = "";
+          datePicker.value = "";
         }, 3000);
-        datePicker.value = "";
       }
     });
     wrapBtn.innerHTML = "";
@@ -466,20 +471,23 @@ const handleHouse = (timeCreate) => {
 };
 
 const refreshToken = async () => {
-  const { response, data: refresh } = await client.post("auth/refresh-token", {
+  const { response, data: refresh } = await client.post("/auth/refresh-token", {
     refreshToken: localStorage.getItem("refresh_token"),
   });
 
-  if (refresh.code === 200) {
-    localStorage.setItem("access_token", refresh.data.token.accessToken);
-    localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
+  if (response.ok) {
+    if (refresh.code === 200) {
+      localStorage.setItem("access_token", refresh.data.token.accessToken);
+      localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
+      getBlogs({
+        limit: PAGE_LIMIT,
+        page: 1,
+      });
+    }
   } else {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
-    getBlogs({
-      limit: PAGE_LIMIT,
-      page: 1,
-    });
+    location.reload();
   }
 };
 
@@ -498,13 +506,13 @@ const handleDatePiker = (dateValue) => {
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
   if (timeLeft < 6000) {
-    return (labelDate.innerText = `${seconds} seconds `);
+    return (labelDate.innerText = `Bài đăng sẽ đăng sau: ${seconds} giây `);
   } else if (timeLeft < 3600000) {
-    return (labelDate.innerText = `${minutes} minutes ${seconds} seconds left`);
+    return (labelDate.innerText = `Bài đăng sẽ đăng sau: ${minutes} phút ${seconds} giây `);
   } else if (timeLeft < 86400000) {
-    return (labelDate.innerText = `${hours} hours ${minutes} minutes ${seconds} seconds left`);
+    return (labelDate.innerText = `Bài đăng sẽ đăng sau: ${hours} giờ ${minutes} phút ${seconds} giây `);
   } else if (timeLeft < 2419200000) {
-    return (labelDate.innerText = `${days} day ${hours} hours ${minutes} minutes ${seconds} seconds left`);
+    return (labelDate.innerText = `Bài đăng sẽ đăng sau: ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây `);
   }
 };
 // const getProfile = async () => {
