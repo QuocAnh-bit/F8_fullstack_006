@@ -88,6 +88,20 @@ a {
     flex-direction: column;
     gap: 10px;
     overflow: hidden;
+    max-height: 300px;
+}
+
+.blog-item .title-blog {
+    font-size: 2rem;
+    color: #040d1cb4;
+}
+
+
+.blog-item .content-blog {
+
+    width: 75%;
+    text-align: justify;
+
 }
 
 .blog-item .date {
@@ -96,6 +110,18 @@ a {
     right: 50px;
     font-size: 4.5rem;
     font-weight: bold;
+    text-align: right;
+    line-height: 60px;
+
+}
+
+.blog-item .date .minute {
+    font-size: 2.5rem;
+    display: block;
+}
+
+.blog-item .date .house {
+    display: block;
 }
 
 .link .wrap {
@@ -128,25 +154,14 @@ a {
     content: attr(data-name);
     position: absolute;
     font-size: 3rem;
-
-
-
 }
 
-.blog-item .title-blog {
-    font-size: 2rem;
-    color: #040d1cb4;
-}
-
-.blog-item p {
-    width: 80%;
-}
 
 .blog-item .name {
     position: absolute;
     rotate: -90deg;
     left: -48%;
-    top: 80px;
+    bottom: 80px;
     font-size: 2rem;
     font-weight: bold;
     width: 100%;

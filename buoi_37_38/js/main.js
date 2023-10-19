@@ -264,9 +264,9 @@ const renderBlogs = (blogs) => {
     const html = `
     <section class="blog-item">
     <span class="date">
-    ${handlePostTime(item.createdAt)}
+    <span class="minute">${handlePostTime(item.createdAt)}</span>
     </br>
-    ${handleHouse(item.createdAt)}
+    <span class="house">${handleHouse(item.createdAt)}</span>
     </span>
     <span class="link">
       <a href="" class="wrap">
@@ -275,7 +275,7 @@ const renderBlogs = (blogs) => {
       </a>
     </span>
     <h3 class="title-blog">${item.title}</h3>
-    <p>${item.content}</p>
+    <p class="content-blog">${truncate(item.content)}</p>
     <span class="hashtag-wrap">
       <a href="" class="hashtag"> ${item.userId.name}</a>
     </span>
@@ -323,8 +323,14 @@ const renderBlogs = (blogs) => {
   blogList.append(contentWrap);
 };
 
+const truncate = (data) => {
+  const size = 450;
+  return data.length > size ? data.slice(0, size - 1) + "…" : data;
+};
+
 const handleAvt = (name) => {
-  const splitName = name.split(" ");
+  const splitName = name.trim().split(" ");
+
   return splitName[splitName.length - 1].slice(0, 1);
 };
 
@@ -464,7 +470,13 @@ const handleHouse = (timeCreate) => {
 
   return `
     <span class="house">${
-      house > 12 ? `${house - 12}:${minutes} PM` : `${house}:${minutes} AM`
+      house > 12
+        ? `${house - 12 < 10 ? `0${house}` : house}:${
+            minutes < 10 ? `0${minutes}` : minutes
+          } PM`
+        : `${house < 10 ? `0${house}` : house}:${
+            minutes < 10 ? `0${minutes}` : minutes
+          } AM`
     }</span>
     
     `;
@@ -515,89 +527,5 @@ const handleDatePiker = (dateValue) => {
     return (labelDate.innerText = `Bài đăng sẽ đăng sau: ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây `);
   }
 };
-// const getProfile = async () => {
-//   const token = localStorage.getItem("access_token");
-//   const { data } = await client.get("/auth/profile", token);
-//   const nameEl = root.querySelector(".profile .name");
-//   nameEl.innerText = data.name;
-// };
 
-// const render = () => {
-//   const loginHtml = `<div class="container py-3">
-// <h2 class="text-center">Đăng nhập</h2>
-// <hr>
-// <form action="" class="login">
-//   <div class="mb-3">
-//     <label for="">Email</label>
-//     <input type="email" class="form-control email" placeholder="Email..." required />
-//   </div>
-//   <div class="mb-3">
-//     <label for="">Password</label>
-//     <input type="password" class="form-control password" placeholder="Password..." required />
-//   </div>
-//   <div class="d-grid">
-//     <button class="btn btn-primary">Đăng nhập</button>
-//   </div>
-// </form>
-// </div>`;
-
-//   const welcomeHtml = `
-// <div class="container py-3">
-//     <h2 class="text-center">Chào mừng bạn đã quay trở lại</h2>
-//     <ul class="profile list-unstyled d-flex gap-2">
-//         <li>Chào Bạn: <strong class="name"></strong></li>
-//         <li><a href="#" class="logout">Đăng Xuất</a></li>
-
-//     </ul>
-// </div>`;
-//   if (localStorage.getItem("access_token")) {
-//     root.innerHTML = welcomeHtml;
-//     getProfile();
-
-//     const logout = root.querySelector(".profile .logout");
-//     console.log(logout);
-//     logout.addEventListener("click", (e) => {
-//       e.preventDefault();
-//       localStorage.removeItem("access_token");
-//       localStorage.removeItem("refresh_token");
-//       render();
-//     });
-//   } else {
-//     root.innerHTML = loginHtml;
-//     const loginForm = document.querySelector(".login");
-//     loginForm.addEventListener("submit", (e) => {
-//       e.preventDefault();
-//       const emailEl = e.target.querySelector(".email");
-//       const passwordEl = e.target.querySelector(".password");
-
-//       const email = emailEl.value;
-//       const password = passwordEl.value;
-
-//       handleLogin({ email, password });
-
-//       emailEl.value = "";
-//       passwordEl.value = "";
-//     });
-//   }
-// };
-
-// render();
-
-// const handleLogin = async (data) => {
-//   const { data: tokens } = await client.post("/auth/login", data);
-//   const { access_token, refresh_token } = tokens;
-
-//   localStorage.setItem("access_token", access_token);
-//   localStorage.setItem("refresh_token", refresh_token);
-
-//   render();
-// };
-
-// /*
-// Storage
-// 1. localStorage: Lưu trữ vĩnh viễn
-// 2. sessionStorage: Lưu trữ theo phiên
-// 3. cookie: Lưu trữ có thời hạn
-
-// -> Chỉ lưu trữ Text
-// */
+/* sever auth0 */
