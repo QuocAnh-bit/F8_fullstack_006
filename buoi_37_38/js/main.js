@@ -314,10 +314,19 @@ const renderBlogs = (blogs) => {
     btnLogout.className = "btn-logout";
     btnLogout.innerText = "Sign Out";
     wrapBtn.append(btnLogout);
-    btnLogout.addEventListener("click", () => {
+    btnLogout.addEventListener("click", async () => {
+      const token = localStorage.getItem("access_token");
+      loading.classList.add("active");
+      const { data: response } = await client.post("/auth/logout", {}, token);
+      loading.classList.remove("active");
+
+      showResponse(response);
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
-      location.reload();
+      getBlogs({
+        limit: PAGE_LIMIT,
+        page: 1,
+      });
     });
   }
   blogList.append(contentWrap);
@@ -471,7 +480,7 @@ const handleHouse = (timeCreate) => {
   return `
     <span class="house">${
       house > 12
-        ? `${house - 12 < 10 ? `0${house}` : house}:${
+        ? `${house - 12 < 10 ? `0${house - 12}` : house - 12}:${
             minutes < 10 ? `0${minutes}` : minutes
           } PM`
         : `${house < 10 ? `0${house}` : house}:${
@@ -497,9 +506,15 @@ const refreshToken = async () => {
       });
     }
   } else {
+    const token = localStorage.getItem("access_token");
+    const { data: response } = await client.post("/auth/logout", {}, token);
+    showResponse(response);
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
-    location.reload();
+    getBlogs({
+      limit: PAGE_LIMIT,
+      page: 1,
+    });
   }
 };
 
