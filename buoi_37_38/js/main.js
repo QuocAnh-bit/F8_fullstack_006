@@ -336,16 +336,7 @@ const renderBlogs = (blogs) => {
   blogList.append(contentWrap);
 
   // Regex
-  const contentBlogs = document.querySelectorAll(".content-blog");
-  contentBlogs.forEach((contentBlog) => {
-    contentBlog.innerText = handleLink(contentBlog.innerText);
-    contentBlog.innerText = handleLinkYouTuBe(contentBlog.innerText);
-    contentBlog.innerText = handleEmailLink(contentBlog.innerText);
-    contentBlog.innerText = handleNumberPhoneLink(contentBlog.innerText);
-    // console.log(contentBlog.innerText);
-
-    contentBlog.innerHTML = contentBlog.innerText;
-  });
+  handleRegexContent();
 
   const details = document.querySelectorAll(".detail");
   details.forEach((detail) => {
@@ -426,6 +417,8 @@ const handleProfile = async (id) => {
     e.preventDefault();
     location.reload();
   });
+  handleRegexContent();
+
   blogList.addEventListener("click", (e) => {
     e.preventDefault();
     if (e.target.className === "hashtag detail") {
@@ -486,16 +479,26 @@ const handleDetail = async (id) => {
     e.preventDefault();
     location.reload();
   });
-
+  handleRegexContent();
   blogList.addEventListener("click", (e) => {
     e.preventDefault();
     if (e.target.className === "hashtag hashtag-name") {
       const userId = e.target.getAttribute("href");
       loading.classList.add("active");
-
       handleProfile(userId);
       console.log("ok");
     }
+  });
+};
+const handleRegexContent = () => {
+  const contentBlogs = document.querySelectorAll(".content-blog");
+  contentBlogs.forEach((contentBlog) => {
+    contentBlog.innerText = handleLink(contentBlog.innerText);
+    contentBlog.innerText = handleLinkYouTuBe(contentBlog.innerText);
+    contentBlog.innerText = handleEmailLink(contentBlog.innerText);
+    contentBlog.innerText = handleNumberPhoneLink(contentBlog.innerText);
+
+    contentBlog.innerHTML = contentBlog.innerText;
   });
 };
 
@@ -517,19 +520,17 @@ const handleEmailLink = (content) => {
 const handleLink = (content) => {
   console.log(content);
   const patternLink =
-    /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+)/g;
+    /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)/g;
   return content.replace(patternLink, (link) => {
     return `<a href="${link}" target="_blank"  class="link link-link">${link}</a>`;
   });
 };
 
 const handleLinkYouTuBe = (content) => {
-  content = content.replaceAll(/&(.+?)=[0-9]/g, "");
-  console.log(content);
   const patternYouTuBe =
-    /(http|https):\/\/*(?:www.)(youtube\.com|youtu\.be)\/watch\?v=([\w-]{11})/g;
+    /(http|https):\/\/*(?:www.)(youtube\.com|youtu\.be)\/watch\?v=([\w-]{11})(&([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*))*/g;
 
-  return content.replace(patternYouTuBe, (item) => {
+  return content.replaceAll(patternYouTuBe, (item) => {
     const idVideo = item.split(/([\w-]{11})/)[1];
 
     return `
@@ -544,7 +545,7 @@ const handleLinkYouTuBe = (content) => {
   });
 };
 const truncate = (data) => {
-  const size = 120;
+  const size = 100;
   return data.length > size ? data.slice(0, size - 1) + "…" : data;
 };
 function removeAccents(str) {
