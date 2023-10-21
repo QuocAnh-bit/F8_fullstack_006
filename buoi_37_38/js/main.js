@@ -535,8 +535,8 @@ const handleLinkYouTuBe = (content) => {
 
     return `
         <iframe
-          width='560'
-          height='400'
+          width='460'
+          height='300'
           src='https://www.youtube.com/embed/${idVideo}'
           title='Youtube'
           frameBorder='0'
