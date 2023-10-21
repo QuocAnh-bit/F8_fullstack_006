@@ -43,6 +43,7 @@ const renderBoxLogin = () => {
                 type="email"
                 class="email"
                 placeholder="Email..."
+                value = "qanhanh07@gmail.com"
                 required
               />
             </div>
@@ -52,6 +53,7 @@ const renderBoxLogin = () => {
                 type="password"
                 class="password"
                 placeholder="Password"
+                value = "12345678Aa"
                 required
               />
             </div>
@@ -201,7 +203,7 @@ const renderCreateBlog = () => {
   createBlog.className = "create-blog";
   const htmlCreate = `
   <span class="link">
-  <a href="" class="wrap">
+  <a href="#" class="wrap">
     <span class="avatar" data-name=""></span>
     <span class="name-user"></span>
   </a>
@@ -259,8 +261,6 @@ const renderBlogs = (blogs) => {
   contentWrap.className = "content";
   contentWrap.innerHTML = "";
   blogs.forEach((item) => {
-    console.log(item.createdAt);
-
     const html = `
     <section class="blog-item">
     <span class="date">
@@ -275,15 +275,21 @@ const renderBlogs = (blogs) => {
       </a>
     </span>
     <h3 class="title-blog">${item.title}</h3>
-    <p class="content-blog">${truncate(item.content)}</p>
+    <p class="content-blog">
+    ${truncate(item.content)}
+   </p>
     <span class="hashtag-wrap">
-      <a href="" class="hashtag"> ${item.userId.name}</a>
+      <a href="${
+        item.userId._id
+      }" class="hashtag hashtag-name"> ${removeAccents(item.userId.name)}</a>
+      <a href="${item._id}" class="hashtag detail" >Detail</a>
     </span>
     <span class="name">${item.userId.name}</span>
   </section>
     `;
     contentWrap.innerHTML += html;
   });
+
   if (localStorage.getItem("access_token")) {
     renderCreateBlog();
     openSignIn.remove();
@@ -319,24 +325,235 @@ const renderBlogs = (blogs) => {
       loading.classList.add("active");
       const { data: response } = await client.post("/auth/logout", {}, token);
       loading.classList.remove("active");
-
       showResponse(response);
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
-      getBlogs({
-        limit: PAGE_LIMIT,
-        page: 1,
-      });
+      setTimeout(() => {
+        location.reload();
+      }, 1500);
     });
   }
   blogList.append(contentWrap);
+
+  // Regex
+  const contentBlogs = document.querySelectorAll(".content-blog");
+  contentBlogs.forEach((contentBlog) => {
+    contentBlog.innerText = handleLink(contentBlog.innerText);
+    contentBlog.innerText = handleLinkYouTuBe(contentBlog.innerText);
+    contentBlog.innerText = handleEmailLink(contentBlog.innerText);
+    contentBlog.innerText = handleNumberPhoneLink(contentBlog.innerText);
+    // console.log(contentBlog.innerText);
+
+    contentBlog.innerHTML = contentBlog.innerText;
+  });
+
+  const details = document.querySelectorAll(".detail");
+  details.forEach((detail) => {
+    detail.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (localStorage.getItem("access_token")) {
+        const idUser = detail.getAttribute("href");
+        loading.classList.add("active");
+        handleDetail(idUser);
+      } else {
+        renderBoxLogin();
+      }
+    });
+  });
+
+  const hashTagNames = document.querySelectorAll(".hashtag-name");
+  console.log(hashTagNames);
+  hashTagNames.forEach((hashTagName) => {
+    hashTagName.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (localStorage.getItem("access_token")) {
+        const idUser = hashTagName.getAttribute("href");
+        loading.classList.add("active");
+        console.log(idUser);
+        handleProfile(idUser);
+      } else {
+        renderBoxLogin();
+      }
+    });
+  });
+};
+const handleProfile = async (id) => {
+  const { data } = await client.get(`/users/${id}`);
+  loading.classList.remove("active");
+
+  blogList.innerHTML = "";
+  const contentWrap = document.createElement("div");
+  contentWrap.className = "content";
+  contentWrap.innerHTML = "";
+  blogList.append(contentWrap);
+  data.data.blogs.forEach((item, index) => {
+    const html = `
+          
+            <section class="blog-item">
+              <span class="date">
+                <span class="minute">${handlePostTime(item.createdAt)}</span>
+                <br />
+                <span class="house">
+                  <span class="house">${handleHouse(item.createdAt)}</span>
+                </span>
+              </span>
+              <span class="link">
+                <a href="" class="wrap">
+                  <span class="avatar" data-name="${handleAvt(
+                    data.data.name
+                  )}"></span>
+                  <span class="name-user">${data.data.name}</span>
+                </a>
+              </span>
+              <h3 class="title-blog">${item.title}</h3>
+              <p class="content-blog">${item.content}</p>
+              <span class="hashtag-wrap">
+              <a href="${item._id}" class="hashtag detail" >Detail</a>
+              </span>
+              <span class="name">${data.data.name}</span>
+            </section>
+          `;
+    contentWrap.innerHTML += html;
+  });
+  const backHome = document.querySelector(".title-blog");
+  backHome.innerHTML = "";
+  const a = document.createElement("a");
+  a.className = "back-home";
+  a.innerText = "Go Home";
+  a.href = "";
+  backHome.append(a);
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    location.reload();
+  });
+  blogList.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target.className === "hashtag detail") {
+      const userId = e.target.getAttribute("href");
+      loading.classList.add("active");
+
+      handleDetail(userId);
+    }
+  });
+};
+const handleDetail = async (id) => {
+  const { data } = await client.get(`/blogs/${id}`);
+  loading.classList.remove("active");
+
+  console.log(data);
+  blogList.innerHTML = "";
+  const html = `
+  
+          <div class="content">
+            <section class="blog-item">
+              <span class="date">
+                <span class="minute">${handlePostTime(
+                  data.data.createdAt
+                )}</span>
+                <br />
+                <span class="house">
+                  <span class="house">${handleHouse(data.data.createdAt)}</span>
+                </span>
+              </span>
+              <span class="link">
+                <a href="" class="wrap">
+                  <span class="avatar" data-name="${handleAvt(
+                    data.data.userId.name
+                  )}"></span>
+                  <span class="name-user">${data.data.userId.name}</span>
+                </a>
+              </span>
+              <h3 class="title-blog">${data.data.title}</h3>
+              <p class="content-blog">${data.data.content}</p>
+              <span class="hashtag-wrap">
+                <a href="${data.data.userId._id}" class="hashtag hashtag-name">
+                ${removeAccents(data.data.userId.name)}</a>
+              </span>
+              <span class="name">${data.data.userId.name}</span>
+            </section>
+          </div>
+    
+  `;
+  blogList.innerHTML = html;
+  const backHome = document.querySelector(".title-blog");
+  backHome.innerHTML = "";
+  const a = document.createElement("a");
+  a.className = "back-home";
+  a.innerText = "Go Home";
+  a.href = "";
+  backHome.append(a);
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    location.reload();
+  });
+
+  blogList.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target.className === "hashtag hashtag-name") {
+      const userId = e.target.getAttribute("href");
+      loading.classList.add("active");
+
+      handleProfile(userId);
+      console.log("ok");
+    }
+  });
 };
 
+const handleNumberPhoneLink = (content) => {
+  const patternPhone = /(84|0[3|5|7|8|9])+([0-9]{8,9})\b/g;
+  return content.replace(patternPhone, (number) => {
+    return `<a href="tel:${number}" target="_blank"  class="link link-phone">${number}</a>`;
+  });
+};
+
+const handleEmailLink = (content) => {
+  const patternEmail = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})/g;
+
+  return content.replace(patternEmail, (email) => {
+    return `<a href="mailto:${email}" target="_blank" class="link link-email">${email}</a>`;
+  });
+};
+
+const handleLink = (content) => {
+  console.log(content);
+  const patternLink =
+    /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+)/g;
+  return content.replace(patternLink, (link) => {
+    return `<a href="${link}" target="_blank"  class="link link-link">${link}</a>`;
+  });
+};
+
+const handleLinkYouTuBe = (content) => {
+  content = content.replaceAll(/&(.+?)=[0-9]/g, "");
+  console.log(content);
+  const patternYouTuBe =
+    /(http|https):\/\/*(?:www.)(youtube\.com|youtu\.be)\/watch\?v=([\w-]{11})/g;
+
+  return content.replace(patternYouTuBe, (item) => {
+    const idVideo = item.split(/([\w-]{11})/)[1];
+
+    return `
+        <iframe
+          width='560'
+          height='400'
+          src='https://www.youtube.com/embed/${idVideo}'
+          title='Youtube'
+          frameBorder='0'
+          allowFullScreen></iframe>
+      `;
+  });
+};
 const truncate = (data) => {
-  const size = 450;
+  const size = 120;
   return data.length > size ? data.slice(0, size - 1) + "…" : data;
 };
-
+function removeAccents(str) {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D");
+}
 const handleAvt = (name) => {
   const splitName = name.trim().split(" ");
 
@@ -371,15 +588,7 @@ const handleLogin = async (data) => {
       limit: PAGE_LIMIT,
       page: 1,
     });
-    // const btnLogout = document.createElement("button");
-    // btnLogout.className = "btn-logout";
-    // btnLogout.innerText = "Sign Out";
-    // wrapBtn.append(btnLogout);
-    // btnLogout.addEventListener("click", () => {
-    //   localStorage.removeItem("access_token");
-    //   localStorage.removeItem("refresh_token");
-    //   location.reload();
-    // });
+
     const formAddBlog = document.querySelector(".form-add-blog");
     const datePicker = document.querySelector("#date-picker");
     formAddBlog.addEventListener("submit", (e) => {
@@ -511,10 +720,9 @@ const refreshToken = async () => {
     showResponse(response);
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
-    getBlogs({
-      limit: PAGE_LIMIT,
-      page: 1,
-    });
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   }
 };
 
@@ -542,5 +750,3 @@ const handleDatePiker = (dateValue) => {
     return (labelDate.innerText = `Bài đăng sẽ đăng sau: ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây `);
   }
 };
-
-/* sever auth0 */

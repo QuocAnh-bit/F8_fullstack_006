@@ -18,17 +18,28 @@ body {
 
 a {
     text-decoration: none;
-    color: #fff;
+    color: #1c161699;
+    cursor: pointer;
+}
+
+.link {
+    color: #1005eaee;
+
+}
+
+.link-youtube {
+    border: none;
+    border-radius: 30px;
 }
 
 .container {
     width: 100%;
     min-height: 100vh;
-
-
-    background-image: url(../img/forest-landscape.jpg);
+    background: url(../img/forest-landscape.jpg) no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-
 
     display: flex;
     justify-content: center;
@@ -88,7 +99,7 @@ a {
     flex-direction: column;
     gap: 10px;
     overflow: hidden;
-    max-height: 300px;
+    /* max-height: 300px; */
 }
 
 .blog-item .title-blog {
@@ -99,7 +110,7 @@ a {
 
 .blog-item .content-blog {
     width: 75%;
-    text-align: justify;
+    text-align: left;
 
 }
 
@@ -175,10 +186,16 @@ a {
 }
 
 .blog-item .hashtag-wrap {
-    border: 3px solid #fff;
     width: fit-content;
     padding: 10px;
+
+
+}
+
+.hashtag-wrap .hashtag {
+    padding: 10px;
     border-radius: 20px;
+    border: 3px solid #fff;
 
 }
 
