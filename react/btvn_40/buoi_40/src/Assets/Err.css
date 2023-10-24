@@ -1,0 +1,17 @@
+.error-wrap {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.504);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 10rem;
+
+}
+
+.error-wrap h1 {
+    font-size: 15rem;
+
+}
