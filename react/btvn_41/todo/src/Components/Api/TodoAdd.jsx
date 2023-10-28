@@ -4,6 +4,7 @@ import "../../asset/todoAdd.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { client } from "../../client";
+import Loading from "../Loading/Loading";
 
 const { SERVER_API } = config;
 
@@ -14,7 +15,7 @@ export default class Todo extends Component {
       form: {
         todo: "",
       },
-      isCheck: false,
+      isLoading: false,
     };
   }
   componentDidMount() {
@@ -25,7 +26,6 @@ export default class Todo extends Component {
   }
   handleChange = (e) => {
     const data = { ...this.state.form };
-
     data[e.target.name] = e.target.value;
     this.setState({
       form: data,
@@ -34,7 +34,9 @@ export default class Todo extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { todo } = this.state.form;
-
+    this.setState({
+      isLoading: true,
+    });
     this.handleAddTodo(todo);
   };
   handleAddTodo = async (todo) => {
@@ -45,6 +47,12 @@ export default class Todo extends Component {
     if (data.message !== "Unauthorize") {
       toast.success(data.message);
       this.props.onSuccess(true);
+      this.setState({
+        isLoading: false,
+        form: {
+          todo: "",
+        },
+      });
     } else {
       toast.error(data.message);
       localStorage.removeItem("apiKey");
@@ -56,8 +64,11 @@ export default class Todo extends Component {
   };
 
   render() {
+    const { isLoading, form } = this.state;
+
     return (
       <>
+        {isLoading ? <Loading /> : ""}
         <div className="container-todo">
           <div className="wrap-form">
             <h1 className="title-todo">Welcome to Todo App!</h1>
@@ -67,6 +78,7 @@ export default class Todo extends Component {
                 name="todo"
                 placeholder="Add todo list"
                 onChange={this.handleChange}
+                value={form.todo}
               />
               <button className="btn-submit">Add</button>
             </form>

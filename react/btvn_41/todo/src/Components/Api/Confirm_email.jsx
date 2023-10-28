@@ -3,6 +3,8 @@ import TodoList from "./TodoList";
 import { client } from "../../client.jsx";
 import config from "../../config.json";
 import "../../asset/confirm.css";
+import Loading from "../Loading/Loading";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,6 +19,7 @@ export default class Confirm_email extends Component {
         email: "",
       },
       isConfirm: false,
+      isLoading: false,
     };
   }
   componentDidMount() {
@@ -37,6 +40,9 @@ export default class Confirm_email extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { email } = this.state.form;
+    this.setState({
+      isLoading: true,
+    });
     this.handleConfirm(email);
   };
 
@@ -51,17 +57,22 @@ export default class Confirm_email extends Component {
       localStorage.setItem("nameUser", nameUser);
       this.setState({
         isConfirm: true,
+        isLoading: false,
       });
     } else {
       toast.error(data.message);
+      this.setState({
+        isLoading: false,
+      });
     }
   };
 
   render() {
-    const { isConfirm } = this.state;
+    const { isConfirm, isLoading } = this.state;
 
     return (
       <>
+        {isLoading ? <Loading /> : ""}
         {isConfirm ? (
           <TodoList />
         ) : (
