@@ -29,11 +29,19 @@ export default class EditTodo extends Component {
         this.props.onSuccess(true);
       } else {
         toast.error(data.message);
+        localStorage.removeItem("apiKey");
+        localStorage.removeItem("nameUser");
+        setTimeout(() => {
+          location.reload();
+        }, 1500);
       }
     } catch (e) {
+      toast.error("Hết hạn đăng nhập");
       localStorage.removeItem("apiKey");
       localStorage.removeItem("nameUser");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1500);
     }
   };
 
@@ -76,14 +84,20 @@ export default class EditTodo extends Component {
           isLoading: false,
         });
       } else {
+        toast.error(data.message);
         localStorage.removeItem("apiKey");
         localStorage.removeItem("nameUser");
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 1500);
       }
     } catch (e) {
+      toast.error("Hết hạn đăng nhập");
       localStorage.removeItem("apiKey");
       localStorage.removeItem("nameUser");
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1500);
     }
   };
   render() {
