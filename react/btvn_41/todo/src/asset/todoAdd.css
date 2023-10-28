@@ -1,0 +1,28 @@
+.container-todo {
+    width: 100%;
+}
+
+.wrap-form {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 15px auto;
+    gap: 20px;
+}
+
+.form-add {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.form-add input {
+    width: 50%;
+    padding: 15px;
+}
+
+.form-add button {
+    padding: 15px;
+}
