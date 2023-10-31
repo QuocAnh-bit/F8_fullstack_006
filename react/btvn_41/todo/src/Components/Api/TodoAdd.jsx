@@ -82,6 +82,7 @@ export default class Todo extends Component {
               />
               <button className="btn-submit">Add</button>
             </form>
+            {/* <Search /> */}
           </div>
         </div>
         <ToastContainer />

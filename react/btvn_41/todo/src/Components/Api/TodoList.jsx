@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { client } from "../../client.jsx";
 import "../../asset/todoList.css";
 import { toast } from "react-toastify";
+import debounce from "lodash.debounce";
 
 export default class TodoList extends Component {
   constructor(props) {
@@ -14,7 +15,36 @@ export default class TodoList extends Component {
       todoId: null,
       isLoading: true,
     };
+    this.handleSearch = debounce(this.handleSearch.bind(this), 300);
   }
+  handleSearch = async (e) => {
+    try {
+      const value = e.target.value;
+      if (value) {
+        const apiKey = localStorage.getItem("apiKey");
+        //   const queryString = new URLSearchParams(value).toString();
+        const valueUrl = value.replaceAll(" ", "+");
+        console.log(valueUrl);
+        this.setState({
+          isLoading: true,
+        });
+        const { data } = await client.get(`/todos?q=${value}`, null, apiKey);
+
+        toast.success(data.message);
+        this.setState({
+          todos: data.data.listTodo,
+          isLoading: false,
+        });
+      } else {
+        this.setState({
+          isLoading: true,
+        });
+        this.getTodos();
+      }
+    } catch (e) {
+      toast.error("Dữ liệu cần tìm không tồn tại");
+    }
+  };
 
   getTodos = async () => {
     try {
@@ -65,6 +95,7 @@ export default class TodoList extends Component {
       if (data.status_code === "SUCCESS") {
         this.setState({
           isLoading: false,
+          todos: [],
         });
         this.getTodos();
         toast.success(data.message);
@@ -101,11 +132,20 @@ export default class TodoList extends Component {
   };
   render() {
     const { todos, todoId, isLoading } = this.state;
-    console.log(todoId);
 
     return (
       <>
         <TodoAdd onSuccess={this.handleSuccess} />
+        <div className="search-wrap">
+          <form action="" className="search-form">
+            <input
+              type="text"
+              name="search"
+              placeholder="Search"
+              onChange={this.handleSearch}
+            />
+          </form>
+        </div>
         <div className="wrap-todo-item">
           {isLoading ? (
             <Loading />
