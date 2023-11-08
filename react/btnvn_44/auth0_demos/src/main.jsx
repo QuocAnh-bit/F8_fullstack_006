@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { Auth0Provider } from "@auth0/auth0-react";
+import Provider from "./core/Provider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         redirect_uri: window.location.origin,
       }}
     >
-      <App />
+      <Provider>
+        <App />
+      </Provider>
     </Auth0Provider>
   </React.StrictMode>
 );

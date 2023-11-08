@@ -2,10 +2,12 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "../asset/Login.css";
 import Loading from "./Loading";
+import { useSelector } from "../core/useSelector";
 
 const LoginButton = () => {
   const { loginWithPopup, isLoading, isAuthenticated } = useAuth0();
-
+  const { state, dispatch } = useSelector();
+  console.log(state, dispatch);
   return (
     <>
       {!isAuthenticated && (
