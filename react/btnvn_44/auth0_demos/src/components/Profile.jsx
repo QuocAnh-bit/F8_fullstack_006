@@ -18,15 +18,15 @@ const Profile = () => {
         <div className="wrapper-profile">
           <img src={user.picture} alt={user.name} />
           <h3>Xin chào: {user.name !== "" ? user.name : user.nickname}</h3>
-          <p>
-            {user.email ? (
-              <p>
-                Email: <a href={`mailto:${user.email}`}>{user.email}</a>
-              </p>
-            ) : (
-              ""
-            )}
-          </p>
+
+          {user.email ? (
+            <p>
+              Email: <a href={`mailto:${user.email}`}>{user.email}</a>
+            </p>
+          ) : (
+            ""
+          )}
+
           <ContactUs />
           <LogoutButton />
         </div>

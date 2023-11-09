@@ -2,38 +2,47 @@ import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./Loading";
-import { useSelector } from "../core/useSelector";
 import "../asset/FormContact.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const REACT_APP_SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE_ID;
+const REACT_APP_TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE_ID;
+const REACT_APP_USER_ID = import.meta.env.VITE_REACT_APP_USER_ID;
 
 export const ContactUs = () => {
   const form = useRef();
   const { user, isAuthenticated } = useAuth0();
   const [isLoading, setLoading] = useState(false);
-
   const sendEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
     toast.warning("Đang gửi...");
 
+    var templateParams = {
+      to_name: user.name,
+      to_email: e.target.user_email.value,
+      message: e.target.message.value,
+    };
+
     emailjs
-      .sendForm(
-        "service_9qu4uom",
-        "template_x0j78vt",
-        form.current,
-        "7hGOQubnSa8zyplA2"
+      .send(
+        REACT_APP_SERVICE_ID,
+        REACT_APP_TEMPLATE_ID,
+        templateParams,
+        REACT_APP_USER_ID
       )
       .then(
-        (result) => {
-          console.log(result.text);
+        function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+          toast.success(`đã gửi thành công đến ${e.target.user_email.value}`);
           setLoading(false);
-          toast.success("Gửi thành công !");
         },
-        (error) => {
-          console.log(error.text);
+        function (error) {
+          console.log("FAILED...", error);
         }
       );
+    e.target.message.value = "";
   };
 
   return (
@@ -51,6 +60,7 @@ export const ContactUs = () => {
           <textarea
             name="message"
             defaultValue="Xin Chào bạn muốn gửi tin nhắn gì ?"
+            placeholder="Nhập tin nhắn tại đây"
           />
           <input type="submit" defaultValue="Gửi ngay" />
         </form>
