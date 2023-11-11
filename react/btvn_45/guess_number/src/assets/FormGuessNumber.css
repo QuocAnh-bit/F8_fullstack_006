@@ -1,0 +1,32 @@
+.form-submit form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-submit form label {
+    color: #319795;
+    font-weight: bold;
+}
+
+.form-submit form input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.form-submit form button {
+    color: #fff;
+    font-weight: bold;
+    width: 90px;
+    padding: 10px 10px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #2ed3d1;
+    border: none;
+}
+
+.form-submit form button:hover {
+
+    background-color: #ccc;
+}
