@@ -8,7 +8,7 @@ export default function TableResult() {
   const { state, dispatch } = useSelector();
   const datas = getLocalStorage("arr");
   return (
-    <div>
+    <div className="wrap-table">
       {datas.map((data, index) => {
         return (
           <table id="customers" key={index}>

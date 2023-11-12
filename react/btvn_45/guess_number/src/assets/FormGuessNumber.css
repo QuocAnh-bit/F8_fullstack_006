@@ -1,3 +1,7 @@
+.form-submit {
+    margin-bottom: 25px;
+}
+
 .form-submit form {
     display: flex;
     flex-direction: column;
@@ -15,7 +19,8 @@
     border: 1px solid #ccc;
 }
 
-.form-submit form button {
+.form-submit form button,
+.btn-play-again {
     color: #fff;
     font-weight: bold;
     width: 90px;
@@ -27,6 +32,7 @@
 }
 
 .form-submit form button:hover {
+    color: black;
 
     background-color: #ccc;
 }

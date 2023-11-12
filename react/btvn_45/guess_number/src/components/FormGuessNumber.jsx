@@ -113,7 +113,9 @@ export default function FormGuessNumber() {
           </form>
         </>
       ) : (
-        <button onClick={handlePlayAgain}>Chơi lại</button>
+        <button className="btn-play-again" onClick={handlePlayAgain}>
+          Chơi lại
+        </button>
       )}
     </div>
   );
