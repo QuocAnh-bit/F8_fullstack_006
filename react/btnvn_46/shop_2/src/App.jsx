@@ -8,6 +8,7 @@ export default function App() {
   return (
     <div>
       <Header />
+      <Products />
       <Routes>
         {/* <Route path="/" element={<Products />}></Route> */}
         <Route path="/products" element={<Products />}></Route>
