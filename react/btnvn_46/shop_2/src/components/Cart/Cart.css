@@ -1,0 +1,159 @@
+.title-cart {
+    text-align: center;
+    margin: 125px 0 25px 0;
+    letter-spacing: 5px;
+    text-shadow: 3px 3px 20px rgb(205, 227, 43),
+        -2px 1px 30px #ff99cc;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(78, 67, 67);
+    border-radius: 10px;
+}
+
+
+.wrap-cart {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap-cart img {
+    width: 30%;
+
+}
+
+.wrap-cart .box-cart {
+    background-color: #2E4F4F;
+    width: 70%;
+    display: flex;
+    padding: 30px;
+}
+
+
+.cart-left {
+    width: 80%;
+    padding: 0 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.empty-cart {
+    font-size: 3rem;
+}
+
+.table-cart {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    display: block;
+    table-layout: fixed;
+}
+
+
+.table-cart th {
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.table-cart td {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 10px;
+}
+
+.table-cart .details {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.table-cart .details .content-details {
+    margin-left: 15px;
+    text-align: left;
+}
+
+.details .content-details .name-product {
+    font-size: 2.5rem;
+    margin: 15px 0;
+}
+
+.quantity-control {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.quantity-control span {
+    display: block;
+    font-size: 3rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.quantity-control div {
+    width: 20px;
+}
+
+.quantity-control span:hover {
+    background-color: #598f8f;
+}
+
+.remaining-quantity {
+    width: 100px;
+}
+
+.total-price-item div {
+    width: 80px;
+}
+
+.cart-right {
+    padding: 20px 0 0 20px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cart-right .total-product,
+.cart-right .total-price {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.cart-right .total-product h4,
+.cart-right .total-price h4 {
+    font-size: 4rem;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: rgb(127, 221, 125);
+    color: #fff;
+
+}

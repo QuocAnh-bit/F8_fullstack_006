@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    background-color: #2C3333;
+    color: #E7F6F2;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #E7F6F2;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+
+
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #3F4E4F;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.icon i {
+    text-shadow: 3px 3px 20px #ff99cc,
+        -2px 1px 30px #ff99cc;
+    font-size: 3.8rem;
+}
+
+.icon p {
+    letter-spacing: 5px;
+    text-align: center;
+    text-shadow: 3px 3px 20px #ff99cc,
+        -2px 1px 30px #ff99cc;
+}
+
+.icon p span {
+    font-size: 2.5rem;
+    margin-left: 5px;
+    display: block;
+}
+
+.cart-wrap {
+    position: relative;
+
+}
+
+.cart-wrap i {
+    font-size: 2.5rem;
+}
+
+.cart-wrap .number-cart {
+    position: absolute;
+    left: -5px;
+    bottom: -20px;
+}
