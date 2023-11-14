@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { apiGetProductList } from "../../Api/Api";
+import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
+import { apiGetProductList, apiGetProductDetails } from "../../Api/Api";
 import { PAGE_LIMIT } from "../../config/config.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Products/Products.css";
+import { Link } from "react-router-dom";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -17,8 +19,13 @@ export default function Products() {
     const cartCheck = newCarts.find((cart) => cart.id === id);
     if (cartCheck) {
       cartCheck.quantity = cartCheck.quantity + 1;
+      setLocalStorage("cart", newCarts);
       dispatch({ type: "ADD_TO_CART", payload: newCarts });
     } else {
+      setLocalStorage("cart", [
+        ...carts,
+        { id, name, price, quantity: 1, brand, remainingQuantity, img },
+      ]);
       dispatch({
         type: "ADD_TO_CART",
         payload: [
@@ -27,6 +34,7 @@ export default function Products() {
         ],
       });
     }
+    toast.success(`Đã thêm sản phẩm ${name}`);
   };
 
   useEffect(() => {
@@ -42,11 +50,15 @@ export default function Products() {
         <div className="products">
           {data.listProduct.map((item, index) => (
             <div className="item-product" key={index}>
-              <div className="img-product">
+              <Link
+                to={`/products/details/${item._id}`}
+                className="img-product"
+                onClick={() => apiGetProductDetails(item._id, dispatch)}
+              >
                 <img src={item.image} />
-              </div>
-              <div className="detail-product">
                 <h3>{item.name}</h3>
+              </Link>
+              <div className="detail-product">
                 <div className="detail-control">
                   <div className="quality-price">
                     <h4 className="price">

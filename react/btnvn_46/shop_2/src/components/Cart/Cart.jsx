@@ -1,15 +1,20 @@
 import React from "react";
 import "../Cart/Cart.css";
+import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+
 export default function Cart() {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.carts);
+
   const handleIncrement = (cartsId) => {
     const cartCheck = carts.find((cart) => cart.id === cartsId);
     if (cartCheck) {
       cartCheck.quantity = cartCheck.quantity + 1;
+      setLocalStorage("cart", [...carts]);
       dispatch({ type: "ADD_TO_CART", payload: [...carts] });
     }
   };
@@ -21,14 +26,30 @@ export default function Cart() {
       } else {
         toast.warning("Số lượng có ít nhất là 1");
       }
+      setLocalStorage("cart", [...carts]);
       dispatch({ type: "ADD_TO_CART", payload: [...carts] });
+    }
+  };
+  const handleDelete = (cartsId, nameProduct) => {
+    const cartIndex = carts.findIndex((cart) => cart.id === cartsId);
+    carts.splice(cartIndex, 1);
+    setLocalStorage("cart", [...carts]);
+    dispatch({ type: "ADD_TO_CART", payload: [...carts] });
+    toast.success(`Đã xóa sản phẩm ${nameProduct} ra khỏi giỏ hàng`);
+  };
+  const handleCheckOut = () => {
+    if (carts.length) {
+      dispatch({ type: "RESET_CART" });
+      localStorage.removeItem("cart");
+      toast.success("THANK YOU");
+    } else {
+      toast.warning("Bạn chưa có sản phẩm nào");
     }
   };
   let totalProduct = 0;
   let totalPrice = 0;
   return (
     <>
-      {console.log(carts)}
       <h1 className="title-cart">SHOPPING CART</h1>
       <div className="wrap-cart">
         <div className="box-cart">
@@ -43,52 +64,67 @@ export default function Cart() {
                 </tr>
               </thead>
               <tbody>
-                {carts.length
-                  ? carts.map((cart, index) => {
-                      totalProduct += cart.quantity;
-                      totalPrice += cart.price * cart.quantity;
-                      return (
-                        <tr key={index}>
-                          <td className="details">
-                            <img src={cart.img} alt="" />
-                            <div className="content-details">
-                              <p className="name-brand">{cart.brand}</p>
-                              <p className="name-product">{cart.name}</p>
-                              <p className="remaining-quantity">
-                                Số Lượng:{" "}
-                                {(
-                                  cart.remainingQuantity - cart.quantity
-                                ).toLocaleString()}
-                              </p>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="quantity-control">
-                              <span
-                                onClick={() => {
-                                  handleDecrement(cart.id);
-                                }}
-                              >
-                                -
-                              </span>
-                              <div>{cart.quantity}</div>
-                              <span onClick={() => handleIncrement(cart.id)}>
-                                +
-                              </span>
-                            </div>
-                          </td>
-                          <td>${cart.price.toLocaleString()}</td>
-                          <td className="total-price-item">
-                            <div>
-                              ${(cart.price * cart.quantity).toLocaleString()}
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  : ""}
+                {carts.length ? (
+                  carts.map((cart, index) => {
+                    totalProduct += cart.quantity;
+                    totalPrice += cart.price * cart.quantity;
+                    return (
+                      <tr key={index}>
+                        <td className="details">
+                          <img src={cart.img} alt="" />
+                          <div className="content-details">
+                            <p className="name-brand">{cart.brand}</p>
+                            <p className="name-product">{cart.name}</p>
+                            <p className="remaining-quantity">
+                              Số Lượng:{" "}
+                              {(
+                                cart.remainingQuantity - cart.quantity
+                              ).toLocaleString()}
+                            </p>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="quantity-control">
+                            <span
+                              onClick={() => {
+                                handleDecrement(cart.id);
+                              }}
+                            >
+                              -
+                            </span>
+                            <div>{cart.quantity}</div>
+                            <span onClick={() => handleIncrement(cart.id)}>
+                              +
+                            </span>
+                          </div>
+                        </td>
+                        <td>${cart.price.toLocaleString()}</td>
+                        <td className="total-price-item">
+                          <div>
+                            ${(cart.price * cart.quantity).toLocaleString()}
+                          </div>
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => handleDelete(cart.id, cart.name)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <h3 className="empty-cart">
+                    Không có sản phẩm nào trong giỏ hàng
+                  </h3>
+                )}
               </tbody>
             </table>
+            <Link to="/products" className="back-home">
+              {" "}
+              <i class="fa-solid fa-arrow-left"></i> Go Home{" "}
+            </Link>
           </div>
           <div className="cart-right">
             <div className="title-cart-right">
@@ -102,7 +138,7 @@ export default function Cart() {
               <p className="title-pay">Tổng Thanh toán</p>
               <h4>${totalPrice.toLocaleString()}</h4>
             </div>
-            <button>Check Out</button>
+            <button onClick={handleCheckOut}>Check Out</button>
           </div>
         </div>
       </div>
