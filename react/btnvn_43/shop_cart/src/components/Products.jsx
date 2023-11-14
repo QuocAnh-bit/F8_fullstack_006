@@ -22,8 +22,8 @@ export default function Products() {
     const queryString = new URLSearchParams(query).toString();
     console.log(queryString);
     const { data } = await client.get(`/products?${queryString}`);
-    setLoading(false);
     if (data.status_code !== "FAILED") {
+      setLoading(false);
       setItemProduct(data.data);
     }
   };
@@ -50,7 +50,6 @@ export default function Products() {
       const nameUser = data.data.emailId.name;
       setLoading(false);
       getItemProduct({ limit: PAGE_LIMIT });
-
       localStorage.setItem("nameUser", nameUser);
       toast.success(`Chào mừng ${nameUser}`);
     } catch (e) {
@@ -79,7 +78,6 @@ export default function Products() {
 
   useEffect(() => {
     if (apiKey !== null) {
-      setLoading(false);
       getProfile(apiKey);
       setConFirm(true);
     } else {

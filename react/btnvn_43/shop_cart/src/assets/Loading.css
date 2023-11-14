@@ -1,6 +1,6 @@
 /* HTML: <div class="loader"></div> */
 .wrapper-loader {
-    background-color: rgba(0, 0, 255, 0.362);
+    background-color: rgba(30, 30, 31, 0.362);
     inset: 0;
     position: fixed;
     display: flex;
@@ -16,6 +16,7 @@
     font-size: 30px;
     line-height: 1.2em;
     height: 1.2em;
+    color: #fff;
     overflow: hidden;
 }
 
