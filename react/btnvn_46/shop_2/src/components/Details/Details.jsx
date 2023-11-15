@@ -70,9 +70,11 @@ export default function Details() {
             >
               Add to Cart
             </button>
-            <NavLink to="/products" onClick={handleBack}>
-              <button className="btn-control">Go Home</button>
-            </NavLink>
+            <Link to="/products">
+              <button className="btn-control" onClick={handleBack}>
+                Go Home
+              </button>
+            </Link>
           </div>
         </div>
       )}
