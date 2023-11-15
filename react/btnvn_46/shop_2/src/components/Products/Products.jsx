@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Products/Products.css";
 import { Link } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ export default function Products() {
       <h1 className="title-products">PRODUCT</h1>
       {console.log(carts)}
       {loading ? (
-        "Loading..."
+        <Loading />
       ) : (
         <div className="products">
           {data.listProduct.map((item, index) => (

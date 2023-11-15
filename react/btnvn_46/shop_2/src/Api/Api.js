@@ -1,3 +1,4 @@
+import { setLocalStorage } from "../utils/localStorage";
 import { client } from "./client";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -28,6 +29,7 @@ export const getProductDetail = (data) => {
 };
 export const apiGetProductList = async (query = {}, dispatch) => {
   try {
+    dispatch(makeRequest());
     const queryString = new URLSearchParams(query).toString();
     const { data } = await client.get(`/products?${queryString}`);
     if (data.status_code !== "FAILED") {
@@ -43,10 +45,11 @@ export const apiGetProductList = async (query = {}, dispatch) => {
 
 export const apiGetProductDetails = async (id, dispatch) => {
   try {
+    dispatch(makeRequest());
     const { data } = await client.get(`/products/${id}`);
     if (data.status_code !== "FAILED") {
       dispatch(getProductDetail(data.data));
-      console.log(data);
+      setLocalStorage("detail", data.data);
     } else {
       toast.error(data.message);
     }
