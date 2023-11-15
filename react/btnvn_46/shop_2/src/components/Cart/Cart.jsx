@@ -72,16 +72,18 @@ export default function Cart() {
                       <tr key={index}>
                         <td className="details">
                           <img src={cart.img} alt="" />
-                          <div className="content-details">
-                            <p className="name-brand">{cart.brand}</p>
-                            <p className="name-product">{cart.name}</p>
-                            <p className="remaining-quantity">
-                              Số Lượng:{" "}
-                              {(
-                                cart.remainingQuantity - cart.quantity
-                              ).toLocaleString()}
-                            </p>
-                          </div>
+                          <Link to={`/products/details/${cart._id}`}>
+                            <div className="content-details">
+                              <p className="name-brand">{cart.brand}</p>
+                              <p className="name-product">{cart.name}</p>
+                              <p className="remaining-quantity">
+                                Số Lượng:{" "}
+                                {(
+                                  cart.remainingQuantity - cart.quantity
+                                ).toLocaleString()}
+                              </p>
+                            </div>
+                          </Link>
                         </td>
                         <td>
                           <div className="quantity-control">
