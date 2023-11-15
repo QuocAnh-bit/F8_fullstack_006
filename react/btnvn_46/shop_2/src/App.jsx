@@ -10,10 +10,14 @@ export default function App() {
     <div>
       <Header />
       <Routes>
-        <Route path="/" element={<Products />}></Route>
-        <Route path="/products" element={<Products />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/products/details/:id" element={<Details />}></Route>
+        <Route path="/" exact={true} element={<Products />}></Route>
+        <Route path="/products" exact={true} element={<Products />}></Route>
+        <Route path="/cart" exact={true} element={<Cart />}></Route>
+        <Route
+          path="/products/details/:id"
+          exact={true}
+          element={<Details />}
+        ></Route>
       </Routes>
     </div>
   );
