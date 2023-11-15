@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading/Loading.jsx";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../Details/Details.scss";
 import { apiGetProductList } from "../../Api/Api.js";
 import { ToastContainer, toast } from "react-toastify";
@@ -70,10 +70,9 @@ export default function Details() {
             >
               Add to Cart
             </button>
-            <Link to="/products" onClick={handleBack}>
-              {" "}
-              <button>Go Home</button>
-            </Link>
+            <NavLink to="/products" onClick={handleBack}>
+              <button className="btn-control">Go Home</button>
+            </NavLink>
           </div>
         </div>
       )}
