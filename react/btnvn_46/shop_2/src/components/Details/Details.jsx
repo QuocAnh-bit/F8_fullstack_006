@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading/Loading.jsx";
-import { Link, NavLink } from "react-router-dom";
+import { PAGE_LIMIT } from "../../config/config.json";
+import { Link, NavLink, useParams } from "react-router-dom";
 import "../Details/Details.scss";
-import { apiGetProductList } from "../../Api/Api.js";
+import { apiGetProductDetails, apiGetProductList } from "../../Api/Api.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -13,6 +14,7 @@ export default function Details() {
   const detail = getLocalStorage("detail");
   const loading = useSelector((state) => state.loading);
   const carts = useSelector((state) => state.carts);
+  const { id } = useParams();
 
   const handleAddCart = (id, name, price, brand, remainingQuantity, img) => {
     const newCarts = [...carts];
@@ -37,10 +39,13 @@ export default function Details() {
     toast.success(`Đã thêm sản phẩm ${name}`);
   };
   const handleBack = () => {
-    apiGetProductList({ limit: PAGE_LIMIT }, dispatch);
     dispatch({ type: "RESET_DETAIL" });
   };
-
+  useEffect(() => {
+    if (id !== undefined) {
+      apiGetProductDetails(id, dispatch);
+    }
+  }, []);
   return (
     <>
       {loading ? (

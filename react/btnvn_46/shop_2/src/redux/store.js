@@ -6,6 +6,7 @@ const initialState = {
   errMessage: "",
   carts: getLocalStorage("cart") || [],
   detail: null,
+  idProduct: null,
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -28,6 +29,7 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, carts: action.payload };
     case "RESET_CART":
       return { ...state, carts: [] };
+
     default:
       return state;
   }

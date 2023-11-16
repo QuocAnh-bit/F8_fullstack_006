@@ -6,7 +6,7 @@ import { PAGE_LIMIT } from "../../config/config.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Products/Products.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 
 export default function Products() {
@@ -41,6 +41,7 @@ export default function Products() {
   useEffect(() => {
     apiGetProductList({ limit: PAGE_LIMIT }, dispatch);
   }, []);
+
   return (
     <>
       <h1 className="title-products">PRODUCT</h1>
@@ -54,7 +55,6 @@ export default function Products() {
               <Link
                 to={`/products/details/${item._id}`}
                 className="img-product"
-                onClick={() => apiGetProductDetails(item._id, dispatch)}
               >
                 <img src={item.image} />
                 <h3>{item.name}</h3>

@@ -125,7 +125,7 @@ export default function Cart() {
             </table>
             <Link to="/products" className="back-home">
               {" "}
-              <i class="fa-solid fa-arrow-left"></i> Go Home{" "}
+              <i className="fa-solid fa-arrow-left"></i> Go Home{" "}
             </Link>
           </div>
           <div className="cart-right">

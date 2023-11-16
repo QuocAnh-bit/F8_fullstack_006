@@ -27,6 +27,7 @@ export const getProductDetail = (data) => {
     payload: data,
   };
 };
+
 export const apiGetProductList = async (query = {}, dispatch) => {
   try {
     dispatch(makeRequest());
