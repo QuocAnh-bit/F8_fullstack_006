@@ -39,8 +39,9 @@ export default function Details() {
     toast.success(`Đã thêm sản phẩm ${name}`);
   };
   const handleBack = () => {
-    apiGetProductList({ limit: PAGE_LIMIT }, dispatch);
+    // apiGetProductList({ limit: PAGE_LIMIT }, dispatch);
     dispatch({ type: "RESET_DETAIL" });
+    dispatch({ type: "MAKE_REQUEST" });
   };
   useEffect(() => {
     if (id !== undefined) {
