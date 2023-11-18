@@ -1,0 +1,22 @@
+.form-wrap {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    text-align: center;
+
+}
+
+.form-wrap form {
+    width: 20%;
+}
+
+.form-wrap form input {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    margin: 15px 0;
+}

@@ -1,0 +1,53 @@
+.wrap-trello {
+  display: flex;
+  width: 100vw;
+  height: 500px;
+  justify-content: center;
+  margin: auto;
+  gap: 10px;
+  .list-column {
+    display: flex;
+    height: 500px;
+    max-height: 500px;
+    gap: 10px;
+    .item-column {
+      width: 360px;
+      background-color: rgb(53, 139, 214);
+      position: relative;
+      .title-column {
+        background-color: rgb(12, 49, 81);
+        height: 45px;
+        line-height: 45px;
+        text-align: left;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        button {
+          align-self: center;
+          padding: 5px;
+        }
+      }
+      .content-column {
+      }
+      .footer-column {
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+      }
+    }
+  }
+  .btn-add-col {
+    button {
+      width: 360px;
+      height: 60px;
+      position: relative;
+      font-size: 3.2rem;
+
+      i {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+    }
+  }
+}
