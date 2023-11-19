@@ -11,7 +11,7 @@ import {
 import { arrayMove } from "@dnd-kit/sortable";
 import { useDispatch, useSelector } from "react-redux";
 import { sliceTrello } from "../../redux/slice/trelloSlice";
-const { addCol, sortColNew } = sliceTrello.actions;
+const { addCol, updateListCol } = sliceTrello.actions;
 
 export default function Trello() {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export default function Trello() {
       const oldIndex = listCol.findIndex((item) => item._id === active.id);
       const newIndex = listCol.findIndex((item) => item._id === over.id);
       const sortColDragEnd = arrayMove(listCol, oldIndex, newIndex);
-      dispatch(sortColNew(sortColDragEnd));
+      dispatch(updateListCol(sortColDragEnd));
     }
   };
   return (

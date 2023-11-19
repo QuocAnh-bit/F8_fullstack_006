@@ -13,7 +13,12 @@ export default function ListColumn({ listCol }) {
         strategy={horizontalListSortingStrategy}
       >
         {listCol.map(({ columnName, _id }, index) => (
-          <ItemColumn key={index} columnName={columnName} id={_id}></ItemColumn>
+          <ItemColumn
+            key={index}
+            columnName={columnName}
+            id={_id}
+            listCol={listCol}
+          ></ItemColumn>
         ))}
       </SortableContext>
     </div>
