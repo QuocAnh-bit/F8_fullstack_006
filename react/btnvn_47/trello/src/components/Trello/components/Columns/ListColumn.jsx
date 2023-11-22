@@ -3,7 +3,8 @@ import {
   SortableContext,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import ItemColumn from "./ItemColumn";
+import ItemColumn from "../Columns/ItemColumn/ItemColumn";
+import "./ListColumn.scss";
 
 export default function ListColumn({ listCol }) {
   return (
@@ -12,11 +13,10 @@ export default function ListColumn({ listCol }) {
         items={listCol.map((item) => item._id)}
         strategy={horizontalListSortingStrategy}
       >
-        {listCol.map(({ columnName, _id }, index) => (
+        {listCol.map((column, index) => (
           <ItemColumn
             key={index}
-            columnName={columnName}
-            id={_id}
+            column={column}
             listCol={listCol}
           ></ItemColumn>
         ))}

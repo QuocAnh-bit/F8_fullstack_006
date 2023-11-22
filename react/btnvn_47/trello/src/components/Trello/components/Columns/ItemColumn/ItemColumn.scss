@@ -1,0 +1,33 @@
+.item-column {
+  width: 360px;
+  height: 500px;
+  background-color: rgb(53, 139, 214);
+  overflow: hidden;
+  position: relative;
+  .title-column {
+    background-color: rgb(12, 49, 81);
+    height: 45px;
+    line-height: 45px;
+    text-align: left;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    button {
+      align-self: center;
+      padding: 5px;
+    }
+  }
+
+  .footer-column {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    height: fit-content;
+    .btn-add-task {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+}

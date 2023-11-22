@@ -6,7 +6,6 @@ export const getTokenApi = createAsyncThunk("getTokenApi", async (email) => {
   const { data } = await client.get(`/api-key?email=${email}`);
   const apiKey = data.data.apiKey;
   localStorage.setItem("apiKey", apiKey);
-
   return data;
 });
 
