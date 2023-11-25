@@ -1,7 +1,6 @@
 import { getDictionary } from "../../../getDictionary";
 import Content from "./layouts/Content";
 import SideBar from "./layouts/SideBar";
-import { Image, Card, CardHeader, CardBody, Divider } from "@nextui-org/react";
 
 const Home = async ({ params: { lang } }) => {
   const dict = await getDictionary(lang);
