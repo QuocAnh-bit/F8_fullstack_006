@@ -76,36 +76,23 @@ export default function Content({ contactInfo, projects, hobbies }) {
                   <p>{item.webUse}</p>
                 </div>
                 <div className="flex m-2 gap-5 ">
-                  <Tooltip
-                    placement={"bottom"}
-                    content={"https://github.com/QuocAnh-bit"}
-                    color="secondary"
+                  <Button
+                    color="danger"
+                    href="https://f8-fullstack-006-c55v.vercel.app/"
+                    as={Link}
+                    target="_blank"
                   >
-                    <Button
-                      color="danger"
-                      href="https://f8-fullstack-006-c55v.vercel.app/"
-                      as={Link}
-                      target="_blank"
-                    >
-                      Demo
-                    </Button>
-                  </Tooltip>
-                  <Tooltip
-                    placement={"bottom"}
-                    content={
-                      "https://github.com/QuocAnh-bit/F8_fullstack_006/tree/main/nextjs/btvn"
-                    }
-                    color="secondary"
+                    Demo
+                  </Button>
+
+                  <Button
+                    color="danger"
+                    href="https://github.com/QuocAnh-bit/F8_fullstack_006/tree/main/nextjs/btvn"
+                    as={Link}
+                    target="_blank"
                   >
-                    <Button
-                      color="danger"
-                      href="https://github.com/QuocAnh-bit/F8_fullstack_006/tree/main/nextjs/btvn"
-                      as={Link}
-                      target="_blank"
-                    >
-                      Git
-                    </Button>
-                  </Tooltip>
+                    Git
+                  </Button>
                 </div>
               </CardBody>
               <Divider />
