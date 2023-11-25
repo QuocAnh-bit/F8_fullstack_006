@@ -12,8 +12,11 @@ import {
 export default function Content({ contactInfo, projects, hobbies }) {
   return (
     <div className="basis-3/4 p-3 gap-5 flex  flex-col  justify-between">
-      <Card className="text-center py-3">
-        <CardHeader>{contactInfo.contactTitle} </CardHeader>
+      <Card key="1" className="text-center py-3">
+        <CardHeader>
+          {" "}
+          <div>{contactInfo.contactTitle} </div>
+        </CardHeader>
         <CardBody className="text-left">
           <ul>
             <li>
@@ -59,7 +62,7 @@ export default function Content({ contactInfo, projects, hobbies }) {
           </ul>
         </CardBody>
       </Card>
-      <Card className="text-center ">
+      <Card key="2" className="text-center ">
         <CardHeader>{projects.title}</CardHeader>
 
         {projects.project.map((item, index) => {
@@ -81,7 +84,7 @@ export default function Content({ contactInfo, projects, hobbies }) {
           );
         })}
       </Card>
-      <Card className="text-center">
+      <Card key="3" className="text-center">
         <CardHeader>{hobbies.title}</CardHeader>
         <CardBody className="text-left">
           <ul>
