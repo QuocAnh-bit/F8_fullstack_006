@@ -1,7 +1,8 @@
 // tailwind.config.js
-import { nextui } from "@nextui-org/react";
 
 /** @type {import('tailwindcss').Config} */
+import { nextui } from "@nextui-org/react";
+
 const config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",

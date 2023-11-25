@@ -13,51 +13,51 @@ export default function Content({ contactInfo, projects, hobbies }) {
   return (
     <div className="basis-3/4 p-3 gap-5 flex  flex-col  justify-between">
       <Card key="1" className="text-center py-3">
-        <CardHeader>
+        <CardHeader key="1">
           {" "}
           <div>{contactInfo.contactTitle} </div>
         </CardHeader>
         <CardBody className="text-left">
           <ul>
             <li>
-              <p>
+              <span>
                 Phone:{" "}
                 <Link href={`tel:${contactInfo.phone}`} target="__blank">
                   {contactInfo.phone}
                 </Link>
-              </p>
+              </span>
             </li>
             <li>
-              <p>
+              <span>
                 Zalo:{" "}
                 <Link href={contactInfo.linkZalo} target="__blank">
                   {contactInfo.linkZalo}
                 </Link>
-              </p>
+              </span>
             </li>
             <li>
-              <p>
+              <span>
                 Facebook:{" "}
                 <Link href={contactInfo.linkFacebook} target="__blank">
                   {contactInfo.linkFacebook}
                 </Link>
-              </p>
+              </span>
             </li>
             <li>
-              <p>
+              <span>
                 Email:{" "}
                 <Link href={`mailto:${contactInfo.mail}`} target="__blank">
                   {contactInfo.linkEmail}
                 </Link>
-              </p>
+              </span>
             </li>
             <li>
-              <p>
+              <span>
                 Github:{" "}
                 <Link href={contactInfo.linkGit} target="__blank">
                   {contactInfo.linkGit}
                 </Link>
-              </p>
+              </span>
             </li>
           </ul>
         </CardBody>

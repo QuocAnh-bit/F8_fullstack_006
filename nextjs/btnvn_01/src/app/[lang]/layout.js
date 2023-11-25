@@ -10,13 +10,13 @@ export const metadata = {
 export default function RootLayout({ children, params }) {
   return (
     <html lang={params.lang}>
-      <Providers>
-        <body>
+      <body>
+        <Providers>
           <Header params={params} />
           <main className="max-w-[1024px] mx-auto">{children}</main>
           <footer></footer>
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }
