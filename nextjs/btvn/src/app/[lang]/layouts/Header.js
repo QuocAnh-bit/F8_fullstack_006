@@ -12,6 +12,7 @@ import {
   Link,
   Button,
   Avatar,
+  Tooltip,
 } from "@nextui-org/react";
 import { useEffect } from "react";
 
@@ -19,9 +20,9 @@ export default function Header({ params }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  //   useEffect(() => {
-  //     router.push(localStorage.getItem("lang"));
-  //   }, []);
+  useEffect(() => {
+    router.push(localStorage.getItem("lang"));
+  }, []);
 
   return (
     <Navbar>
@@ -33,22 +34,34 @@ export default function Header({ params }) {
         justify="center"
       >
         <NavbarItem justify="end">
-          <Link
-            href="https://www.facebook.com/quocanh2001"
-            aria-current="page"
-            target="_blank"
+          <Tooltip
+            placement={"bottom"}
+            content={"https://www.facebook.com/quocanh2001"}
+            color="secondary"
           >
-            <Facebook />
-          </Link>
+            <Link
+              href="https://www.facebook.com/quocanh2001"
+              aria-current="page"
+              target="_blank"
+            >
+              <Facebook />
+            </Link>
+          </Tooltip>
         </NavbarItem>
         <NavbarItem>
-          <Link
-            color="foreground"
-            href="https://github.com/QuocAnh-bit"
-            target="_blank"
+          <Tooltip
+            placement={"bottom"}
+            content={"https://github.com/QuocAnh-bit"}
+            color="secondary"
           >
-            <Github />
-          </Link>
+            <Link
+              color="foreground"
+              href="https://github.com/QuocAnh-bit"
+              target="_blank"
+            >
+              <Github />
+            </Link>
+          </Tooltip>
         </NavbarItem>
         <NavbarItem>
           <Theme />
