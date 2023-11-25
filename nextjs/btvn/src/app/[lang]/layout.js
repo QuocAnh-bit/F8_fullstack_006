@@ -12,7 +12,7 @@ export default function RootLayout({ children, params }) {
     <html lang={params.lang}>
       <body>
         <Providers>
-          <Header />
+          <Header params={params} />
           <main className="max-w-[1024px] mx-auto">{children}</main>
           <footer></footer>
         </Providers>

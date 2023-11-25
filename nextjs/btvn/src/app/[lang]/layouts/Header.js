@@ -54,14 +54,14 @@ export default function Header({ params }) {
           <Theme />
         </NavbarItem>
         <NavbarItem>
-          {/* <Button
+          <Button
             onClick={() => {
               router.push(params.lang !== "vi" ? "vi" : "en");
               localStorage.setItem("lang", params.lang !== "vi" ? "vi" : "en");
             }}
           >
             {pathname !== "/vi" ? "VI" : "EN"}
-          </Button> */}
+          </Button>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
