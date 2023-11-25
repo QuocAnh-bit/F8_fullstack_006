@@ -1,5 +1,5 @@
 import { getDictionary } from "../../../getDictionary";
-// import Content from "./layouts/Content";
+import Content from "./layouts/Content";
 import SideBar from "./layouts/SideBar";
 
 const Home = async ({ params: { lang } }) => {
@@ -13,11 +13,11 @@ const Home = async ({ params: { lang } }) => {
       </div>
       <div className="flex flex-row gap-5 ">
         <SideBar role={role} skills={skills} education={education} />
-        {/* <Content
+        <Content
           contactInfo={contactInfo}
           projects={projects}
           hobbies={hobbies}
-        /> */}
+        />
       </div>
     </div>
   );
