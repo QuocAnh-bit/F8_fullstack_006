@@ -1,6 +1,6 @@
 import { getDictionary } from "../../../getDictionary";
 // import Content from "./layouts/Content";
-// import SideBar from "./layouts/SideBar";
+import SideBar from "./layouts/SideBar";
 
 const Home = async ({ params: { lang } }) => {
   const dict = await getDictionary(lang);
@@ -12,8 +12,8 @@ const Home = async ({ params: { lang } }) => {
         <h2 className="text-xl  font-bold ">{userName}</h2>
       </div>
       <div className="flex flex-row gap-5 ">
-        {/* <SideBar role={role} skills={skills} education={education} />
-        <Content
+        <SideBar role={role} skills={skills} education={education} />
+        {/* <Content
           contactInfo={contactInfo}
           projects={projects}
           hobbies={hobbies}
