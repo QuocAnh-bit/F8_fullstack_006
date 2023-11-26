@@ -20,9 +20,11 @@ export default function Header({ params }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  // useEffect(() => {
-  //   router.push(localStorage.getItem("lang"));
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("lang") !== null) {
+      router.push(localStorage.getItem("lang"));
+    }
+  }, []);
 
   return (
     <Navbar>
