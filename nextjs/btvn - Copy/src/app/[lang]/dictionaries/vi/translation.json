@@ -1,0 +1,68 @@
+{
+    "userName": "Dương Quốc Anh",
+    "role": "Học viên tại F8",
+   
+    "skills": {
+      "skillsTitle": "Kỹ năng",
+      "skillWork": {
+        "skillTitle": "Kỹ năng làm việc:",
+        "skillContent": " REST API, React.js, Next.js, Redux, Context, CSS3, HTML5"
+      },
+      "skillOther": {
+        "skillTitle": "Các kỹ năng khác",
+        "skillContent": "Kỹ năng nghiên cứu và tìm kiếm tương đối tốt."
+      }
+    },
+    "education":{
+      "titleEducation" : "Học vấn",
+      "historyEducation": [
+      {
+        "year": "2016",
+        "school": "Các trường Trung học Cơ sở khác"
+      },
+      {
+        "year": "2017-2019",
+        "school": "Trường Trung học Phổ thông TND"
+      },
+      {
+        "year": "2019-2023",
+        "school": "Học đại học Điện Lực và Học Tại F8"
+      }
+    ]},
+    "contactInfo": {
+      "contactTitle": "Thông tin liên hệ ",
+      "phone": "0398568668",
+      "linkZalo": "https://zalo.me/0398568668",
+      "linkEmail": "qanhanh06@gmail.com",
+      "linkFacebook": "https://www.facebook.com/quocanh2001",
+      "linkGit": "https://github.com/QuocAnh-bit"
+    },
+    "projects": {
+      "title": "Các dự án cá nhân",
+      "project": [
+        {
+          "nameProject": "Project Code snippet",
+          "workTime": "Project làm trong 1 ngày",
+          "webUse": "Website sử dụng HTML, CSS, JS"
+        },
+        {
+          "nameProject": "Project blog",
+          "workTime": "Project làm trong 1 ngày",
+          "webUse": "Website sử dụng HTML, CSS, JS"
+        },
+        {
+          "nameProject": "Project 20f8",
+          "workTime": "Project làm trong 1 ngày",
+          "webUse": "Website sử dụng HTML, CSS, JS"
+        }
+      ]
+    },
+    "hobbies": {
+      "title": "Sở thích",
+      "listHobbies" : [
+        "Nghe nhạc",
+        "Thể thao",
+        "Đọc"
+      ]
+    } 
+  }
