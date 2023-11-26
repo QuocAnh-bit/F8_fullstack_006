@@ -14,14 +14,17 @@ import {
   Avatar,
 } from "@nextui-org/react";
 import { useEffect } from "react";
+import { getLayoutOrPageModule } from "next/dist/server/lib/app-dir-module";
 
 export default function Header({ params }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  // useEffect(() => {
-  //   router.push(localStorage.getItem("lang"));
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("lang") !== null) {
+      router.push(localStorage.getItem("lang"));
+    }
+  }, []);
 
   return (
     <Navbar>
