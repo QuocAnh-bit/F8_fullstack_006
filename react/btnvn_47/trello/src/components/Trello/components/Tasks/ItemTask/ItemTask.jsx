@@ -1,81 +1,38 @@
 import React, { useState } from "react";
 import { sliceTrello } from "../../../../../redux/slice/trelloSlice";
-import { useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 const { deleteTask } = sliceTrello.actions;
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import "./ItemTask.scss";
 
-export default function ItemTask({ task, updateTask }) {
+import "./ItemTask.scss";
+import { Draggable } from "react-beautiful-dnd";
+
+export default function ItemTask({ task, index }) {
   const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.trello);
   const [edit, setEdit] = useState(false);
 
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id: task._id, data: { ...task } });
-
-  const style = {
-    transform: CSS.Translate.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : undefined,
+  const handleDeleteTask = (task) => {
+    dispatch(deleteTask(task));
   };
 
-  const handleDeleteTask = (idTask) => {
-    dispatch(deleteTask(idTask));
-  };
-
-  const toggleEditMode = () => {
-    setEdit((prev) => !prev);
-    setEdit(false);
-  };
+  // const toggleEditMode = () => {
+  //   setEdit((prev) => !prev);
+  //   setEdit(false);
+  // };
 
   return (
-    <>
-      {edit ? (
+    <Draggable draggableId={task._id} index={index}>
+      {(provided) => (
         <div
           className="item-task"
-          ref={setNodeRef}
-          style={style}
-          {...attributes}
-          {...listeners}
-          onBlur={toggleEditMode}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && e.shiftKey) {
-              toggleEditMode();
-            }
-          }}
-        >
-          <textarea
-            autoFocus
-            defaultValue={task.content}
-            // onChange={(e) => updateTask(task.id, e.target.value)}
-          ></textarea>
-          <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
-        </div>
-      ) : (
-        <div
-          className="item-task"
-          ref={setNodeRef}
-          style={style}
-          {...attributes}
-          {...listeners}
-          onClick={toggleEditMode}
-          onMouseEnter={() => {
-            setEdit(true);
-          }}
-          onMouseLeave={() => {
-            setEdit(false);
-          }}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
         >
           <p>{task.content}</p>
-          <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
+          <button onClick={() => handleDeleteTask(task)}>Delete</button>
         </div>
       )}
-    </>
+    </Draggable>
   );
 }

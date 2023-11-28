@@ -1,33 +1,26 @@
 import React from "react";
 import ItemTask from "./ItemTask/ItemTask";
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
 import "./ListTask.scss";
 import { sliceTrello } from "../../../../redux/slice/trelloSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Droppable } from "react-beautiful-dnd";
 const { updateListTask } = sliceTrello.actions;
 
-export default function ListTask({ listTask }) {
-  const dispatch = useDispatch();
-  const updateTask = (id, content) => {
-    const newTask = listTask.map((task) => {
-      if (task._id !== id) return task;
-      return { ...task, content };
-    });
-    dispatch(updateListTask(newTask));
-  };
+export default function ListTask({ column, tasks }) {
   return (
-    <div className="content-column">
-      <SortableContext
-        items={listTask.map((item) => item._id)}
-        strategy={verticalListSortingStrategy}
-      >
-        {listTask.map((task, index) => (
-          <ItemTask key={index} task={task} updateTask={updateTask} />
-        ))}
-      </SortableContext>
-    </div>
+    <Droppable droppableId={column.column.toString()} type="task">
+      {(provided) => (
+        <div
+          className="content-column"
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
+          {tasks.map((task, index) => (
+            <ItemTask key={task._id} index={index} task={task} />
+          ))}
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
   );
 }

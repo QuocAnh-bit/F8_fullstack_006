@@ -1,26 +1,28 @@
 import React from "react";
-import {
-  SortableContext,
-  horizontalListSortingStrategy,
-} from "@dnd-kit/sortable";
+
 import ItemColumn from "../Columns/ItemColumn/ItemColumn";
 import "./ListColumn.scss";
+import { Droppable } from "react-beautiful-dnd";
 
 export default function ListColumn({ listCol }) {
   return (
-    <div className="list-column">
-      <SortableContext
-        items={listCol.map((item) => item._id)}
-        strategy={horizontalListSortingStrategy}
-      >
-        {listCol.map((column, index) => (
-          <ItemColumn
-            key={index}
-            column={column}
-            listCol={listCol}
-          ></ItemColumn>
-        ))}
-      </SortableContext>
-    </div>
+    <Droppable droppableId="columns" direction="horizontal" type="column">
+      {(provided) => (
+        <div
+          className="list-column"
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
+          {listCol.map((column, index) => (
+            <ItemColumn
+              key={column.column}
+              indexCol={index}
+              column={column}
+            ></ItemColumn>
+          ))}
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
   );
 }
