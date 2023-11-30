@@ -1,0 +1,4 @@
+{
+    "SERVER_API": "https://api-pages.vercel.app/api/v1",
+    "SERVER_IMG" : "https://api-pages.vercel.app"
+}

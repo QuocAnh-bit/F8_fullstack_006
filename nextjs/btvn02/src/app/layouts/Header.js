@@ -17,17 +17,20 @@ import {
 export default function Header() {
   const pathName = usePathname();
   return (
-    <Navbar maxWidth="xl" position="static">
+    <Navbar maxWidth="xl" className="fix">
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand className="mr-10 text-2xl font-mono">
           <p className="font-bold text-inherit">JunnX</p>
         </NavbarBrand>
         <NavbarItem className={pathName === "/" && "text-indigo-500 font-bold"}>
-          <Link href="/">Home</Link>
+          <Link href="/">Trang Chủ</Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link href="#" aria-current="page">
-            Customers
+        <NavbarItem
+          className={pathName === "/packages" && "text-indigo-500 font-bold"}
+        >
+          <Link href="/packages" aria-current="page">
+            {" "}
+            Ưu đãi
           </Link>
         </NavbarItem>
         <NavbarItem>
