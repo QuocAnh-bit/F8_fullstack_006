@@ -4,19 +4,26 @@ import config from "@/config/config";
 
 const { SERVER_API } = config;
 
-export const getListMindMap = async () => {
+export const getListMindMap = async (a) => {
   const { data } = await client.get(`/mind-map`);
-  setLocalStorage("datas", data);
-  return data;
+
+  const filterDataUser = data.filter((item) => item.userID === a);
+
+  setLocalStorage("datas", filterDataUser);
+  return filterDataUser;
 };
 
 export const getMindMap = async (id) => {
-  const response = await fetch(`${SERVER_API}/mind-map/${id}`, {
-    cache: "no-cache",
-  });
-  const data = await response.json();
+  try {
+    const response = await fetch(`${SERVER_API}/mind-map/${id}`, {
+      cache: "no-cache",
+    });
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const postListMindMap = async (body) => {

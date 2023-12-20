@@ -1,7 +1,8 @@
 "use client";
+import { Spinner } from "@nextui-org/react";
 import { useParams } from "next/navigation";
-import Head from "next/head";
-import { datas } from "@/data/data";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { getLocalStorage, setLocalStorage } from "@/utils/localStorage";
 import CustomNode from "./custom/CustomNode";
 import InputNode from "./custom/InputNode";
@@ -21,8 +22,10 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { Button } from "@nextui-org/react";
-import { updateMindMap } from "@/utils/api/dataApi";
+import { getMindMap, updateMindMap } from "@/utils/api/dataApi";
 import ModalShare from "./ModalShare";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { data } from "autoprefixer";
 
 const nodeTypes = {
   customNode: CustomNode,
@@ -37,6 +40,11 @@ const minimapStyle = {
 const getNodeId = () => `randomnode_${+new Date()}`;
 
 const MindMap = () => {
+  const { getNode } = useReactFlow();
+  const { user, error } = useUser();
+  const [userEdit, setUserEdit] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const params = useParams();
   const { id: idMindMap } = params;
 
@@ -48,7 +56,8 @@ const MindMap = () => {
   const { screenToFlowPosition } = useReactFlow();
 
   const [rfInstance, setRfInstance] = useState(null);
-  const [index, setIndex] = useState(null);
+  const [statusSave, setStatusSave] = useState(false);
+
   const [storedDatas, setStoredDatas] = useState(null);
 
   const [editName, setEditName] = useState("");
@@ -56,43 +65,55 @@ const MindMap = () => {
 
   useEffect(() => {
     const DataLocalStorage = async () => {
-      const storedDatas = await getLocalStorage("datas");
+      const storedDatas = await getMindMap(idMindMap);
+      setLoading(false);
       if (storedDatas) {
-        const index = storedDatas.findIndex((item) => item.id === idMindMap);
-        console.log("Index:", storedDatas[index].nodes);
-        setNodes(storedDatas[index].nodes);
-        setEdges(storedDatas[index].edges);
+        setNodes(storedDatas.nodes);
+        setEdges(storedDatas.edges);
         setStoredDatas(storedDatas);
-        setIndex(index);
-        setEditName(storedDatas[index].name);
-        setEditDesc(storedDatas[index].dec);
+        setEditName(storedDatas.name);
+        setEditDesc(storedDatas.dec);
       }
     };
 
     DataLocalStorage();
   }, []);
 
+  useEffect(() => {
+    const checkUserId = () => {
+      if (user && storedDatas) {
+        const userLogin = user.sub;
+        const isOwner = userLogin === storedDatas.userID;
+        isOwner ? setUserEdit(true) : setUserEdit(false);
+      }
+    };
+
+    checkUserId();
+  }, [user, storedDatas]);
+
   const onSave = useCallback(async () => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
-      setStoredDatas((item) => {
-        item[index].nodes = flow.nodes;
-        item[index].edges = flow.edges;
-        item[index].name = editName;
-        item[index].dec = editDesc;
-
+      setStatusSave(true);
+      await setStoredDatas((item) => {
+        item.nodes = flow.nodes;
+        item.edges = flow.edges;
+        item.name = editName;
+        item.dec = editDesc;
         return item;
       });
-      console.log(storedDatas[index].dec);
+
       await updateMindMap(idMindMap, {
-        nodes: storedDatas[index].nodes,
-        edges: storedDatas[index].edges,
-        name: storedDatas[index].name,
-        dec: storedDatas[index].dec,
+        nodes: storedDatas.nodes,
+        edges: storedDatas.edges,
+        name: storedDatas.name,
+        dec: storedDatas.dec,
       });
+      setStatusSave(false);
+      toast.success("Lưu Thành công");
       setLocalStorage("datas", storedDatas);
     }
-  }, [rfInstance, editName, editDesc]);
+  }, [rfInstance, editName, editDesc, storedDatas, idMindMap]);
 
   const onConnect = useCallback((params) => {
     // reset the start node on connections=
@@ -110,7 +131,6 @@ const MindMap = () => {
 
       const targetIsPane = event.target.classList.contains("react-flow__pane");
       /// kiểm tra xem có trong luồng chạy của react flow không
-      console.log(event.target);
 
       if (targetIsPane) {
         // we need to remove the wrapper bounds, in order to get the correct position
@@ -141,35 +161,80 @@ const MindMap = () => {
     [screenToFlowPosition]
   );
 
+  function handleNodesChange(changes) {
+    const nextChanges = changes.reduce((acc, change) => {
+      if (change.type === "remove") {
+        const node = getNode(change.id);
+        if (node.id !== "0") {
+          return [...acc, change];
+        }
+        return acc;
+      }
+
+      return [...acc, change];
+    }, []);
+
+    onNodesChange(nextChanges);
+  }
+
   return (
     <>
+      {loading && "Loading"}
       <div className="mt-3 flex w-full justify-between">
         <div className="w-full">
-          <input
-            contentEditable="true"
-            spellCheck="false"
-            className="text-2xl font-bold  focus:outline-none w-full"
-            onChange={(e) => {
-              setEditName(e.target.value);
-            }}
-            defaultValue={editName}
-          ></input>
-          <input
-            contentEditable="true"
-            spellCheck="false"
-            className="  focus:outline-none w-full"
-            onChange={(e) => setEditDesc(e.target.value)}
-            defaultValue={editDesc}
-          ></input>
+          {userEdit ? (
+            <>
+              <input
+                className="text-2xl font-bold  focus:outline-none w-full"
+                onChange={(e) => {
+                  setEditName(e.target.value);
+                }}
+                defaultValue={editName}
+              />
+              <input
+                className="  focus:outline-none w-full"
+                onChange={(e) => setEditDesc(e.target.value)}
+                defaultValue={editDesc}
+              />
+            </>
+          ) : (
+            <>
+              <input
+                readOnly
+                className="text-2xl font-bold  focus:outline-none w-full"
+                onChange={(e) => {
+                  setEditName(e.target.value);
+                }}
+                defaultValue={editName}
+              />
+              <input
+                readOnly
+                className="  focus:outline-none w-full"
+                onChange={(e) => setEditDesc(e.target.value)}
+                defaultValue={editDesc}
+              />
+            </>
+          )}
         </div>
         <div className="flex gap-3">
-          <Button onClick={onSave}>Lưu thay đổi</Button>
-          <ModalShare
-            onSave={onSave}
-            nameMindMap={editName}
-            descMindMap={editDesc}
-            idMindMap={idMindMap}
-          />
+          {userEdit && (
+            <Button
+              onClick={onSave}
+              isLoading={statusSave ? true : false}
+              color="success"
+              className="text-white font-bold"
+            >
+              {statusSave ? "Đang lưu ... " : "Lưu thay đổi"}
+            </Button>
+          )}
+          {userEdit && (
+            <ModalShare
+              onSave={onSave}
+              nameMindMap={editName}
+              descMindMap={editDesc}
+              idMindMap={idMindMap}
+            />
+          )}
         </div>
       </div>
       <div
@@ -180,7 +245,7 @@ const MindMap = () => {
           className="z-10"
           nodes={nodes}
           edges={edges}
-          onNodesChange={onNodesChange}
+          onNodesChange={handleNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           onConnectStart={onConnectStart}
@@ -193,6 +258,7 @@ const MindMap = () => {
           <MiniMap style={minimapStyle} zoomable pannable />
           <Background variant="lines" gap={12} size={1} color="#AFC8AD" />
         </ReactFlow>
+        <ToastContainer />
       </div>
     </>
   );

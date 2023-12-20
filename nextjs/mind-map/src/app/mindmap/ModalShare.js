@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { updateMindMap } from "@/utils/api/dataApi";
+import { getMindMap, updateMindMap } from "@/utils/api/dataApi";
 import { useRouter } from "next/navigation";
 
 import {
@@ -17,26 +17,36 @@ import {
   Input,
   Textarea,
 } from "@nextui-org/react";
+import { getLocalStorage } from "@/utils/localStorage";
 
-export default function ModalShare({
-  onSave,
-  nameMindMap,
-  descMindMap,
-  idMindMap,
-}) {
+export default function ModalShare({ onSave, idMindMap }) {
   const router = useRouter();
-  console.log(router);
+
   const [mode, setMode] = useState("private");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [form, setForm] = useState({
-    urlShare: window.location.href,
-    titleShare: nameMindMap,
-    imgShare: `http://localhost:3000/_next/static/media/homeImg.6fe82082.jpg`,
-  });
+
+  const [form, setForm] = useState({});
+
+  useEffect(() => {
+    const DataLocalStorage = async () => {
+      const storedDatas = await getMindMap(idMindMap);
+      if (storedDatas) {
+        setForm({
+          urlShare: window.location.href,
+          imgShare: `http://localhost:3000/_next/static/media/homeImg.6fe82082.jpg`,
+          titleShare: storedDatas.name,
+          decsShare: storedDatas.dec,
+        });
+      }
+    };
+
+    DataLocalStorage();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await updateMindMap(idMindMap, { mode: form });
+    await onSave();
     router.refresh();
   };
   const handleChange = (e) => {
@@ -106,7 +116,7 @@ export default function ModalShare({
                         <input
                           type="text"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                          placeholder={`${nameMindMap}`}
+                          defaultValue={`${form.titleShare}`}
                           name="titleShare"
                           onChange={handleChange}
                           required
@@ -119,7 +129,7 @@ export default function ModalShare({
                           onChange={handleChange}
                           id=""
                           required
-                          placeholder={`${descMindMap}`}
+                          placeholder={`${form.decsShare}`}
                           className="resize-none h-28 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         ></textarea>
                       </div>

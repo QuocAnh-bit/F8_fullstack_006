@@ -19,7 +19,6 @@ export default function FormContact() {
       emailjs
         .send(SERVICE_ID, TEMPLATE_ID, form, USER_ID)
         .then((response) => {
-          console.log("Email sent successfully:", response);
           toast.success("Gửi thành công", { position: "bottom-right" });
           setStatus(false);
           setForm({
@@ -44,7 +43,6 @@ export default function FormContact() {
       ...prevState,
       [name]: value,
     }));
-    console.log(form);
   };
 
   return (

@@ -24,7 +24,7 @@ export default function SectionHome() {
       <div className="max-w-[1280px] grid grid-rows-2 grid-flow-col gap-2 my-5">
         <Card
           as={Link}
-          href={"/blogs"}
+          href={`/api/auth/login`}
           color="success"
           className="row-span-3 h-[300px]"
         >
@@ -41,7 +41,7 @@ export default function SectionHome() {
             src={imgHome.src}
           />
         </Card>
-        <Card className=" h-[146px] " as={Link} href={"/blogs"}>
+        <Card className=" h-[146px] " as={Link} href={"/contact"}>
           <CardHeader className=" inset-0  bg-black/20 absolute z-10  flex-col !items-start">
             <h4 className="text-white font-medium text-large">Liên hệ</h4>
           </CardHeader>
@@ -52,7 +52,7 @@ export default function SectionHome() {
             src={imgHome1.src}
           />
         </Card>
-        <Card className=" h-[146px] " as={Link} href={"/blogs"}>
+        <Card className=" h-[146px] " as={Link} href={"/pricing"}>
           <CardHeader className="absolute inset-0  bg-black/20 z-10  flex-col !items-start">
             <h4 className="text-white font-medium text-large">Bảng giá</h4>
           </CardHeader>

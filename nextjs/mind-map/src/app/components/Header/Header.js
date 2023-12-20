@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <div>
       <Navbar maxWidth="xl" className="drop-shadow-md">
-        <NavbarBrand className="gap-2">
+        <NavbarBrand className="gap-2" as={Link} href="/">
           <Image src={`${logo.src}`} width={50} />
           <p className="text-2xl font-bold text-fuchsia-500">Mindmap</p>
         </NavbarBrand>
