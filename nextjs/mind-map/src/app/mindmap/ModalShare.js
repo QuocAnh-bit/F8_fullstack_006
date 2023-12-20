@@ -33,7 +33,7 @@ export default function ModalShare({ onSave, idMindMap }) {
       if (storedDatas) {
         setForm({
           urlShare: window.location.href,
-          imgShare: `http://localhost:3000/_next/static/media/homeImg.6fe82082.jpg`,
+          imgShare: `https://f8-fullstack-006-qrjxa.vercel.app/_next/static/media/homeImg.6fe82082.jpg`,
           titleShare: storedDatas.name,
           decsShare: storedDatas.dec,
         });
