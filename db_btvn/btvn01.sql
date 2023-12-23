@@ -2,7 +2,7 @@
 CREATE TABLE courses (
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL UNIQUE,
-    price FLOAT,
+    price FLOAT UNIQUE,
 	description TEXT,
     detail TEXT,
     teacher_id INT NOT NULL,
