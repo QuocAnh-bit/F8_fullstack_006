@@ -146,6 +146,7 @@ button {
     gap: 10px;
     align-items: center;
     padding: 0 10px;
+    cursor: pointer;
 }
 
 .menu .item-song div:nth-child(2) p:nth-child(2) {
@@ -232,6 +233,7 @@ hr {
     gap: 25px;
     display: flex;
     align-items: center;
+
 }
 
 
@@ -240,6 +242,7 @@ hr {
     font-size: 2.5rem;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .function-btn button:hover,
@@ -389,6 +392,7 @@ hr {
     background-color: #e6eceba0;
     border-radius: 5px;
     position: relative;
+    cursor: pointer;
 }
 
 .star-time,
