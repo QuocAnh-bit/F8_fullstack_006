@@ -20,7 +20,6 @@ export default function RootLayout({ children }) {
         <body>
           <Providers>
             <Header />
-
             <main className="max-w-[1280px] m-auto ">{children}</main>
             <Footer />
           </Providers>

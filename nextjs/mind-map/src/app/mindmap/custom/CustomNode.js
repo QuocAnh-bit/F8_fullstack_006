@@ -27,7 +27,7 @@ function CustomNode({ data }) {
   );
   return (
     <div
-      className="px-4  shadow-md min-w-[122px] w-fit rounded-md bg-white border-2 border-stone-400"
+      className=" shadow-md min-w-[122px] w-fit rounded-md bg-white border-2 border-stone-400"
       onDoubleClick={handleDbClick}
       onBlur={() => setEditMode(false)}
       onKeyDown={(e) => {
@@ -40,7 +40,7 @@ function CustomNode({ data }) {
         <input
           type="text"
           defaultValue={data.label}
-          className=" text-center w-[86px]  max-w-[150px] border-0 "
+          className=" text-center w-[122px] rounded-md max-w-[150px] border-0 "
           autoFocus
           onChange={handleOnChange}
         />

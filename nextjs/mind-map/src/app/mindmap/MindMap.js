@@ -1,6 +1,6 @@
 "use client";
-import { Spinner } from "@nextui-org/react";
-import { useParams } from "next/navigation";
+
+import { useParams, useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getLocalStorage, setLocalStorage } from "@/utils/localStorage";
@@ -21,11 +21,11 @@ import ReactFlow, {
   Panel,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { Button } from "@nextui-org/react";
+import { Button, Spinner } from "@nextui-org/react";
 import { getMindMap, updateMindMap } from "@/utils/api/dataApi";
 import ModalShare from "./ModalShare";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { data } from "autoprefixer";
+import { notFound, redirect } from "next/navigation";
 
 const nodeTypes = {
   customNode: CustomNode,
@@ -40,6 +40,7 @@ const minimapStyle = {
 const getNodeId = () => `randomnode_${+new Date()}`;
 
 const MindMap = () => {
+  const router = useRouter();
   const { getNode } = useReactFlow();
   const { user, error } = useUser();
   const [userEdit, setUserEdit] = useState(false);
@@ -111,7 +112,9 @@ const MindMap = () => {
       });
       setStatusSave(false);
       toast.success("Lưu Thành công");
+
       setLocalStorage("datas", storedDatas);
+      router.refresh();
     }
   }, [rfInstance, editName, editDesc, storedDatas, idMindMap]);
 
@@ -179,7 +182,12 @@ const MindMap = () => {
 
   return (
     <>
-      {loading && "Loading"}
+      {loading && (
+        <div className="absolute inset-0 flex justify-center items-center ">
+          {" "}
+          <Spinner label="Loading..." color="warning" size="lg" />
+        </div>
+      )}
       <div className="mt-3 flex w-full justify-between">
         <div className="w-full">
           {userEdit ? (

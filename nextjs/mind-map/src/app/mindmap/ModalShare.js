@@ -17,7 +17,6 @@ import {
   Input,
   Textarea,
 } from "@nextui-org/react";
-import { getLocalStorage } from "@/utils/localStorage";
 
 export default function ModalShare({ onSave, idMindMap }) {
   const router = useRouter();

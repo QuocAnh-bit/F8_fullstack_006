@@ -59,7 +59,7 @@ export default function ListMap() {
     const newProject = {
       userID: user.sub,
       id: uuid(),
-      name: "Dự án mới",
+      name: `Dự án mới ${listData.length + 1}`,
       dec: "Chưa có mô tả",
       nodes: [
         {
@@ -124,10 +124,18 @@ export default function ListMap() {
               ) : listData.length !== 0 ? (
                 listData.map((item, index) => (
                   <>
-                    <tr className="bg-white border-b " key={item.id}>
+                    <tr
+                      className="bg-white border-b hover:bg-slate-100"
+                      key={item.id}
+                    >
                       <td className="py-4 px-6">{index + 1}</td>
                       <td className="py-4 px-6">
-                        <Link href={`/mindmap/${item.id}`}>{item.name}</Link>
+                        <Link
+                          className="hover:text-blue-800 hover:underline font-bold  "
+                          href={`/mindmap/${item.id}`}
+                        >
+                          {item.name}
+                        </Link>
                       </td>
                       <td className="py-4 px-6">{item.dec}</td>
                       <td className="py-4 px-6">

@@ -1,6 +1,7 @@
 import React from "react";
 import MindMap from "../MindMap";
 import { notFound, redirect } from "next/navigation";
+
 export const generateMetadata = async ({ params }) => {
   const getMindMap = async (id) => {
     try {
@@ -26,7 +27,7 @@ export const generateMetadata = async ({ params }) => {
   console.log(data);
   if (data) {
     return {
-      title: data.mode ? data.mode.titleShare : "Mind Map",
+      title: data.mode ? data.mode.titleShare : "Chưa có tiêu đề",
       description: data.mode ? data.mode.descShare : "Mind Map",
       openGraph: {
         title: data.mode ? data.mode.titleShare : "Mind Map",
