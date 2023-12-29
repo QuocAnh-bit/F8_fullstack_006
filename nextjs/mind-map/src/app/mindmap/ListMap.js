@@ -20,7 +20,7 @@ import {
   Spinner,
   Button,
 } from "@nextui-org/react";
-import { datas } from "@/data/data";
+
 import {
   deleteMindMap,
   getListMindMap,
