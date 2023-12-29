@@ -545,7 +545,7 @@ const handleLinkYouTuBe = (content) => {
   });
 };
 const truncate = (data) => {
-  const size = 100;
+  const size = 150;
   return data.length > size ? data.slice(0, size - 1) + "…" : data;
 };
 function removeAccents(str) {

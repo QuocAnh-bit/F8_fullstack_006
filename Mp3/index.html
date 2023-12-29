@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/ex01.css" />
+    <title>Music House</title>
+    <link rel="stylesheet" href="./assets/css/ex01.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,71 +32,14 @@
       <div class="container-wrap">
         <div class="side-bar-right">
           <div class="logo">
-            <img src="./img/logo/logo.png" alt="" />
+            <img src="./assets/img/logo/logo.png" alt="" />
             <div class="text-logo">
               <span class="fist-text">Sound</span>
               <span class="second-text">House</span>
             </div>
           </div>
-          <div class="search">
-            <label for="search">
-              <i class="fa-solid fa-magnifying-glass"></i
-            ></label>
-            <input
-              type="text"
-              name="search"
-              placeholder="Search..."
-              id="search"
-            />
-          </div>
-
           <div class="menu">
             <hr />
-            <ul>
-              <li class="active">
-                <a href="#">
-                  <i class="fa-solid fa-house"></i>
-                  Home</a
-                >
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-regular fa-compass"></i>
-                  Discover</a
-                >
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-solid fa-fire-flame-curved"></i>
-                  Trending</a
-                >
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-solid fa-user-group"></i>
-                  Following</a
-                >
-              </li>
-
-              <li>
-                <a href="#">
-                  <i class="fa-solid fa-compact-disc"></i>
-                  Albums</a
-                >
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-solid fa-microphone-lines"></i>
-                  Podcast</a
-                >
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-regular fa-gem"></i>
-                  Premium</a
-                >
-              </li>
-            </ul>
             <hr />
           </div>
         </div>
@@ -111,10 +54,9 @@
         <section class="music-play">
           <div class="player-wrap">
             <div class="player-controls-left">
-              <img class="img-song" src="./img/songimg.jpg" alt="" />
               <div class="content-img">
-                <p class="name-song">Song</p>
-                <p class="name-singer">Singer</p>
+                <span class="fist-text">Sound</span>
+                <span class="second-text">House</span>
               </div>
             </div>
             <div class="function-btn">
@@ -169,6 +111,8 @@
     </div>
     <script src="./js/musicplay.js"></script>
     <script src="./js/lyric.js"></script>
+    <script src="./js/dataSongs.js"></script>
     <script src="./js/mp3.js"></script>
+    <script src="./js/listSong.js"></script>
   </body>
 </html>

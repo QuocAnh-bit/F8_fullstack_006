@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../Products/Products.css";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import ReactPaginate from "react-paginate";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -36,6 +37,10 @@ export default function Products() {
       });
     }
     toast.success(`Đã thêm sản phẩm ${name}`);
+  };
+
+  const handlePaginate = (e) => {
+    console.log(e);
   };
 
   useEffect(() => {
@@ -89,6 +94,11 @@ export default function Products() {
           ))}
         </div>
       )}
+      <ReactPaginate
+        breakLabe={"..."}
+        pageCount={20}
+        onPageActive={handlePaginate}
+      />
       <ToastContainer />
     </>
   );

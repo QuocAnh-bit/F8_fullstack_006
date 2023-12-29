@@ -3,13 +3,167 @@ const progress = progressBar.querySelector(".progress");
 const progressDot = progress.querySelector(" span");
 const progressBarWidth = progressBar.clientWidth;
 const audio = document.querySelector("audio");
+const menuSong = document.querySelector(".menu");
+
 let currentTimeEl = progressBar.previousElementSibling;
 let durationTimeEl = progressBar.nextElementSibling;
 
+const nextRight = document.querySelector(".next-right");
+const nextLeft = document.querySelector(".next-left");
+const radomBtn = document.querySelector(".random-btn");
+const repeatBtn = document.querySelector(".repeat-btn");
+
+const playBtn = document.querySelector(".play-btn button");
+const playIcon = `<i class="fa-solid fa-play"></i>`;
+const pauseIcon = `<i class="fa-solid fa-pause"></i>`;
+
+let indexSong = 0;
 let isDrag = false;
 let rate = 0;
 let initialRate = 0;
-let initialClientX = 0;
+let isRandom = false;
+let isRepeat = false;
+
+let songName = dataSongs[0].nameSong;
+let singerName = dataSongs[0].singerName;
+let lyric = JSON.parse(dataSongs[0].lyric).data.sentences;
+
+const loadIndexSong = function () {
+  audio.src = dataSongs[indexSong].srcMp3;
+};
+loadIndexSong();
+
+menuSong.innerHTML = `
+<ul>
+    ${dataSongs
+      .map(
+        (item, index) => `<li class="item-song" data-index="${index}">
+
+    <div>
+      <img class="img-song " src="${item.img}" alt="" />
+      <div>
+        <p>${item.nameSong}</p>
+        <p>${item.singerName}</p>
+      </div>
+    </div>
+    </li>`
+      )
+      .join("")}
+</ul>
+`;
+
+var listItems = menuSong.querySelectorAll("ul li");
+
+const handleAddActive = function () {
+  listItems.forEach((item, index) => {
+    if (index === indexSong) {
+      listItems[index].classList.add("active");
+    } else {
+      listItems[index].classList.remove("active");
+    }
+  });
+};
+handleAddActive();
+
+const loadNameSong = function () {
+  songName = dataSongs[indexSong].nameSong;
+  singerName = dataSongs[indexSong].singerName;
+  renderSongInfo();
+};
+
+const loadLyricSong = function () {
+  lyric = JSON.parse(dataSongs[indexSong].lyric).data.sentences;
+};
+
+const handleRandomSong = function () {
+  let newIndex;
+  do {
+    newIndex = Math.floor(Math.random() * dataSongs.length);
+  } while (newIndex === indexSong);
+  indexSong = newIndex;
+  loadIndexSong();
+  loadNameSong();
+  handleAddActive();
+  loadLyricSong();
+};
+
+const handleNextSong = function () {
+  if (indexSong === dataSongs.length - 1) {
+    indexSong = 0;
+  } else {
+    indexSong++;
+  }
+  playBtn.innerHTML = pauseIcon;
+  loadIndexSong();
+  handleAddActive();
+  loadNameSong();
+  loadLyricSong();
+};
+
+menuSong.addEventListener("click", function (e) {
+  const itemSong = e.target.closest("li.item-song:not(.active");
+  if (itemSong) {
+    const dataIndex = itemSong.getAttribute("data-index");
+    indexSong = Number(dataIndex);
+    loadIndexSong();
+    handleAddActive();
+    loadNameSong();
+    loadLyricSong();
+
+    playBtn.innerHTML = pauseIcon;
+    audio.play();
+  }
+});
+
+const handlePrevSong = function () {
+  if (indexSong === 0) {
+    indexSong = dataSongs.length - 1;
+  } else {
+    indexSong--;
+  }
+  playBtn.innerHTML = pauseIcon;
+  loadIndexSong();
+  handleAddActive();
+  loadLyricSong();
+
+  loadNameSong();
+};
+
+radomBtn.addEventListener("click", function (e) {
+  if (e.which === 1) {
+    isRandom = !isRandom;
+    radomBtn.classList.toggle("active-btn", isRandom);
+  }
+});
+
+repeatBtn.addEventListener("click", function (e) {
+  if (e.which === 1) {
+    isRepeat = !isRepeat;
+    repeatBtn.classList.toggle("active-btn", isRepeat);
+  }
+});
+
+nextRight.addEventListener("click", function (e) {
+  if (e.which === 1) {
+    if (isRandom) {
+      handleRandomSong();
+    } else {
+      handleNextSong();
+    }
+    audio.play();
+  }
+});
+
+nextLeft.addEventListener("click", function (e) {
+  if (e.which === 1) {
+    if (isRandom) {
+      handleRandomSong();
+    } else {
+      handlePrevSong();
+    }
+    audio.play();
+  }
+});
 
 const handleChange = function (value) {
   value = (value / 100) * audio.duration;
@@ -18,7 +172,6 @@ const handleChange = function (value) {
 progressBar.addEventListener("mousedown", function (e) {
   if (e.which === 1) {
     isDrag = true;
-
     rate = (e.offsetX * 100) / progressBarWidth;
     progress.style.width = `${rate}%`;
     initialRate = rate;
@@ -61,10 +214,6 @@ document.addEventListener("mouseup", function () {
   }
 });
 
-const playBtn = document.querySelector(".play-btn button");
-const playIcon = `<i class="fa-solid fa-play"></i>`;
-const pauseIcon = `<i class="fa-solid fa-pause"></i>`;
-
 const getTime = function (seconds) {
   let min = Math.floor(seconds / 60);
   seconds = Math.floor(seconds - min * 60);
@@ -74,12 +223,12 @@ const getTime = function (seconds) {
   }`;
 };
 
-if (audio.readyState > 0) {
-  durationTimeEl.innerText = getTime(this.duration);
-}
+console.log(audio.readyState);
 
 audio.addEventListener("loadeddata", function () {
-  durationTimeEl.innerText = getTime(this.duration);
+  if (audio.readyState > 0) {
+    durationTimeEl.innerText = getTime(this.duration);
+  }
 });
 
 playBtn.addEventListener("click", function (e) {
@@ -101,11 +250,23 @@ audio.addEventListener("timeupdate", function () {
   }
 });
 
-audio.addEventListener("ended", function () {
+audio.addEventListener("ended", async function () {
   progress.style.width = 0;
   this.currentTime = 0;
   playBtn.innerHTML = playIcon;
   rate = 0;
+
+  if (isRepeat) {
+    audio.play();
+    playBtn.innerHTML = pauseIcon;
+    return;
+  }
+  if (isRandom) {
+    handleRandomSong();
+  } else {
+    handleNextSong();
+  }
+  audio.play();
 });
 
 const timer = progressBar.querySelector(".timer");
@@ -131,15 +292,25 @@ progressDot.addEventListener("mousemove", function (e) {
 const karaoke = document.querySelector(".karaoke");
 const karaokeContent = karaoke.querySelector(".karaoke-content");
 
-const songName = `Đâu ai chung tình được mãi`;
-const singerName = `Ca sĩ: Đinh Tùng Huy, AVC`;
-
 // Giai Đoạn 1 : Xử lý Hiển thị câu hát
 console.log(lyric);
 let currentIndex;
+var showSentence = false;
+
+var renderSongInfo = function () {
+  karaokeContent.innerHTML = `
+  <p>${songName}</p>
+  <p>${singerName}</p>
+  `;
+
+  showSentence = false;
+};
+
+renderSongInfo();
+
 const renderSentences = function () {
   let currentTime = Math.floor(audio.currentTime * 1000); // chuyển từ ms thành s
-  let sentencesIndex = lyric.findIndex(function (sentence) {
+  let sentenceIndex = lyric.findIndex(function (sentence) {
     return (
       currentTime >= sentence.words[0].startTime &&
       currentTime <= sentence.words[sentence.words.length - 1].startTime
@@ -147,47 +318,64 @@ const renderSentences = function () {
   });
 
   // xử lú trước khi vào hát 5 giây
-  let rangeStar = Math.abs(currentTime - lyric[0].words[0].startTime);
-  if (rangeStar > 0 && rangeStar < 5000) {
-    sentencesIndex = 0;
+  let rangeStart = Math.abs(currentTime - lyric[0].words[0].startTime);
+  if (rangeStart > 0 && rangeStart < 5000) {
+    sentenceIndex = 0;
+  } else if (rangeStart > 5000 && currentTime < lyric[0].words[0].startTime) {
+    renderSongInfo();
+  } else if (
+    currentTime >
+    lyric[lyric.length - 1].words[lyric[lyric.length - 1].words.length - 1]
+      .endTime
+  ) {
+    renderSongInfo();
   }
-  if (sentencesIndex !== -1 && sentencesIndex !== currentIndex) {
+  if (sentenceIndex !== -1 && sentenceIndex !== currentIndex) {
     // Trước khi hát câu đầu tiên của bài hát
-    if (sentencesIndex === 0) {
+    if (sentenceIndex === 0) {
       let output = `
         <p >${getSentence(0)}</p>
         <p>${getSentence(1)}</p>
         `;
       karaokeContent.innerHTML = output;
+      showSentence = true;
     } else {
-      // Khi bắt đầu hát từ câu thứ 2 trở đi
+      //Khi bắt đầu hát từ câu thứ 2 trở đi
       /*
-      index = 1 -> ẩn đòng (0) -> Hiển thị index = 2
-      index = 2 -> ẩn đòng (1) -> Hiển thị index = 3
-      index = 3 -> ẩn đòng (0) -> Hiển thị index = 4
-      index = 4 -> ẩn đòng (1) -> Hiển thị index = 5
-      => Lẻ đầu chẵn đôi
+      index = 1 -> Ẩn dòng đầu (0) -> Hiển thị index = 2
+      index = 2 -> Ẩn dòng hai (1) -> Hiển thị index = 3
+      index = 3 -> Ẩn dòng đầu (0) -> Hiển thị index = 4
+      index = 4 -> Ẩn dòng hai (1) -> Hiển thị index = 5
       */
+
+      if (!showSentence) {
+        var output = `
+        <p>${getSentence(sentenceIndex)}</p>
+        <p>${getSentence(sentenceIndex + 1)}</p>
+      `;
+        karaokeContent.innerHTML = output;
+        showSentence = true;
+      }
       setTimeout(function () {
-        if (sentencesIndex % 2 !== 0) {
+        if (sentenceIndex % 2 !== 0) {
           nextSentence(karaokeContent.children[0], {
-            data: getSentence(sentencesIndex + 1),
+            data: getSentence(sentenceIndex + 1),
           });
         } else {
           nextSentence(karaokeContent.children[1], {
-            data: getSentence(sentencesIndex + 1),
+            data: getSentence(sentenceIndex + 1),
           });
         }
-      }, 500);
+      }, 300);
     }
-    currentIndex = sentencesIndex;
+    currentIndex = sentenceIndex;
   }
 };
 audio.addEventListener("timeupdate", renderSentences);
 
 // Lấy câu hát dựa vào index của câu
 const getSentence = function (index) {
-  return lyric[index].words
+  return lyric[index]?.words
     .map(function (word) {
       return `<span class="word" data-start-time="${word.startTime}" data-end-time="${word.endTime}">
       ${word.data}<span>${word.data}</span></span>`;
@@ -223,14 +411,12 @@ audio.addEventListener("play", function () {
 });
 audio.addEventListener("pause", function () {
   console.log(audio.currentTime);
-
   requestId = cancelAnimationFrame(handleColorKaraoke);
 });
 
 const handleColorKaraoke = function () {
   // xử lý Chắc năng tô màu
   let currentTime = Math.floor(audio.currentTime * 1000); // chuyển từ ms thành s
-
   let wordEl = karaokeContent.querySelectorAll(".word");
   if (wordEl.length) {
     wordEl.forEach(function (word, index) {

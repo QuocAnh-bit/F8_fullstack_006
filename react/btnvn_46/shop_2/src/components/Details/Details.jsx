@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading/Loading.jsx";
-import { PAGE_LIMIT } from "../../config/config.json";
 import { Link, NavLink, useParams } from "react-router-dom";
 import "../Details/Details.scss";
 import { apiGetProductDetails, apiGetProductList } from "../../Api/Api.js";
@@ -85,6 +84,7 @@ export default function Details() {
           </div>
         </div>
       )}
+
       <ToastContainer />
     </>
   );

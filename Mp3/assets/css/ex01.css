@@ -1,0 +1,499 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background-image: url(../img/background/background.png);
+    background-size: cover;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    font-size: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+}
+
+.container-wrap {
+    margin: 0 auto;
+    width: 70%;
+    background-color: #14121494;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(253, 251, 251, 0.482) 0px 7px 29px 0px;
+    position: relative;
+}
+
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 100;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+button {
+    background-color: #ffffff00;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+    border-radius: 5px;
+}
+
+/* Track */
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.side-bar-right {
+    width: 30%;
+    padding: 12px 0;
+    background-color: #231E23;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.logo {
+    text-align: center;
+    font-size: 3.5rem;
+}
+
+.logo span {
+    font-family: 'Iceland', cursive;
+}
+
+.logo .fist-text {
+    color: #FF6000;
+}
+
+.logo .second-text {
+    color: #4E4FEB;
+}
+
+.logo img {
+    width: 150px;
+}
+
+.search {
+    position: relative;
+
+}
+
+.search label {
+    position: absolute;
+    line-height: 32px;
+    padding-left: 8px;
+
+}
+
+
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.menu ul {}
+
+.menu ul li {
+    list-style: none;
+}
+
+.menu .item-song {
+    padding: 5px;
+}
+
+.menu .item-song div:first-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.menu .item-song div:nth-child(2) p:nth-child(2) {
+    margin-top: 5px;
+    font-size: 1.2rem;
+}
+
+hr {
+    margin: 10px 0;
+
+}
+
+.active {
+    position: relative;
+    background-color: #75533d9f;
+}
+
+.active::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #FF6000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 5px;
+
+}
+
+.active::after {
+    /* font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f04b";
+    line-height: 25px; */
+    font-size: 25px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    height: 25px;
+    left: 35px;
+    bottom: 25px;
+    width: 25px;
+    content: "";
+    background-image: url(https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif);
+    background-repeat: no-repeat;
+}
+
+
+.music-play {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #231e23b1;
+    width: 0;
+    padding: 25px;
+
+}
+
+.player-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-controls-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: fit-content;
+    width: 100px;
+}
+
+.img-song {
+    width: 70px;
+    align-self: center;
+    display: block;
+    border-radius: 10px;
+}
+
+.function-btn {
+    width: 30%;
+    display: flex;
+    gap: 25px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.function-btn button {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.function-btn button:hover,
+.active-btn button {
+    color: #1fd485;
+}
+
+.next-left {
+    transform: rotate(180deg);
+}
+
+.function-btn .random-btn button,
+.repeat-btn button {
+    font-size: 1.8rem;
+}
+
+.play-btn button {
+    font-size: 3rem;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 50%;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    min-width: 52.5px;
+
+
+}
+
+
+
+.play-btn button:before {
+    content: "";
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 50%;
+}
+
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.play-btn button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ce8243ec;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+}
+
+.player-controls-right {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+}
+
+.volume-wrap {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px
+}
+
+.volume-bar {
+    width: 70%;
+    border-radius: 5px;
+    height: 3px;
+    background-color: #e6eceba0;
+    position: relative;
+}
+
+.volume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background-color: rgb(245, 245, 245);
+    border-radius: 9px;
+}
+
+.volume span {
+    display: none;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(241, 220, 220);
+    position: absolute;
+    right: 0;
+    top: 5px;
+    border-radius: 50%;
+    translate: 50%;
+    cursor: pointer;
+}
+
+.player-bar {
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.progress-bar {
+    width: 90%;
+    height: 5px;
+    background-color: #e6eceba0;
+    border-radius: 5px;
+    position: relative;
+}
+
+.star-time,
+.end-time {
+    font-size: 1.5rem;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    /* width: 50%; */
+    background-color: rgb(245, 245, 245);
+    border-radius: 9px;
+    cursor: pointer;
+
+}
+
+.progress span {
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+
+    background-color: rgb(241, 220, 220);
+    position: absolute;
+    right: 0;
+    top: -6px;
+    border-radius: 50%;
+    translate: 50%;
+    cursor: pointer;
+}
+
+.progress-bar:hover .progress .dot {
+    opacity: 1;
+    visibility: visible;
+    width: 20px;
+    height: 20px;
+}
+
+.progress-bar:hover {
+    height: 8px;
+}
+
+.timer {
+    position: absolute;
+    display: none;
+    border-radius: 9px;
+    background-color: rgba(241, 169, 169, 0.475);
+    width: 40px;
+    height: 20px;
+    left: 0px;
+    translate: -55%;
+    bottom: -25px;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 20px;
+    color: #a3d4e8;
+}
+
+.karaoke {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+
+.karaoke-heading {
+    position: absolute;
+    top: 70px;
+    font-size: 3.5rem;
+}
+
+.karaoke-content {
+    width: 100%;
+    font-size: 4rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.karaoke-content p {
+    margin: 25px 0;
+}
+
+.karaoke-content p .word {
+    position: relative;
+
+
+}
+
+.karaoke-content p .word span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    overflow: hidden;
+    width: 0%;
+    color: rgba(24, 229, 79, 0.688);
+
+}
+
+.karaoke-content .name-singer {
+    font-size: 3rem;
+}
