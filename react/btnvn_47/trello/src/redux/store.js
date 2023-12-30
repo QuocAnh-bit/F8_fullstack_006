@@ -1,11 +1,37 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { sliceLogin } from "./slice/loginSlice";
-import { sliceTrello } from "./slice/trelloSlice";
+import {configureStore, createListenerMiddleware, isAnyOf} from "@reduxjs/toolkit";
+import {authSlice} from "./slice/authSlice.js";
+import {loadingSlice} from "./slice/loadingSlice.js";
+import {taskSlice, updateTask} from "./slice/taskSlice.js";
+import {apiClient} from "../services/api.js";
+import {customToast} from "../utils/toastUtil.js";
+const {reset: taskReset,removeTask, reorderTask, reorderColumn, addTask,removeColumn, editTitleColumn, editContentTask} = taskSlice.actions;
+
 const rootReducer = {
-  reducer: {
-    login: sliceLogin.reducer,
-    trello: sliceTrello.reducer,
-  },
+    auth: authSlice.reducer,
+    loading: loadingSlice.reducer,
+    task : taskSlice.reducer
 };
 
-export const store = configureStore(rootReducer);
+const taskListenerMiddleware = createListenerMiddleware()
+taskListenerMiddleware.startListening({
+    matcher: isAnyOf(reorderColumn,removeTask, reorderTask, addTask, removeColumn, editTitleColumn, editContentTask),
+    effect: async (action, listenerApi) => {
+        const taskList = listenerApi.getState().task.data.reduce((result, column) => {
+            const tasks = column.tasks.map(task => {
+                return {
+                    column: task.column,
+                    content: task.content,
+                    columnName: column.columnName
+                }
+            })
+            return [...result, ...tasks]
+        }, [])
+        listenerApi.dispatch(updateTask(taskList));
+    }
+})
+
+export const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().prepend(taskListenerMiddleware.middleware)
+});

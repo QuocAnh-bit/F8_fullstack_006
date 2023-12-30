@@ -1,0 +1,70 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.home {
+  // background-color: #CD519D;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.column_group {
+  display: flex;
+  flex-direction: row;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://images.pexels.com/photos/1213447/pexels-photo-1213447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-size: cover;
+  background-position: center;
+}
+
+.button_add_column {
+  height: 50px;
+  width: 200px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #a4bce6;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+.button_add_column:hover {
+  border: 3px solid #ffffff;
+}
+.home_header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  padding-left: 20px;
+  flex-direction: row;
+  overflow: auto hidden;
+  justify-content: flex-start;
+  // align-items: ;
+  font-size: calc(10px + 1vmin);
+  gap: 20px;
+  height: 100vh;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+// @keyframes App-logo-spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }

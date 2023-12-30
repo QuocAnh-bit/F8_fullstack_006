@@ -1,0 +1,13 @@
+.loading {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  font-weight: 700;
+  color: #fff;
+  z-index: 999;
+  justify-content: flex-start;
+  align-items: flex-end;
+  p {
+    margin-left: 20px;
+  }
+}

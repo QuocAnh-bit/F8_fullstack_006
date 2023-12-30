@@ -1,4 +1,0 @@
-{
-    "SERVER_API": "https://api-exercise-trello.vercel.app/api/v1",
-    "PAGE_LIMIT" : 8
-}
