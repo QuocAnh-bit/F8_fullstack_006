@@ -12,25 +12,41 @@ import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
+  NavbarMenuToggle,
   DropdownItem,
+  NavbarMenu,
   Avatar,
   User,
 } from "@nextui-org/react";
 import logo from "../../../imgs/logo.png";
 import { usePathname } from "next/navigation";
+import { IoMenu } from "react-icons/io5";
+import { useState } from "react";
 
 export default function Header() {
   const path = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, error, isLoading } = useUser();
 
   return (
-    <div>
-      <Navbar maxWidth="xl" className="drop-shadow-md">
-        <NavbarBrand className="gap-2" as={Link} href="/">
+    <div className="relative">
+      <Navbar
+        maxWidth="xl"
+        className="drop-shadow-md"
+        isBordered
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={setIsMenuOpen}
+      >
+        <NavbarBrand
+          className="gap-2"
+          as={Link}
+          href="/"
+          onClick={() => setIsMenuOpen(false)}
+        >
           <Image src={`${logo.src}`} width={50} />
           <p className="text-2xl font-bold text-fuchsia-500">Mindmap</p>
         </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarContent className="hidden md:flex lg:gap-4" justify="center">
           <NavbarItem>
             <Link
               color="foreground"
@@ -74,7 +90,7 @@ export default function Header() {
             </Link>
           </NavbarItem>
         </NavbarContent>
-        <NavbarContent justify="end">
+        <NavbarContent className="hidden md:flex" justify="end">
           {user ? (
             <NavbarItem>
               <Link
@@ -134,6 +150,106 @@ export default function Header() {
             </NavbarItem>
           )}
         </NavbarContent>
+        <NavbarContent className="md:hidden" justify="end">
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          />
+        </NavbarContent>
+        {/* MObile */}
+        <NavbarMenu>
+          <NavbarContent
+            className="flex-col w-full gap-5 items-start flex lg:gap-4"
+            size="lg"
+          >
+            {user && (
+              <>
+                <NavbarItem>
+                  <User
+                    as="button"
+                    avatarProps={{
+                      isBordered: true,
+                      src: user.picture,
+                    }}
+                    className="transition-transform"
+                    description={`${user.email ? user.email : ""}`}
+                    name={`${user.name}`}
+                  />
+                </NavbarItem>
+                <NavbarItem onClick={() => setIsMenuOpen(false)}>
+                  <Link
+                    color="foreground"
+                    href={"/mindmap"}
+                    className={`${
+                      path === "/mindmap" ? `text-blue-500 font-bold` : ""
+                    }`}
+                  >
+                    MindMap
+                  </Link>
+                </NavbarItem>
+              </>
+            )}
+            <NavbarItem onClick={() => setIsMenuOpen(false)}>
+              <Link
+                color="foreground"
+                href="/"
+                className={`${path === "/" ? `text-blue-500 font-bold` : ""}`}
+              >
+                Trang chủ
+              </Link>
+            </NavbarItem>
+            <NavbarItem onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="/about"
+                aria-current="page"
+                className={`${
+                  path === "/about" ? `text-blue-500 font-bold` : ""
+                }`}
+              >
+                Giới thiệu
+              </Link>
+            </NavbarItem>
+            <NavbarItem onClick={() => setIsMenuOpen(false)}>
+              <Link
+                color="foreground"
+                href={`/pricing`}
+                className={`${
+                  path === "/pricing" ? `text-blue-500 font-bold` : ""
+                }`}
+              >
+                Bảng giá
+              </Link>
+            </NavbarItem>
+            <NavbarItem onClick={() => setIsMenuOpen(false)}>
+              <Link
+                color="foreground"
+                href={"/contact"}
+                className={`${
+                  path === "/contact" ? `text-blue-500 font-bold` : ""
+                }`}
+              >
+                Liên Hệ
+              </Link>
+            </NavbarItem>
+            {user ? (
+              <NavbarItem>
+                <Link className="text-blue-600" href={`/api/auth/logout`}>
+                  Logout
+                </Link>
+              </NavbarItem>
+            ) : (
+              <NavbarItem>
+                <Link
+                  className="text-blue-600"
+                  color="primary"
+                  href={`/api/auth/login`}
+                  variant="flat"
+                >
+                  Đăng nhập
+                </Link>
+              </NavbarItem>
+            )}
+          </NavbarContent>
+        </NavbarMenu>
       </Navbar>
     </div>
   );

@@ -98,7 +98,7 @@ export default function ListMap() {
 
         <div className="overflow-x-auto relative shadow-md sm:rounded-lg max-h-96">
           <table className="w-full text-sm text-left text-gray-500 ">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <thead className=" text-xs text-gray-700 uppercase bg-gray-50 ">
               <tr>
                 <th scope="col" className="py-3 px-6">
                   #

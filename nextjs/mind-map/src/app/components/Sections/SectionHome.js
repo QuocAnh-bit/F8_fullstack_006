@@ -16,23 +16,25 @@ export default function SectionHome() {
   return (
     <>
       <div className=" relative overflow-hidden rounded-2xl h-80 bg-center bg-cover bg-bgrHome my-6 ">
-        <div className="absolute gap-5 text-white text-3xl inset-0 bg-black/70 flex  flex-col justify-center items-center">
+        <div className="text-lg  absolute gap-5 text-white lg:text-3xl inset-0 bg-black/70 flex  flex-col justify-center items-center">
           <p>Tất cả bất đầu với một ý tưởng.</p>
-          <h1 className="text-5xl font-bold">Hãy bắt đầu với Mind Map</h1>
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold">
+            Hãy bắt đầu với Mind Map
+          </h1>
         </div>
       </div>
-      <div className="max-w-[1280px] grid grid-rows-2 grid-flow-col gap-2 my-5">
+      <div className="max-w-[1280px]  grid grid-rows-2 grid-flow-col gap-2 my-5">
         <Card
           as={Link}
           href={`/api/auth/login`}
           color="success"
           className="row-span-3 h-[300px]"
         >
-          <CardHeader className=" inset-0   bg-black/20 gap-3 absolute z-10  flex-col !items-end ">
-            <h4 className="text-white font-medium text-large text-right">
+          <CardHeader className="items-center md:justify-center  inset-0   bg-black/20 gap-3 absolute z-10  flex-col lg:!items-end ">
+            <h4 className="text-2xl  text-white font-medium md:text-3xl text-right">
               Hãy bắt đầu với ý tưởng của bạn
             </h4>
-            <Button>Tạo ngay</Button>
+            <Button className="hidden md:flex">Tạo ngay</Button>
           </CardHeader>
           <Image
             removeWrapper
@@ -42,7 +44,7 @@ export default function SectionHome() {
           />
         </Card>
         <Card className=" h-[146px] " as={Link} href={"/contact"}>
-          <CardHeader className=" inset-0  bg-black/20 absolute z-10  flex-col !items-start">
+          <CardHeader className="items-start justify-start   inset-0  bg-black/20 absolute z-10  flex-col lg:!items-start">
             <h4 className="text-white font-medium text-large">Liên hệ</h4>
           </CardHeader>
           <Image
@@ -53,7 +55,7 @@ export default function SectionHome() {
           />
         </Card>
         <Card className=" h-[146px] " as={Link} href={"/pricing"}>
-          <CardHeader className="absolute inset-0  bg-black/20 z-10  flex-col !items-start">
+          <CardHeader className="absolute  items-start justify-start  inset-0  bg-black/20 z-10  flex-col lg:!items-start">
             <h4 className="text-white font-medium text-large">Bảng giá</h4>
           </CardHeader>
           <Image
