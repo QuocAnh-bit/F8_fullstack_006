@@ -1,0 +1,44 @@
+<h1>Cập nhật người dùng <%= editData.name %></h1>
+<form action="/users/update-user" method="POST">
+  <div class="mb-3">
+    <label for="">Tên</label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      placeholder="Tên..."
+      value="<%= editData.name %>"
+    />
+    <%- req.errors?.name ? `<span class="text-danger">${req.errors?.name}</span>`: '' %>
+  </div>
+  <div class="mb-3">
+    <label for="">Email</label>
+    <input
+      type="text"
+      name="email"
+      class="form-control"
+      placeholder="Email..."
+      value="<%= editData.email %>"
+    />
+    <%- req.errors?.email ? `<span class="text-danger">${req.errors?.email}</span>`: '' %>
+  </div>
+
+  <div class="mb-3">
+    <label for="">Trạng thái</label>
+    <select name="status" class="form-select">
+      <option value="0" <%= !editData.status  ? 'selected': '' %>>Chưa kích hoạt</option>
+      <option value="1" <%= editData.status ? 'selected': '' %>>Kích hoạt</option>
+    </select>
+  </div>
+
+  <input
+      type="text"
+      name="id"
+      hidden
+      value="<%= editData.id %>"
+    />
+  <button type="submit" class="btn btn-primary">Cập Nhật</button>
+  <a href="#" class="btn btn-danger">Hủy</a>
+</form>
+
+<%= JSON.stringify(editData) %>
