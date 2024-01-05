@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+  <form
+    class="w-50 d-flex flex-column justify-content-center gap-3"
+    method="POST"
+  >
+    <h1 class="text-center">Đăng Ký</h1>
+    <div class="form-group">
+      <label for="exampleInputName">Name </label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputName"
+        aria-describedby="nameHelp"
+        placeholder="Enter name"
+        name="name"
+        value="<%= req.old?.name %>"
+      />
+      <small id="nameHelp" class="form-text text-danger">
+        <%- req?.errors ? req.errors.name : "" %></small
+      >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        name="email"
+        value="<%= req.old?.email %>"
+      />
+      <small id="nameHelp" class="form-text text-danger">
+        <%= req?.errors ? req.errors.email : "" %></small
+      >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Password"
+        name="password"
+      />
+      <small id="nameHelp" class="form-text text-danger">
+        <%= req?.errors ? req.errors.password : "" %></small
+      >
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <div class="d-flex flex-column justify-content-center gap-3">
+      <button type="submit" class="btn btn-primary w-100">Đăng Ký</button>
+      <a href="/login" class="btn btn-secondary w-100">Trở Lại</a>
+    </div>
+  </form>
+</div>
