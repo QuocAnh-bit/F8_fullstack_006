@@ -97,7 +97,12 @@ function Home(props) {
   return (
     <>
       <div className={clsx(Styles.home)}>
-        <div className={clsx(Styles.overlay)}></div>
+        <div className={clsx(Styles.overlay)}>
+          {" "}
+          <button className={clsx(Styles.logout)} onClick={() => logout()}>
+            Đăng Xuất
+          </button>
+        </div>
 
         <header className={clsx(Styles.home_header)}>
           <DragDropContext onDragEnd={handleOnDragEnd}>

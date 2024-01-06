@@ -26,6 +26,16 @@ body {
   background-image: url(https://images.pexels.com/photos/1213447/pexels-photo-1213447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
   background-size: cover;
   background-position: center;
+  .logout {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #a4bce6;
+    border: none;
+    z-index: 999;
+  }
 }
 
 .button_add_column {
@@ -39,8 +49,10 @@ body {
   color: #ffffff;
   font-weight: bold;
 }
-.button_add_column:hover {
-  border: 3px solid #ffffff;
+
+.button_add_column:hover,
+.overlay .logout:hover {
+  outline: 3px solid #ffffff;
 }
 .home_header {
   position: relative;

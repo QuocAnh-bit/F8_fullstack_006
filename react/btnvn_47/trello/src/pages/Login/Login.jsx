@@ -63,6 +63,7 @@ function Login({ toggleLoading }) {
             type="text"
             placeholder="Vui lòng nhập Email"
             className={clsx(Styles.form_login_input)}
+            value={`qanhanh06@gmail.com`}
           />
           {errors.email && (
             <p className={clsx(Styles.form_login_validate)}>
