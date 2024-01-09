@@ -11,12 +11,13 @@ const hashPassRegister = (password) => {
 };
 
 const userRegister = async (userProfile) => {
-  const { name, email, password } = userProfile;
+  const { name, email, password, status } = userProfile;
   const hashPassWord = hashPassRegister(password);
   await User.create({
-    name: name,
-    email: email,
+    name,
+    email,
     password: hashPassWord,
+    status,
   });
 };
 
@@ -25,6 +26,10 @@ const userLogin = async (userLogin) => {
 
   try {
     const check = await User.findOne({ where: { email } });
+
+    if (!check.status) {
+      return "status_false";
+    }
 
     if (check === null) {
       return false;

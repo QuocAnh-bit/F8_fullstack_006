@@ -2,6 +2,9 @@ const { object, string } = require("yup");
 const authService = require("../service/authService");
 
 module.exports = {
+  index: (req, res) => {
+    return res.redirect("/auth/login");
+  },
   login: (req, res) => {
     if (req.session.isLogin) {
       return res.redirect("/");
@@ -22,11 +25,17 @@ module.exports = {
     });
     try {
       const body = await schema.validate(req.body, { abortEarly: false });
+
       const checkLogin = await authService.userLogin(body);
+      if (checkLogin === "status_false") {
+        req.flash("msg", "Tài khoản chưa được kích hoạt");
+        req.flash("old", req.body);
+        return res.redirect("/auth/login");
+      }
       if (!checkLogin) {
         req.flash("msg", "Email hoặc mật khẩu sai! Vui lòng thử lại");
         req.flash("old", req.body);
-        return res.redirect("/login");
+        return res.redirect("/auth/login");
       } else {
         req.session.isLogin = true;
         req.session.user = body;
@@ -41,7 +50,7 @@ module.exports = {
       console.log(err);
     }
 
-    return res.redirect("/login");
+    return res.redirect("/auth/login");
   },
 
   register: (req, res) => {
@@ -66,10 +75,12 @@ module.exports = {
     });
     try {
       const body = await schema.validate(req.body, { abortEarly: false });
+      body.status = body.status === "1" ? true : false;
+      console.log(body.status);
       authService.userRegister(body);
       req.flash("register", body);
       req.flash("msg", "Đăng Ký thành công");
-      return res.redirect("/login");
+      return res.redirect("/auth/login");
     } catch (e) {
       const err = Object.fromEntries(
         e?.inner.map((item) => [item.path, item.message])
@@ -78,11 +89,11 @@ module.exports = {
       req.flash("old", req.body);
       console.log(err);
     }
-    return res.redirect("/login/register");
+    return res.redirect("/auth/register");
   },
   handleLogout: (req, res) => {
     delete req.session.isLogin;
     delete req.session.user;
-    return res.redirect("/login");
+    return res.redirect("/auth/login");
   },
 };

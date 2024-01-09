@@ -2,7 +2,7 @@ const login = (req, res, next) => {
   if (req.session.isLogin) {
     next();
   } else {
-    res.redirect("/login");
+    res.redirect("/auth/login");
   }
 };
 

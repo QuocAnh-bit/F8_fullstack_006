@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/login", authRouter);
+app.use("/auth", authRouter);
 app.use(authMiddleware.login);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
