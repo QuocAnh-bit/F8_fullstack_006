@@ -20,13 +20,15 @@ import {
 } from "@nextui-org/react";
 import logo from "../../../imgs/logo.png";
 import { usePathname } from "next/navigation";
-import { IoMenu } from "react-icons/io5";
+import cookieCutter from "@boiseitguru/cookie-cutter";
+
 import { useState } from "react";
 
 export default function Header() {
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, error, isLoading } = useUser();
+  const userCookie = cookieCutter.get("profile");
+  const user = userCookie && JSON.parse(decodeURIComponent(userCookie));
 
   return (
     <div className="relative">
@@ -121,7 +123,7 @@ export default function Header() {
                       }}
                       className="transition-transform"
                       description={`${user.email ? user.email : ""}`}
-                      name={`${user.name}`}
+                      name={`${user.name || user.nickname}`}
                     />
                   </DropdownTrigger>
                   <DropdownMenu aria-label="User Actions" variant="flat">

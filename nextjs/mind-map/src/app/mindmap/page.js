@@ -4,11 +4,6 @@ import ListMap from "./ListMap";
 import { redirect } from "next/navigation";
 
 export default async function page() {
-  const user = await getSession();
-  console.log(!user);
-  if (user === null) {
-    redirect("/api/auth/login");
-  }
   return (
     <>
       <ListMap />

@@ -28,7 +28,7 @@ function InputNode({ data }) {
   );
   return (
     <div
-      className="shadow-md min-w-[122px] w-fit rounded-md bg-white border-2 border-stone-400"
+      className="shadow-md min-w-[122px] w-fit rounded-md bg-white border-2 border-stone-400 active:bg-slate-100 active:border-slate-800 hover:border-slate-500 "
       onDoubleClick={handleDbClick}
       onBlur={() => setEditMode(false)}
       onKeyDown={(e) => {

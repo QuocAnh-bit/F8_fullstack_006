@@ -26,6 +26,7 @@ import { getMindMap, updateMindMap } from "@/utils/api/dataApi";
 import ModalShare from "./ModalShare";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { notFound, redirect } from "next/navigation";
+import cookieCutter from "@boiseitguru/cookie-cutter";
 
 const nodeTypes = {
   customNode: CustomNode,
@@ -42,7 +43,9 @@ const getNodeId = () => `randomnode_${+new Date()}`;
 const MindMap = () => {
   const router = useRouter();
   const { getNode } = useReactFlow();
-  const { user, error } = useUser();
+  const userCookie = cookieCutter.get("profile");
+  const user = userCookie && JSON.parse(decodeURIComponent(userCookie));
+
   const [userEdit, setUserEdit] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -114,7 +117,6 @@ const MindMap = () => {
       toast.success("Lưu Thành công");
 
       setLocalStorage("datas", storedDatas);
-      router.refresh();
     }
   }, [rfInstance, editName, editDesc, storedDatas, idMindMap]);
 

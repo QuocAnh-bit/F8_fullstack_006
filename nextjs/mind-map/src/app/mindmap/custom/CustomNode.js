@@ -7,6 +7,8 @@ function CustomNode({ data }) {
 
   const [editMode, setEditMode] = useState(false);
 
+  const handleOnClick = useCallback(() => {}, []);
+
   const handleDbClick = (e) => {
     setEditMode(true);
   };
@@ -27,8 +29,9 @@ function CustomNode({ data }) {
   );
   return (
     <div
-      className=" shadow-md min-w-[122px] w-fit rounded-md bg-white border-2 border-stone-400"
+      className=" shadow-md min-w-[122px] w-fit rounded-md bg-white border-2 border-stone-400 active:bg-slate-100 active:border-slate-800 hover:border-slate-500 "
       onDoubleClick={handleDbClick}
+      onClick={handleOnClick}
       onBlur={() => setEditMode(false)}
       onKeyDown={(e) => {
         if (e.key === "Enter") {

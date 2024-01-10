@@ -70,6 +70,7 @@ export default function ListMap() {
         },
       ],
       edges: [],
+      mode: "private",
     };
     postListMindMap(newProject);
     setListData((prevListData) => [...prevListData, newProject]);

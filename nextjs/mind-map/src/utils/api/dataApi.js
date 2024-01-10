@@ -18,8 +18,13 @@ export const getMindMap = async (id) => {
     const response = await fetch(`${SERVER_API}/mind-map/${id}`, {
       cache: "no-cache",
     });
-    const data = await response.json();
 
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error("API không tìm thấy");
+      }
+    }
+    const data = await response.json();
     return data;
   } catch (error) {
     console.log(error);
