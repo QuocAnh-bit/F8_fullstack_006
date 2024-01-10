@@ -27,6 +27,7 @@ import ModalShare from "./ModalShare";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { notFound, redirect } from "next/navigation";
 import cookieCutter from "@boiseitguru/cookie-cutter";
+import { getCookie } from "cookies-next";
 
 const nodeTypes = {
   customNode: CustomNode,
@@ -43,8 +44,8 @@ const getNodeId = () => `randomnode_${+new Date()}`;
 const MindMap = () => {
   const router = useRouter();
   const { getNode } = useReactFlow();
-  const userCookie = cookieCutter.get("profile");
-  const user = userCookie && JSON.parse(decodeURIComponent(userCookie));
+  const userCookie = getCookie("profile");
+  let user = JSON.parse(decodeURIComponent(userCookie));
 
   const [userEdit, setUserEdit] = useState(false);
   const [loading, setLoading] = useState(true);
