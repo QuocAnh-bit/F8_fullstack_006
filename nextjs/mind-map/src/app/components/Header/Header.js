@@ -20,15 +20,17 @@ import {
 } from "@nextui-org/react";
 import logo from "../../../imgs/logo.png";
 import { usePathname } from "next/navigation";
-import cookieCutter from "@boiseitguru/cookie-cutter";
+import cookieCutter, { get } from "@boiseitguru/cookie-cutter";
+import { getCookie } from "cookies-next";
 
 import { useState } from "react";
 
 export default function Header() {
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const userCookie = cookieCutter.get("profile");
-  const user = userCookie && JSON.parse(decodeURIComponent(userCookie));
+  const userCookie = getCookie("profile");
+  let user = JSON.parse(decodeURIComponent(userCookie));
+  console.log(user);
 
   return (
     <div className="relative">
