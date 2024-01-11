@@ -104,18 +104,32 @@ const MindMap = () => {
         return item;
       });
 
-      await updateMindMap(idMindMap, {
+      const a = await updateMindMap(idMindMap, {
         nodes: storedDatas.nodes,
         edges: storedDatas.edges,
         name: storedDatas.name,
         dec: storedDatas.dec,
       });
-      setStatusSave(false);
-      toast.success("Lưu Thành công");
+
+      if (a === 1) {
+        setStatusSave(false);
+        return 1;
+      }
 
       setLocalStorage("datas", storedDatas);
     }
   }, [rfInstance, editName, editDesc, storedDatas, idMindMap]);
+
+  const handleClick = async () => {
+    const checkSave = await onSave();
+    console.log(checkSave);
+    if (checkSave === 1) {
+      toast.error("Vui Lòng thử lại");
+    } else {
+      setStatusSave(false);
+      toast.success("Lưu thành công");
+    }
+  };
 
   const onConnect = useCallback((params) => {
     // reset the start node on connections=
@@ -226,7 +240,7 @@ const MindMap = () => {
         <div className="flex gap-3">
           {userEdit && (
             <Button
-              onClick={onSave}
+              onClick={handleClick}
               isLoading={statusSave ? true : false}
               color="success"
               className="text-white font-bold"
@@ -236,6 +250,8 @@ const MindMap = () => {
           )}
           {userEdit && (
             <ModalShare
+              setStatusSave={setStatusSave}
+              handleClick={handleClick}
               onSave={onSave}
               nameMindMap={editName}
               descMindMap={editDesc}

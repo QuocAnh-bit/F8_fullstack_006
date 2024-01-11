@@ -52,7 +52,11 @@ export const deleteMindMap = async (id) => {
 export const updateMindMap = async (id, body) => {
   try {
     const { data } = await client.patch(`/mind-map/${id}`, body);
+    return data;
   } catch (error) {
     console.log(error);
+    if (error) {
+      return 1;
+    }
   }
 };

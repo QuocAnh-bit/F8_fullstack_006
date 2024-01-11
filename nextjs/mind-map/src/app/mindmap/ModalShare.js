@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { getMindMap, updateMindMap } from "@/utils/api/dataApi";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
 
 import {
   Modal,
@@ -18,7 +19,12 @@ import {
   Textarea,
 } from "@nextui-org/react";
 
-export default function ModalShare({ onSave, idMindMap }) {
+export default function ModalShare({
+  onSave,
+  idMindMap,
+  handleClick,
+  setStatusSave,
+}) {
   const router = useRouter();
 
   const [mode, setMode] = useState("private");
@@ -44,9 +50,15 @@ export default function ModalShare({ onSave, idMindMap }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await updateMindMap(idMindMap, { mode: form });
     await onSave();
-    router.refresh();
+    const a = await updateMindMap(idMindMap, { mode: form });
+    if (a === 1) {
+      setStatusSave(false);
+      toast.error("Vui lòng thử lại");
+    } else {
+      setStatusSave(false);
+      toast.success("Lưu thành công");
+    }
   };
   const handleChange = (e) => {
     const value = e.target.value;
@@ -85,9 +97,7 @@ export default function ModalShare({ onSave, idMindMap }) {
                       <Button
                         color="primary"
                         onPress={onClose}
-                        onClick={() => {
-                          onSave();
-                        }}
+                        onClick={handleClick}
                       >
                         Lưu
                       </Button>
