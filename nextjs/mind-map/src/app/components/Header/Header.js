@@ -25,12 +25,9 @@ import { getCookie } from "cookies-next";
 
 import { useState } from "react";
 
-export default function Header() {
+export default function Header({ user }) {
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const userCookie = getCookie("profile");
-  let user = JSON.parse(decodeURIComponent(userCookie));
-  console.log(user);
 
   return (
     <div className="relative">

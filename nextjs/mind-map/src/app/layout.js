@@ -3,6 +3,7 @@ import { Providers } from "./providers";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import Header from "../app/components/Header/Header";
 import Footer from "../app/components/Footer/Footer";
+import UserServer from "./components/Header/UserServer";
 
 export const metadata = {
   title: "Mind Map",
@@ -19,7 +20,7 @@ export default function RootLayout({ children }) {
       <UserProvider>
         <body>
           <Providers>
-            <Header />
+            <UserServer />
             <main className="max-w-[1280px] px-3 m-auto ">{children}</main>
             <Footer />
           </Providers>

@@ -25,9 +25,6 @@ import { Button, Spinner } from "@nextui-org/react";
 import { getMindMap, updateMindMap } from "@/utils/api/dataApi";
 import ModalShare from "./ModalShare";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { notFound, redirect } from "next/navigation";
-import cookieCutter from "@boiseitguru/cookie-cutter";
-import { getCookie } from "cookies-next";
 
 const nodeTypes = {
   customNode: CustomNode,
@@ -42,10 +39,9 @@ const minimapStyle = {
 const getNodeId = () => `randomnode_${+new Date()}`;
 
 const MindMap = () => {
+  const { user } = useUser();
   const router = useRouter();
   const { getNode } = useReactFlow();
-  const userCookie = getCookie("profile");
-  let user = JSON.parse(decodeURIComponent(userCookie));
 
   const [userEdit, setUserEdit] = useState(false);
   const [loading, setLoading] = useState(true);

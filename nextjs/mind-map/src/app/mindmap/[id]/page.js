@@ -2,7 +2,6 @@ import React from "react";
 import MindMap from "../MindMap";
 import { notFound, redirect } from "next/navigation";
 import { getMindMap } from "@/utils/api/dataApi";
-
 export const generateMetadata = async ({ params }) => {
   const data = await getMindMap(params.id);
 

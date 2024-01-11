@@ -12,15 +12,6 @@ export default async function middleware(req) {
   const pathName = req.nextUrl.pathname;
 
   const user = await getSession(req, res);
-  if (user) {
-    // Check Id notFound
-
-    var userJSON = JSON.stringify(user.user);
-    var encodedUserJSON = encodeURIComponent(userJSON);
-    res.cookies.set("profile", encodedUserJSON);
-  } else {
-    res.cookies.set("profile", undefined);
-  }
   if (!user && pathName == "/mindmap") {
     return NextResponse.redirect(new URL("/api/auth/login", req.url));
   }
@@ -37,8 +28,6 @@ export default async function middleware(req) {
         }
       }
     } else {
-      console.log("bbb");
-
       return NextResponse.redirect(new URL("/not-found", req.url));
     }
   }
