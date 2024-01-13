@@ -1,11 +1,14 @@
 const { object, string } = require("yup");
 const authService = require("../service/authService");
+const uniqueService = require("../service/uniqueService");
 
 module.exports = {
   index: (req, res) => {
     return res.redirect("/auth/login");
   },
   login: (req, res) => {
+    const userAgent = req.useragent;
+    console.log(userAgent);
     if (req.session.isLogin) {
       return res.redirect("/");
     } else {
@@ -38,8 +41,9 @@ module.exports = {
         return res.redirect("/auth/login");
       } else {
         req.session.isLogin = true;
-        req.session.user = body;
-        return res.redirect("/");
+        req.session.user = checkLogin;
+
+        return res.redirect("/user");
       }
     } catch (e) {
       const err = Object.fromEntries(
@@ -67,7 +71,7 @@ module.exports = {
         .required("Email bắt buộc phải nhập")
         .email("Email không đúng định dạng")
         .test("unique", "Email đã tồn tại trên hệ thống", async (value) => {
-          return await authService.checkEmailUnique(value);
+          return await uniqueService.checkEmailUnique(value);
         }),
       password: string()
         .required("Mật khẩu bắt buộc phải nhập")

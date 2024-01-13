@@ -5,14 +5,14 @@ const model = require("../models/index");
 const User = model.User;
 
 // Băm password của người dùng
-const hashPassRegister = (password) => {
+const hashPass = (password) => {
   const hashPassWord = bcrypt.hashSync(password, salt);
   return hashPassWord;
 };
 
 const userRegister = async (userProfile) => {
   const { name, email, password, status } = userProfile;
-  const hashPassWord = hashPassRegister(password);
+  const hashPassWord = hashPass(password);
   await User.create({
     name,
     email,
@@ -23,7 +23,6 @@ const userRegister = async (userProfile) => {
 
 const userLogin = async (userLogin) => {
   const { email, password } = userLogin;
-
   try {
     const check = await User.findOne({ where: { email } });
 
@@ -36,7 +35,7 @@ const userLogin = async (userLogin) => {
     }
     const result = await bcrypt.compare(password, check.password);
     if (result) {
-      return true;
+      return check;
     } else {
       return false;
     }
@@ -46,13 +45,7 @@ const userLogin = async (userLogin) => {
   }
 };
 
-const checkEmailUnique = async (email) => {
-  const check = await User.findOne({ where: { email } });
-  return check === null ? true : false;
-};
-
 module.exports = {
   userRegister,
-  checkEmailUnique,
   userLogin,
 };
