@@ -2,19 +2,27 @@ const { object, string, ref } = require("yup");
 const uniqueService = require("../service/uniqueService");
 const userService = require("../service/userService");
 const model = require("../models/index");
+const moment = require("moment");
 const Device = model.Device;
 const User = model.User;
 
 module.exports = {
   index: async (req, res) => {
     const mess = req.flash("msg");
+    const messPass = req.flash("msgPass");
     const userId = req.session.user.id;
-    const { browser, source, os, isMobile, isDesktop } = req.useragent;
 
     try {
+      const userDevice = await userService.userDeviceDb(req.useragent, userId);
       const user = await userService.getUser(userId);
-
-      return res.render("user/index", { user, req, mess });
+      return res.render("user/index", {
+        user,
+        req,
+        mess,
+        messPass,
+        userDevice,
+        moment,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -70,7 +78,7 @@ module.exports = {
     try {
       const body = await schema.validate(req.body, { abortEarly: false });
       await userService.userUpdatePass(body.password, userId);
-      req.flash("msg", "Thay đổi thông tin thành công");
+      req.flash("msgPass", "Thay đổi thông tin thành công");
       return res.redirect("/user");
     } catch (e) {
       console.log(e.inner);
