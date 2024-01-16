@@ -1,0 +1,47 @@
+<h1>Contact Form</h1>
+<% if (msg.length) { %>
+<div class="alert alert-success my-3"><%= msg %></div>
+<% } %>
+<form id="contact_form" name="contact_form" method="post">
+  <div class="mb-3">
+    <label for="email_addr">Email address</label>
+    <input
+      type="email"
+      maxlength="50"
+      class="form-control"
+      id="email_addr"
+      name="email"
+      placeholder="name@example.com"
+      value="<%= req.old?.email %>"
+    />
+  </div>
+  <%- req.errors?.email ? `<span class="text-danger">${req.errors?.name}</span
+  >`: '' %>
+
+  <div class="mb-3">
+    <label for="name_input">Title</label>
+    <input
+      type="text"
+      maxlength="50"
+      class="form-control"
+      id="name_input"
+      name="title"
+      value="<%= req.old?.title %>"
+      placeholder="Title"
+    />
+  </div>
+  <%- req.errors?.title ? `<span class="text-danger">${req.errors?.name}</span
+  >`: '' %>
+  <div class="mb-3">
+    <label for="message">Message</label>
+    <textarea class="form-control" id="message" name="message" rows="3">
+<%= req.old?.message %></textarea
+    >
+  </div>
+  <%- req.errors?.message ? `<span class="text-danger">${req.errors?.name}</span
+  >`: '' %>
+
+  <button type="submit" class="btn btn-primary px-4">Hủy</button>
+  <button type="submit" class="btn btn-primary px-4">Send</button>
+  <a href="/send-mail/history" class="btn btn-primary px-4">Lịch sử gửi</a>
+</form>

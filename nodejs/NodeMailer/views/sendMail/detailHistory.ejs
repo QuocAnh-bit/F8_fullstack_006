@@ -1,0 +1,43 @@
+<h1>Lịch sử gửi chi tiết</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID gửi mail</th>
+      <th scope="col">Gửi đến</th>
+      <th scope="col">Trạng thái</th>
+      <th scope="col">Thời gian gửi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><%= history.id %></th>
+      <td><%= history.send_to %></td>
+      <td><%= history.status ? "Đã Xem" : "Chưa Xem" %></td>
+      <td><%= moment(history.created_at).format('DD/MM/YYYY HH:mm:ss') %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="mb-3">
+  <label for="name_input">Title</label>
+  <input
+    type="text"
+    required
+    maxlength="50"
+    class="form-control"
+    id="name_input"
+    name="title"
+    placeholder="Name"
+    readonly
+    value="<%= history.title %>"
+  />
+</div>
+
+<div class="mb-3">
+  <label for="message">Message</label>
+  <textarea class="form-control" id="message" name="message" rows="5" readonly>
+  <%= history.message %></textarea
+  >
+</div>
+
+<a href="/send-mail/history" class="btn btn-primary px-4">Trở lại</a>
