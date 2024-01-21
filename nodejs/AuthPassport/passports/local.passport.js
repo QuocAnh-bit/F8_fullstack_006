@@ -8,8 +8,11 @@ const passportLocal = new LocalStrategy(
     passwordField: "password",
   },
   async (email, password, done) => {
-    const provider = await Provider.findOne({
+    const [provider, created] = await Provider.findOrCreate({
       where: { name: "email" },
+      defaults: {
+        name: "email",
+      },
     });
     const user = await User.findOne({
       where: { email, provider_id: provider.id },
