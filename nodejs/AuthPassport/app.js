@@ -17,6 +17,7 @@ const guestMiddleware = require("./middlewares/guest.middleware");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
+const roleRouter = require("./routes/roles");
 
 const passport = require("passport");
 const localPassport = require("./passports/local.passport");
@@ -68,6 +69,7 @@ app.use("/auth", guestMiddleware, authRouter);
 app.use(authMiddleware);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/roles", roleRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

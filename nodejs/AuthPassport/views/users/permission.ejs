@@ -1,0 +1,28 @@
+<h1>Permission</h1>
+<% if (msg.length ) { %>
+<div class="alert alert-danger" role="alert"><%= msg %></div>
+<% } %>
+<form action="" method="post">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th width="5%"><input type="checkbox" /></th>
+        <th>Quyền</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% roles.forEach(role => { %>
+      <tr>
+        <td>
+          <input type="checkbox" name="role" value="<%= role.id %>" <%=
+          isRole(user,role.id) ? "checked": "" %>/>
+        </td>
+        <td><%= role.name %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <div class="col-2 d-grid">
+    <button class="btn btn-primary">Lưu Lại</button>
+  </div>
+</form>

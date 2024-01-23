@@ -8,7 +8,7 @@ module.exports = {
     const error = req.flash("error");
     const msg = req.flash("msg");
 
-    res.render("auth/login", { error, req, msg });
+    res.render("auth/login", { error, req, msg, layout: "auth/layout.ejs" });
   },
   handleLogin: async (req, res, next) => {
     const schema = object({
@@ -32,17 +32,17 @@ module.exports = {
     return res.redirect("/auth/login");
   },
   register: (req, res) => {
-    res.render("auth/register", { req });
+    res.render("auth/register", { req, layout: "auth/layout.ejs" });
   },
   handleRegister: async (req, res) => {
     const schema = object({
       name: string().required("Tên bắt buộc phải nhập"),
       email: string()
         .required("Email bắt buộc phải nhập")
-        .email("Email không đúng định dạng"),
-      // .test("unique", "Email đã tồn tại trên hệ thống", async (value) => {
-      //   return await uniqueService.checkEmailUnique(value);
-      // }),
+        .email("Email không đúng định dạng")
+        .test("unique", "Email đã tồn tại trên hệ thống", async (value) => {
+          return await uniqueService.checkEmailUnique(value);
+        }),
       password: string()
         .required("Mật khẩu bắt buộc phải nhập")
         .min(8, "Mật khẩu phải trên 8 ký tự"),
@@ -65,7 +65,7 @@ module.exports = {
   },
   forgotPassword: (req, res) => {
     const msg = req.flash("msg");
-    res.render("auth/forgot", { msg });
+    res.render("auth/forgot", { msg, layout: "auth/layout.ejs" });
   },
   handleForgot: async (req, res) => {
     const schema = object({
@@ -97,7 +97,7 @@ module.exports = {
   resetPassword: (req, res) => {
     const msg = req.flash("msg");
 
-    res.render("auth/resetPassword", { req, msg });
+    res.render("auth/resetPassword", { req, msg, layout: "auth/layout.ejs" });
   },
   handleResetPassword: async (req, res) => {
     const { token } = req.query;

@@ -7,7 +7,7 @@ module.exports = new GoogleStrategy(
     clientID:
       "925806848349-nrhhvv0mqfpfevojm63q9hc343njtiqv.apps.googleusercontent.com",
     clientSecret: "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",
-    callbackURL: "http://localhost:3000/auth/google/callback",
+    callbackURL: "https://auth-passport.vercel.app/auth/google/callback",
     scope: ["profile", "email"],
     state: true,
   },

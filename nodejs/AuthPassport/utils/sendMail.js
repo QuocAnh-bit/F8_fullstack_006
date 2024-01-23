@@ -15,7 +15,7 @@ const sendMail = async (to, token) => {
     from: '"Quên mật khẩu" <qanhanh06@gmail.com>', // sender address
     to, // list of receivers
     subject: "Xin vui lòng bấm vào đường link để có thể lấy lại mật khẩu", // Subject line
-    html: `<a href="http://localhost:3000/auth/reset-password?token=${token}">Link</a>`, // html body
+    html: `<a href="https://auth-passport.vercel.app/auth/reset-password?token=${token}">Link</a>`, // html body
   });
 
   return info;
