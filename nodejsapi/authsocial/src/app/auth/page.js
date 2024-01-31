@@ -12,7 +12,7 @@ export default function Auth() {
           href={`https://auth-passport.vercel.app/api/auth/google`}
         >
           <FaGoogle size={20} />
-          Continue with Google
+          Continue with Googles
         </Link>
         <div class=" flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-white after:mt-0.5 after:flex-1 after:border-t after:border-white">
           <p class="mx-4 mb-0 text-center font-semibold ">Or</p>
