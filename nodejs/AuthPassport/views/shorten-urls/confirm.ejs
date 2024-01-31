@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="d-flex flex-column gap-3" style="width: 50%">
+    <a href="<%= fullUrl.root_link %>" class="btn btn-danger"
+      >Tiếp tục chuyển hướng đến liên kết</a
+    >
+    <button class="btn btn-light border">Chia sẻ lên Facebook</button>
+    <button
+      type="button"
+      class="btn btn-light border"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Gửi tới điện thoại (QR code)
+    </button>
+
+    <a href="/shorten-urls" class="btn border">Tiếp tục rút gọn link</a>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Quét mã QR này từ điện thoại của bạn
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="<%= qrCodeUrl %>" alt="" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -48,7 +48,7 @@ module.exports = {
                 value: permissions[i],
               });
             }
-            await role.addPermission(permission);
+            await role.addPermissions(permission);
           }
         }
       }
@@ -155,10 +155,8 @@ module.exports = {
     }
     if (role) {
       const { permissions } = role;
-      for (let i = 0; i < permissions.length; i++) {
-        await role.removePermissions(permissions[i]);
-      }
-      await Role.destroy({ where: { id } });
+      await role.removePermissions(permissions);
+      await role.destroy();
     }
 
     return res.redirect("/roles");

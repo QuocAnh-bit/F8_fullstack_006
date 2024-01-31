@@ -1,0 +1,100 @@
+<h1>Rút gọn link</h1>
+
+<div>
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-bordered" style="font-size: 10px">
+        <thead>
+          <tr>
+            <th scope="col" width="5%">#</th>
+            <th scope="col">Liên kết rút gọn</th>
+            <th scope="col">liên kết gốc</th>
+            <th scope="col">Mật khẩu</th>
+            <th scope="col">Lượt truy cập</th>
+            <th scope="col">Thời gian tạo</th>
+            <th scope="col">Hành động</th>
+          </tr>
+        </thead>
+        <tbody class="">
+          <% shortenUrls.forEach((url,index ) => { %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><a href="<%= url.new_link %>"><%= url.new_link %></a></td>
+            <td>
+              <a href="<%= url.root_link %>"
+                ><%= url.root_link.match(patternRootLink)[0] %></a
+              >
+            </td>
+            <td>(Không có)</td>
+            <td><%= url.clicks %></td>
+            <td>vài giây trước</td>
+            <td>Thêm sửa xóa</td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <div class="border p-3 rounded">
+        <form class="d-flex flex-column gap-3" method="post">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Liên kết</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              name="root_link"
+              placeholder="Rút gọn liên kết của bạn"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Mật khẩu (Tùy chọn)</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              name="password"
+              placeholder="Mật khẩu để mở khóa"
+            />
+          </div>
+          <div class="row g-3">
+            <label for="exampleInputPassword1">Tùy chỉnh Id hoặc tự động</label>
+            <div class="col-sm-8">
+              <div style="font-size: 14px; width: 120%" class="py-2">
+                <p><%= baseUrl %></p>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <input
+                style="font-size: 13px"
+                type="text"
+                class="form-control px-1 py-2"
+                id="exampleInputPassword1"
+                placeholder="ID tùy chọn"
+                name="new_link"
+                value="<%= shortid.generate() %>"
+              />
+            </div>
+          </div>
+
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="exampleCheck1"
+              name="check"
+              value="check"
+              checked
+            />
+            <label class="form-check-label" for="exampleCheck1"
+              >Chuyển hướng an toàn (Tránh bị chặn bởi Facebook)</label
+            >
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

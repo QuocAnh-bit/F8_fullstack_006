@@ -1,15 +1,14 @@
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
+const GithubStrategy = require("passport-github2").Strategy;
+const passport = require("passport");
 const { User, Provider } = require("../models/index");
 const { Op } = require("sequelize");
 
-module.exports = new GoogleStrategy(
+module.exports = new GithubStrategy(
   {
-    clientID:
-      "925806848349-ne5kthn12if8jtler80pfd3dp05fuplg.apps.googleusercontent.com",
-    clientSecret: "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",
-    callbackURL: "https://auth-passport.vercel.app/google/callback",
+    clientID: "0bf7c13a316ad2539e09",
+    clientSecret: "9cfcb030f8b155a165188a7447ca8ac1245e2b01",
+    callbackURL: "https://auth-passport.vercel.app/api/auth/github/callback",
     scope: ["profile", "email"],
-    state: true,
   },
   async (accessToken, refreshToken, profile, cb) => {
     //logic lấy thông tin user từ db
@@ -23,12 +22,15 @@ module.exports = new GoogleStrategy(
 
     const [user, createUser] = await User.findOrCreate({
       where: {
-        [Op.and]: [{ email: profile.email }, { provider_id: provider.id }],
+        [Op.and]: [
+          { email: profile.emails[0].value },
+          { provider_id: provider.id },
+        ],
       },
       defaults: {
         name: profile.displayName,
         password: null,
-        email: profile.email,
+        email: profile.emails[0].value,
         provider_id: provider.id,
         avatar: profile.photos[0].value,
         access_token: accessToken,

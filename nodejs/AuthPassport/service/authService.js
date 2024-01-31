@@ -90,6 +90,7 @@ const resetPassword = async (token, password) => {
 };
 
 module.exports = {
+  hashPass,
   userRegister,
   forgotPassword,
   resetPassword,

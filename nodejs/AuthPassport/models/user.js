@@ -24,7 +24,12 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsToMany(models.Permission, {
         through: "users_permissions",
         foreignKey: "user_id",
-        as: "user",
+        as: "permissions",
+      });
+
+      User.hasOne(models.ShortenUrl, {
+        foreignKey: "user_id",
+        as: "shortenUrls",
       });
     }
   }
@@ -38,6 +43,9 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
+      provider_id: DataTypes.INTEGER,
+      avatar: DataTypes.STRING,
+      access_token: DataTypes.STRING,
     },
     {
       sequelize,

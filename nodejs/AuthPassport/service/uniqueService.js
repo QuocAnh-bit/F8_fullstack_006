@@ -1,6 +1,7 @@
 const model = require("../models/index");
 const User = model.User;
 const Role = model.Role;
+const ShortenUrl = model.ShortenUrl;
 
 const { Op } = require("sequelize");
 
@@ -26,9 +27,19 @@ const checkRoleUnique = async (name, id = 0) => {
     console.log(error);
   }
 };
-``;
 
+const checkIdUrl = async (value) => {
+  try {
+    value = process.env.BASE_SHORT_URL + value.trim();
+    console.log(value);
+    const check = await ShortenUrl.findOne({ where: { new_link: value } });
+    return check === null ? true : false;
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   checkEmailUnique,
   checkRoleUnique,
+  checkIdUrl,
 };

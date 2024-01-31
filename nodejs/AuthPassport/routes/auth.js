@@ -23,14 +23,14 @@ router.post("/forgot-password", authController.handleForgot);
 router.get("/reset-password", authController.resetPassword);
 router.post("/reset-password", authController.handleResetPassword);
 router.get("/google/redirect", passport.authenticate("google"));
-router.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "auth/login",
-    failureFlash: true,
-    successRedirect: "/",
-  })
-);
+// router.get(
+//   "/google/callback",
+//   passport.authenticate("google", {
+//     failureRedirect: "auth/login",
+//     failureFlash: true,
+//     successRedirect: "/",
+//   })
+// );
 router.get("/logout", (req, res) => {
   req.logout(() => {});
   return res.redirect("/auth/login");
