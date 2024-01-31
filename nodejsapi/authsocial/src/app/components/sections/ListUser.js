@@ -41,7 +41,7 @@ export default function ListUser({ data }) {
                   </th>
                   <td className="px-6 py-4">{item.email}</td>
                   <td className="px-6 py-4">{item.id}</td>
-                  <td className="px-6 py-4">{item.providers.name}</td>
+                  <td className="px-6 py-4">{item.provider.name}</td>
                   <td className="px-6 py-4 text-right">
                     <Link
                       href={`/details/${item.id}`}
