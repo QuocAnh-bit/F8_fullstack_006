@@ -1,0 +1,57 @@
+@import "../../scss/parts/variable";
+@import "../../scss/parts/mixin";
+
+.footer {
+  margin: 70px 0;
+  .logo-footer {
+    margin-bottom: 20px;
+    line-height: 28.8px;
+    .address {
+      font-weight: 600;
+      margin: 20px 0;
+      max-width: 335px;
+      color: $titleColor;
+    }
+  }
+
+  .list-menu {
+    margin-bottom: 50px;
+    .title-list {
+      color: $titleColor;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 25.6px;
+    }
+    ul {
+      li {
+        line-height: 40px;
+        a {
+          color: $titleColor;
+        }
+      }
+    }
+    .social-list {
+      ul {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        li {
+          background-color: #21235321;
+          width: 50px;
+          height: 50px;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+}
+
+.copyright {
+  max-width: 360px;
+  font-size: 1.4rem;
+  color: $titleColor;
+  padding: 10px;
+}
+
+@include screen(lg) {
+}

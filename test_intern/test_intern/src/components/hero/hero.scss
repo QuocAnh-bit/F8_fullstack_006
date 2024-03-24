@@ -1,0 +1,65 @@
+@import "../../scss/parts/variable";
+@import "../../scss/parts/mixin";
+.title {
+  text-align: center;
+  color: $titleColor;
+  h1 {
+    font-weight: 700;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+}
+.section-hero {
+  position: relative;
+}
+@include screen(md) {
+  .title {
+    text-align: left;
+    h1 {
+      line-height: 55px;
+      font-size: 5rem;
+      margin-bottom: 2rem;
+    }
+    p {
+      max-width: 380px;
+
+      margin-bottom: 3rem;
+    }
+  }
+  .img-hero {
+    max-width: 460px;
+    position: absolute;
+    right: 5px;
+    top: 80px;
+    padding: 0 5px;
+    z-index: -5;
+  }
+}
+@include screen(lg) {
+  .title {
+    h1 {
+      font-size: 8rem;
+      margin-bottom: 8rem;
+      line-height: 88px;
+    }
+    p {
+      max-width: 380px;
+
+      font-size: 1.8rem;
+      line-height: 28.8px;
+      margin-bottom: 6rem;
+    }
+  }
+  .img-hero {
+    max-width: 760px;
+    right: -46px;
+    top: 80px;
+  }
+}
+.img-hero {
+  margin-top: 15px;
+  overflow-x: hidden;
+}

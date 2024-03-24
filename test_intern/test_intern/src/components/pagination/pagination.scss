@@ -1,0 +1,23 @@
+.paginate {
+  display: flex;
+  margin-top: 15px;
+  justify-content: flex-end;
+  gap: 5px;
+  button {
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .list-page {
+    display: flex;
+    gap: 5px;
+    span {
+      display: block;
+      padding: 10px 15px;
+      font-weight: 500;
+    }
+    .active-page {
+      background-color: rgb(206, 206, 220);
+      border-radius: 5px;
+    }
+  }
+}
